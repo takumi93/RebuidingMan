@@ -1,0 +1,41 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3031d310d0c8a4849b9f1b10bf9931d1, type: 3}
+  m_Name: RobotSetting
+  m_EditorClassIdentifier: 
+  HeadDataList:
+  - Head: {fileID: 9222174284307055933, guid: 0a22534a4bbd150488752ea884701989, type: 3}
+    HeadCategory: 0
+    HeadHP: 100
+  - Head: {fileID: 1181944643908064975, guid: 637030c68b869f84591404470198a927, type: 3}
+    HeadCategory: 1
+    HeadHP: 300
+  - Head: {fileID: 3951978571332786885, guid: ce7af4cdbe2e08b4d93cf7c458cefe8a, type: 3}
+    HeadCategory: 2
+    HeadHP: 200
+  BodyDataList:
+  - Body: {fileID: 1066841041302124578, guid: d5f9545e9b7c8484b89265855a0e616a, type: 3}
+    BodyCategory: 0
+    BodyHP: 100
+  - Body: {fileID: 2668936212951939357, guid: 5beaa79ec45246c47a2310b7e36debd2, type: 3}
+    BodyCategory: 1
+    BodyHP: 100
+  - Body: {fileID: 6304453191028771697, guid: 90b4fd49a98b32549bf7e017af14c331, type: 3}
+    BodyCategory: 2
+    BodyHP: 200
+  LegDataList:
+  - Leg: {fileID: 2050600553940158714, guid: e4a123f264317434cba5c7f8a2b05d32, type: 3}
+    LegCategory: 0
+    LegHP: 100
+  - Leg: {fileID: 6013006339386130469, guid: ba8e0e42a4ac37e4f970467ecdf27699, type: 3}
+    LegCategory: 1
+    LegHP: 300
