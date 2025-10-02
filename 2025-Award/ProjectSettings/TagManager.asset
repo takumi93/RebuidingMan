@@ -22,6 +22,7 @@ TagManager:
   - Knight
   - Tire
   - Walk
+  - Scene
   layers:
   - Default
   - TransparentFX

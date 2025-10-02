@@ -11,10 +11,11 @@ GameObject:
   - component: {fileID: 1042318841768719370}
   - component: {fileID: 7893764735077004113}
   - component: {fileID: 2954224193279758385}
-  - component: {fileID: 7206939754547169775}
   - component: {fileID: 6468418172060105064}
   - component: {fileID: 4335315842612680877}
-  - component: {fileID: 3737925112008880768}
+  - component: {fileID: 5444151600885062751}
+  - component: {fileID: 7206939754547169775}
+  - component: {fileID: 172368467541275569}
   - component: {fileID: 2454724823362980279}
   m_Layer: 6
   m_Name: Player
@@ -257,51 +258,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 8
-  attackDistance: 3
-  grabDistance: 10
+  playerAttackRange: 10
   attackPower: 80
   grabPosition: {x: 0, y: -1.5, z: 0}
   hitEffect: {fileID: 7703201475844362149, guid: 329f5ca0dc6dad24f8d83f23ba27d839, type: 3}
   hitReticle: {fileID: 0}
-  playerCamera: {fileID: 0}
-  playerOb: {fileID: 7871434316859138787}
   robotCreate: {fileID: 4335315842612680877}
   plantPoint: {fileID: 7507640084037274490}
   grabHead: {fileID: 0}
   grabBody: {fileID: 0}
   grabLeg: {fileID: 0}
-  isAttackable: 0
   SwingSound: {fileID: 8300000, guid: d12060f429cb2954d8cc06f0f2669643, type: 3}
   GrabSound: {fileID: 8300000, guid: 2790a3797e187c14585fa19806e08247, type: 3}
   AttackSound: {fileID: 8300000, guid: 46e3b393fc9fc4a4c9131264d73fddb8, type: 3}
   CreateSound: {fileID: 8300000, guid: fd1280f8a8a72ea41b15629465d06b38, type: 3}
---- !u!54 &7206939754547169775
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1105095988933203209}
-  serializedVersion: 4
-  m_Mass: 100
-  m_Drag: 0.6
-  m_AngularDrag: 0.6
-  m_CenterOfMass: {x: 0, y: 0, z: 0}
-  m_InertiaTensor: {x: 1, y: 1, z: 1}
-  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ImplicitCom: 1
-  m_ImplicitTensor: 1
-  m_UseGravity: 1
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 1
 --- !u!114 &6468418172060105064
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -330,27 +300,70 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 28c7cf14c4dc96c4596469636862e6b2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  robotData: {fileID: 11400000, guid: 751243ddae7f22e4fa17563bb4cb11ec, type: 2}
+  inventory: {fileID: 5444151600885062751}
+  robotBasePrefab: {fileID: 816378015491594344, guid: 11b076216729f684f819bfa543fbbdfd, type: 3}
+  spawnPoint: {fileID: 6992546706704633079}
   plantPoint: {fileID: 6992546706704633079}
+  robotAlly: {fileID: 0}
+  database: {fileID: 0}
+  headSlot: {fileID: 0}
+  bodySlot: {fileID: 0}
+  legSlot: {fileID: 0}
   attack: {fileID: 4522685543126490467, guid: 028020bec4001614bbcedb5c58008abb, type: 3}
   IsCreate: 0
   IsHeadSet: 0
   IsBodySet: 0
   IsLegSet: 0
   player: {fileID: 2954224193279758385}
-  robotAlly: {fileID: 0}
   AllycrawlPositions:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
   FixPoint: {fileID: 6020323049867674008, guid: 4443737c393011b4aabf8fcb03431805, type: 3}
-  NormalMaterial: {fileID: 2100000, guid: ba758ded45c0f2748846c21da1d36b71, type: 2}
-  GunMaterial: {fileID: 2100000, guid: ad95f229335e0a34db556e83898f1cd0, type: 2}
-  KnightMaterial: {fileID: 2100000, guid: 7ab21b7f7b83bd049a7dbb70d45ac8b8, type: 2}
   clone: {fileID: 816378015491594344, guid: 11b076216729f684f819bfa543fbbdfd, type: 3}
---- !u!65 &3737925112008880768
-BoxCollider:
+--- !u!114 &5444151600885062751
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1105095988933203209}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6cf6cdba4f4a38d48ae198eec65955af, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  equippedParts: []
+--- !u!54 &7206939754547169775
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1105095988933203209}
+  serializedVersion: 4
+  m_Mass: 100
+  m_Drag: 0.6
+  m_AngularDrag: 0.6
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 1
+--- !u!136 &172368467541275569
+CapsuleCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -367,9 +380,11 @@ BoxCollider:
   m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 1.0147953, y: 1.576188, z: 1}
-  m_Center: {x: -0.2379694, y: 0.7847889, z: 0}
+  serializedVersion: 2
+  m_Radius: 0.5
+  m_Height: 2
+  m_Direction: 1
+  m_Center: {x: 0, y: 1, z: 0}
 --- !u!82 &2454724823362980279
 AudioSource:
   m_ObjectHideFlags: 0

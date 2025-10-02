@@ -43,7 +43,7 @@ NavMeshAgent:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 816378015491594344}
-  m_Enabled: 0
+  m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.5
   m_Speed: 3.5
@@ -70,20 +70,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6691b8f97cf783a42a32640af60331bb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hpManager: {fileID: 0}
+  agent: {fileID: 0}
   Target: {fileID: 0}
-  CategoryHead: 0
-  CategoryBody: 0
-  CategoryLeg: 0
-  attack: {fileID: 4522685543126490467, guid: 028020bec4001614bbcedb5c58008abb, type: 3}
-  crawlPositions: []
-  pawnRadius: 5
-  pawnDistance: 10
-  FixedPosition: {fileID: 0}
-  rookRadius: 5
-  rookDistance: 10
-  EscortTarget: {fileID: 0}
-  knightRadius: 5
-  knightDistance: 10
+  targetDistance: 0
+  IsSet: 1
   robotState: 0
 --- !u!114 &7203278328105254637
 MonoBehaviour:
@@ -97,7 +88,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8a925ba83e5002e4a9324f98aff1f000, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  robotData: {fileID: 11400000, guid: 751243ddae7f22e4fa17563bb4cb11ec, type: 2}
+  leg: {fileID: 0}
+  headData: {fileID: 0}
+  bodyData: {fileID: 0}
+  legData: {fileID: 0}
   explosionEffect: {fileID: 6037139083657312632, guid: 735eaa260f8dab2408e78144fb137f68, type: 3}
   DeleteLayer: 0
   enemyCount: {fileID: 0}

@@ -1,0 +1,36 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e5198e902b7737745970c1a5c1968f96, type: 3}
+  m_Name: Body_Axe
+  m_EditorClassIdentifier: 
+  id: 2
+  partName: Body_Axe
+  icon: {fileID: 0}
+  prefab: {fileID: 1066841041302124578, guid: d5f9545e9b7c8484b89265855a0e616a, type: 3}
+  hp: 300
+  defense: 300
+  speed: 100
+  material: {fileID: 2100000, guid: 7ab21b7f7b83bd049a7dbb70d45ac8b8, type: 2}
+  description: 
+  bodyType: 2
+  damageA: 30
+  damageB: 40
+  coolTimeA: 5
+  coolTimeB: 5
+  preparationTimeA: 3
+  preparationTimeB: 8
+  occurrenceTimeA: 1
+  occurrenceTimeB: 1
+  finishTimeA: 1.5
+  finishTimeB: 3
+  attackSoundA: {fileID: 8300000, guid: e7515b94d702f9d40a01f1baf4eb3a96, type: 3}
+  attackSoundB: {fileID: 8300000, guid: e7515b94d702f9d40a01f1baf4eb3a96, type: 3}

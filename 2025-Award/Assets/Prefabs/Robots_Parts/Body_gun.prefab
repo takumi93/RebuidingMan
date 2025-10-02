@@ -135,8 +135,8 @@ GameObject:
   - component: {fileID: 7676638122661014931}
   - component: {fileID: 755930473048119935}
   - component: {fileID: 7313777865332009098}
-  - component: {fileID: 9118875708414081626}
-  - component: {fileID: 5991244277016028686}
+  - component: {fileID: 8991900545446539418}
+  - component: {fileID: -4467241887373330069}
   m_Layer: 9
   m_Name: Body_gun
   m_TagString: Gun
@@ -212,7 +212,7 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.45751, y: 0.46788627, z: 0.22501445}
   m_Center: {x: 0.0050542057, y: 0.81832707, z: -0.0033695102}
---- !u!114 &9118875708414081626
+--- !u!114 &8991900545446539418
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -221,50 +221,22 @@ MonoBehaviour:
   m_GameObject: {fileID: 6304453191028771697}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6b598b72e3f676042943f462aa8f3be3, type: 3}
+  m_Script: {fileID: 11500000, guid: f98bf4d91b651524696fb02a45f761fa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  normalDamageA: 30
-  normalDamageB: 90
-  normalCoolTimeA: 1
-  normalCoolTimeB: 1
-  normalPreparationTimeA: 0.5
-  normalPreparationTimeB: 3
-  normalOccurrencetimeA: 1
-  normalOccurrenceTimeB: 1
-  normalFinishTimeA: 0.5
-  normalFinishTimeB: 1
-  robotAttackPunch: {fileID: 0}
-  robotAttackRariat: {fileID: 0}
-  gunCoolTimeA: 1
-  gunPreparationTimeA: 1
-  gunCoolTimeB: 1
-  gunPreparationTimeB: 1
-  Allybullet: {fileID: 0}
-  Enemybullet: {fileID: 0}
+  bodyData: {fileID: 11400000, guid: 2658a89b704e50d4486a38ee11ae3aea, type: 2}
+  BodyToHeadRig: {fileID: 7801494423147444120}
+  BodyToLegRig: {fileID: 4422618043799417645}
+  LegToBodyRig: {fileID: 0}
+  Allybullet: {fileID: 5451610299198440855, guid: a7a0cf5dfce23c248aac73d3567fdb1c, type: 3}
+  Enemybullet: {fileID: 5451610299198440855, guid: 7dbbd97f6757ce84c99083d7f91caa79, type: 3}
   shotPointRight: {fileID: 2703434366895312254}
   shotPointLeft: {fileID: 5309663526185476143}
-  axeDamageA: 30
-  axeDamageB: 90
-  axeCoolTimeA: 1
-  axeCoolTimeB: 1
-  axePreparationTimeA: 1
-  axePreparationTimeB: 3
-  axeOccurrencetimeA: 1
-  axeOccurrenceTimeB: 1
-  axeFinishTimeA: 1.5
-  axeFinishTimeB: 3
-  robotAttackSlashAxe: {fileID: 0}
-  robotAttackChargeAxe: {fileID: 0}
   audioSource: {fileID: 0}
-  punchSound: {fileID: 0}
-  spinPunchSound: {fileID: 0}
-  shotSound: {fileID: 0}
-  missileSound: {fileID: 0}
   isAttackable: 0
   isEnemy: 0
-  weaponState: 0
---- !u!114 &5991244277016028686
+  robotAction: {fileID: 0}
+--- !u!114 &-4467241887373330069
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -273,11 +245,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 6304453191028771697}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a81ca06665b97424ca6f5fda7b564ecb, type: 3}
+  m_Script: {fileID: 11500000, guid: fccf995cac308de45bbd0a50bff6fbde, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  BodyToHeadRig: {fileID: 0}
-  BodyToLegRig: {fileID: 0}
+  partData: {fileID: 11400000, guid: 2658a89b704e50d4486a38ee11ae3aea, type: 2}
 --- !u!1001 &7475911385619495876
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -346,6 +317,11 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 4282521092264248049}
   m_SourcePrefab: {fileID: 100100000, guid: f806e32168b845942bdd1c0ffe49b504, type: 3}
+--- !u!1 &4422618043799417645 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6548108952322722025, guid: f806e32168b845942bdd1c0ffe49b504, type: 3}
+  m_PrefabInstance: {fileID: 7475911385619495876}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &6932584325461875759 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: f806e32168b845942bdd1c0ffe49b504, type: 3}
@@ -378,3 +354,8 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!1 &7801494423147444120 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 863490546864295004, guid: f806e32168b845942bdd1c0ffe49b504, type: 3}
+  m_PrefabInstance: {fileID: 7475911385619495876}
+  m_PrefabAsset: {fileID: 0}

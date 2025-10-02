@@ -64,12 +64,18 @@ public class TitleScene : MonoBehaviour
         // 音量画面でのボタン処理
 
         // ステージ選択画面でのボタン処理
-        stageSelectUI.OnFirstStageButtonClick.AddListener(() => LoadNextScene("1"));
-        stageSelectUI.OnSecondStageButtonClick.AddListener(() => LoadNextScene("2"));
-        stageSelectUI.OnThirdStageButtonClick.AddListener(() => LoadNextScene("3"));
-        stageSelectUI.OnForceStageButtonClick.AddListener(() => LoadNextScene("4"));
+        stageSelectUI.OnFirstStageButtonClick.AddListener(() => LoadNextScene("Stage1"));
+        stageSelectUI.OnSecondStageButtonClick.AddListener(() => LoadNextScene("Stage2"));
+        stageSelectUI.OnThirdStageButtonClick.AddListener(() => LoadNextScene("Stage3"));
+        stageSelectUI.OnForceStageButtonClick.AddListener(() => LoadNextScene("Stage4"));
 
         Time.timeScale = 1;
+    }
+
+    private void Update()
+    {
+        Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.None;
     }
 
     // StartボタンまたはEscapeボタンを押した時の処理

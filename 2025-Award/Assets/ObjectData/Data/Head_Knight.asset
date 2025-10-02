@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dd1f93553694f0e458125fd2e17c7b06, type: 3}
+  m_Name: Head_Knight
+  m_EditorClassIdentifier: 
+  id: 2
+  partName: Head_Knight
+  icon: {fileID: 0}
+  prefab: {fileID: 3951978571332786885, guid: ce7af4cdbe2e08b4d93cf7c458cefe8a, type: 3}
+  hp: 300
+  defense: 300
+  speed: 100
+  material: {fileID: 2100000, guid: 7ab21b7f7b83bd049a7dbb70d45ac8b8, type: 2}
+  description: 
+  radius: 5
+  distance: 10
+  headType: 2

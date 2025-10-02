@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d4ec649f67010204fbf06297d0ddcbeb, type: 3}
+  m_Name: Leg_Normal
+  m_EditorClassIdentifier: 
+  id: 0
+  partName: Leg_Normal
+  icon: {fileID: 0}
+  prefab: {fileID: 2050600553940158714, guid: e4a123f264317434cba5c7f8a2b05d32, type: 3}
+  hp: 200
+  defense: 200
+  speed: 100
+  material: {fileID: 2100000, guid: ba758ded45c0f2748846c21da1d36b71, type: 2}
+  description: 
+  legType: 0

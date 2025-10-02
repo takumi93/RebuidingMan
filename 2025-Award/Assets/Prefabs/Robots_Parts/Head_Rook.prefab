@@ -76,7 +76,10 @@ PrefabInstance:
       addedObject: {fileID: 8488180985076602346}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: a7f4afb3c1aa3894cb287eae4afdf19a, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 4234585834595029588}
+      addedObject: {fileID: -7189806485893936169}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: a7f4afb3c1aa3894cb287eae4afdf19a, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1306209650427007546}
   m_SourcePrefab: {fileID: 100100000, guid: a7f4afb3c1aa3894cb287eae4afdf19a, type: 3}
 --- !u!1 &1181944643908064975 stripped
 GameObject:
@@ -133,7 +136,7 @@ CapsuleCollider:
   m_Height: 0
   m_Direction: 1
   m_Center: {x: 0, y: 1.24, z: 0}
---- !u!114 &4234585834595029588
+--- !u!114 &-7189806485893936169
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -142,10 +145,31 @@ MonoBehaviour:
   m_GameObject: {fileID: 1181944643908064975}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3fcad951252f638439f5a16d09515c77, type: 3}
+  m_Script: {fileID: 11500000, guid: fccf995cac308de45bbd0a50bff6fbde, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  partData: {fileID: 11400000, guid: ea86b7e9aaefdbf438aeacb9be76a965, type: 2}
+--- !u!114 &1306209650427007546
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1181944643908064975}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2af9824845b7cb14b83c787a62d9dbce, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  headData: {fileID: 11400000, guid: ea86b7e9aaefdbf438aeacb9be76a965, type: 2}
   HeadToBodyRig: {fileID: 2155069106239469612}
+  BodyToHeadRig: {fileID: 0}
+  IsSet: 0
+  Target: {fileID: 0}
+  area: {fileID: 0}
+  robotAction: {fileID: 0}
+  FixedPosition: {fileID: 0}
+  EscortTarget: {fileID: 0}
 --- !u!1 &2155069106239469612 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 94050415646053298, guid: a7f4afb3c1aa3894cb287eae4afdf19a, type: 3}

@@ -23,6 +23,24 @@ public class StageScene : MonoBehaviour
     // UIを指定
     [SerializeField] private OperationUI operationUI = null;
 
+    // 味方のレイヤーを指定
+    public readonly int PlayerLayer = 6;
+    // 敵のレイヤーを指定
+    public readonly int EnemyLayer = 7;
+    // 味方のレイヤーを指定
+    public readonly int HeadLayer = 8;
+    // 敵のレイヤーを指定
+    public readonly int BodyLayer = 9;
+    // 敵のレイヤーを指定
+    public readonly int LegLayer = 10;
+
+    // 味方になった時に必要な値
+    [SerializeField] public Transform[] AllycrawlPositions;         // 巡回ポジション
+
+    [SerializeField] public GameObject GuardianPoint;               // 護衛ポジション
+
+    [SerializeField] public GameObject GuardianTransform;           // 護衛ポジションの親
+
     Animator animator;
 
     static readonly int outroId = Animator.StringToHash("Outro");
@@ -105,6 +123,25 @@ public class StageScene : MonoBehaviour
         Time.timeScale = 1;
     }
 
+    private void Update()
+    {
+        UpdateCursor();
+    }
+
+    private void UpdateCursor()
+    {
+        if (gameState == SceneState.Play && optionState == OptionState.Play)
+        {
+            Cursor.visible = false;
+            Cursor.lockState = CursorLockMode.Locked;
+        }
+        else
+        {
+            Cursor.visible = true;
+            Cursor.lockState = CursorLockMode.None;
+        }
+    }
+
     public void OnCancel(InputAction.CallbackContext context)
     {
         // ボタンが押された時
@@ -177,14 +214,20 @@ public class StageScene : MonoBehaviour
 
     public void NextStage()
     {
-        var nextStage = int.Parse(nowSceneName) + 1;
-        if (int.Parse(nowSceneName) == 4)
+        if(nowSceneName == "Stage1")
+        {
+            StartCoroutine(OnLoadScene("Stage2"));
+        }else if (nowSceneName == "Stage2")
+        {
+            StartCoroutine(OnLoadScene("Stage3"));
+        }
+        else if (nowSceneName == "Stage3")
         {
             StartCoroutine(OnLoadScene("Title"));
         }
         else
         {
-            StartCoroutine(OnLoadScene(nextStage.ToString()));
+            StartCoroutine(OnLoadScene("Title"));
         }
     }
 

@@ -1,10 +1,11 @@
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class RobotSetUI : MonoBehaviour
 {
-    // プレイヤーを指定
-    [SerializeField] Player player = null;
+    [SerializeField] private PlayerInventory playerInventory;
+
     // 頭のUIを指定
     [SerializeField] GameObject ImageHead;
     // 胴のUIを指定
@@ -32,25 +33,29 @@ public class RobotSetUI : MonoBehaviour
     void Update()
     {
         // プレイヤーが頭オブジェクトを持っているとき
-        if (player.grabHead)
+        if (playerInventory.HasHead)
         {
             // 頭アイコンを表示
             ImageHead.SetActive(true);
-            // 持っているオブジェクトのタグが該当したときの処理
-            if (player.grabHead.CompareTag("Pawn"))
+
+            PartsData headPart = playerInventory.GetPartOfType(PartsType.Head);
+
+            if (headPart is HeadData headData)
             {
-                // アイコンを入れ替え
-                IconHeadImage.sprite = IconHead[0];
-            }
-            else if (player.grabHead.CompareTag("Rook"))
-            {
-                // アイコンを入れ替え
-                IconHeadImage.sprite = IconHead[1];
-            }
-            else
-            {
-                // アイコンを入れ替え
-                IconHeadImage.sprite = IconHead[2];
+                if (headData.headType == HeadType.Pawn)
+                {
+                    // アイコンを入れ替え
+                    IconHeadImage.sprite = IconHead[0];
+                } else if (headData.headType == HeadType.Rook)
+                {
+                    // アイコンを入れ替え
+                    IconHeadImage.sprite = IconHead[1];
+                }
+                else if (headData.headType == HeadType.Knight)
+                {
+                    // アイコンを入れ替え
+                    IconHeadImage.sprite = IconHead[2];
+                }
             }
         }
         else
@@ -61,26 +66,31 @@ public class RobotSetUI : MonoBehaviour
             IconHeadImage.sprite = emptyIcon;
         }
 
-        // プレイヤーが胴オブジェクトを持っているとき
-        if (player.grabBody)
+        // プレイヤーが頭オブジェクトを持っているとき
+        if (playerInventory.HasBody)
         {
             // 胴アイコンを表示
             ImageBody.SetActive(true);
-            // 持っているオブジェクトのタグが該当したときの処理
-            if (player.grabBody.CompareTag("Normal"))
+
+            PartsData bodyPart = playerInventory.GetPartOfType(PartsType.Body);
+
+            if (bodyPart is BodyData bodyData)
             {
-                // アイコンを入れ替え
-                IconBodyImage.sprite = IconBody[0];
-            }
-            else if (player.grabBody.CompareTag("Gun"))
-            {
-                // アイコンを入れ替え
-                IconBodyImage.sprite = IconBody[1];
-            }
-            else
-            {
-                // アイコンを入れ替え
-                IconBodyImage.sprite = IconBody[2];
+                if (bodyData.bodyType == BodyType.Normal)
+                {
+                    // アイコンを入れ替え
+                    IconBodyImage.sprite = IconBody[0];
+                }
+                else if (bodyData.bodyType == BodyType.Gun)
+                {
+                    // アイコンを入れ替え
+                    IconBodyImage.sprite = IconBody[1];
+                }
+                else if (bodyData.bodyType == BodyType.Axe)
+                {
+                    // アイコンを入れ替え
+                    IconBodyImage.sprite = IconBody[2];
+                }
             }
         }
         else
@@ -91,21 +101,26 @@ public class RobotSetUI : MonoBehaviour
             IconBodyImage.sprite = emptyIcon;
         }
 
-        // プレイヤーが足オブジェクトを持っているとき
-        if (player.grabLeg)
+        // プレイヤーが頭オブジェクトを持っているとき
+        if (playerInventory.HasLeg)
         {
             // 足アイコンを表示
             ImageLeg.SetActive(true);
-            // 持っているオブジェクトのタグが該当したときの処理
-            if (player.grabLeg.CompareTag("Walk"))
+
+            PartsData legPart = playerInventory.GetPartOfType(PartsType.Leg);
+
+            if (legPart is LegData legData)
             {
-                // アイコンを入れ替え
-                IconLegImage.sprite = IconLeg[0];
-            }
-            else
-            {
-                // アイコンを入れ替え
-                IconLegImage.sprite = IconLeg[1];
+                if (legData.legType == LegType.Normal)
+                {
+                    // アイコンを入れ替え
+                    IconLegImage.sprite = IconLeg[0];
+                }
+                else if (legData.legType == LegType.Caterpillar)
+                {
+                    // アイコンを入れ替え
+                    IconLegImage.sprite = IconLeg[1];
+                }
             }
         }
         else
