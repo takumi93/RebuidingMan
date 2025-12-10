@@ -1,6 +1,5 @@
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Rendering;
 using System.Linq;
 
 public class PlayerInventory: MonoBehaviour
@@ -8,14 +7,22 @@ public class PlayerInventory: MonoBehaviour
     // パーツを追加（既に同じ種類がある場合は無視 or 入れ替え）
     public List<PartsData> equippedParts = new List<PartsData>();
 
-    public void AddPart(PartsData part)
+    [SerializeField]private PartsDatabase _partsDatabase;
+
+    private PartsData _data { get; set; }
+
+    public bool AddPart(GameObject part)
     {
-        if (HasPartOfType(part.GetPartsType()))
+        _data = _partsDatabase.GetPartById(part.GetComponent<PartsPickup>().GetPartID());
+
+        if (HasPartOfType(_data.GetPartsType()))
         {
-            return;
+            return false;
         }
-        var partCopy = ScriptableObject.Instantiate(part);
+        var partCopy = ScriptableObject.Instantiate(_data);
         equippedParts.Add(partCopy);
+
+        return true;
     }
 
     public bool HasPartOfType(PartsType type)

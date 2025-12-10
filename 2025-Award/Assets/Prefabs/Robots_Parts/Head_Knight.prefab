@@ -58,7 +58,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 90c8bceed66b3644789dd34d225d59fd, type: 3}
       propertyPath: m_TagString
-      value: Knight
+      value: Head
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -70,6 +70,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 90c8bceed66b3644789dd34d225d59fd, type: 3}
       insertIndex: -1
       addedObject: {fileID: 789898393975093738}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 90c8bceed66b3644789dd34d225d59fd, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 3604412813027135149}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 90c8bceed66b3644789dd34d225d59fd, type: 3}
       insertIndex: -1
       addedObject: {fileID: 2549677323290197682}
@@ -132,6 +135,18 @@ CapsuleCollider:
   m_Height: 0
   m_Direction: 1
   m_Center: {x: 0, y: 1.24, z: 0}
+--- !u!114 &3604412813027135149
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3951978571332786885}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 08a727265c975f34284e2aa667a33685, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &2549677323290197682
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -144,7 +159,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fccf995cac308de45bbd0a50bff6fbde, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  partData: {fileID: 11400000, guid: 491b10b1e185c4d409881c99fc4f9653, type: 2}
+  Id: 2
 --- !u!114 &4169066090051504490
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -157,14 +172,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cb2b79d7c8be544458e24f2b7787aeb0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  headData: {fileID: 11400000, guid: 491b10b1e185c4d409881c99fc4f9653, type: 2}
+  searchRadius: 10
+  viewDistance: 15
+  viewAngle: 60
+  loseTargetTime: 2
+  IsPatrolling: 0
   HeadToBodyRig: {fileID: 7692213108449666676}
   BodyToHeadRig: {fileID: 0}
-  IsSet: 0
-  Target: {fileID: 0}
-  agent: {fileID: 0}
-  robotAction: {fileID: 0}
-  EscortTarget: {fileID: 0}
+  category:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!1 &7692213108449666676 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: -3397564241873681952, guid: 90c8bceed66b3644789dd34d225d59fd, type: 3}

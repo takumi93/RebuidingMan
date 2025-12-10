@@ -1,7 +1,4 @@
-using System.Collections;
-using Unity.Cinemachine;
 using UnityEngine;
-using UnityEngine.Events;
 using UnityEngine.UI;
 
 public class PlayerHP : MonoBehaviour

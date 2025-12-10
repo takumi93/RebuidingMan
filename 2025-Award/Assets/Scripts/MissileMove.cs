@@ -43,11 +43,6 @@ public class MissileMove : MonoBehaviour
                 playerHP.Damage(20);
                 Destroy(this.gameObject);
             }
-            //else if (other.gameObject.CompareTag("EMP")){
-            //    var empHP = other.gameObject.GetComponent<EMPManager>();
-            //    empHP.Damage(50);
-            //    Destroy(this.gameObject);
-            //}
         }
     }
 }

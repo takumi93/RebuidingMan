@@ -237,11 +237,6 @@ public class StageScene : MonoBehaviour
         StartCoroutine(OnLoadScene(SceneManager.GetActiveScene().name));
     }
 
-    void LoadNextScene(string scene)
-    {
-        SceneManager.LoadScene(scene);
-    }
-
     // このステージをゲームオーバーとします。
     public void GameOver()
     {

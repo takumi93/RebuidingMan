@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e5198e902b7737745970c1a5c1968f96, type: 3}
   m_Name: Body_Axe
   m_EditorClassIdentifier: 
-  id: 2
-  partName: Body_Axe
+  id: 5
+  partName: Body_axe
   icon: {fileID: 0}
   prefab: {fileID: 1066841041302124578, guid: d5f9545e9b7c8484b89265855a0e616a, type: 3}
   hp: 300
@@ -34,3 +34,4 @@ MonoBehaviour:
   finishTimeB: 3
   attackSoundA: {fileID: 8300000, guid: e7515b94d702f9d40a01f1baf4eb3a96, type: 3}
   attackSoundB: {fileID: 8300000, guid: e7515b94d702f9d40a01f1baf4eb3a96, type: 3}
+  AttackRange: 5

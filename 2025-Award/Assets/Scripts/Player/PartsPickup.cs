@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class PartsPickup : MonoBehaviour
 {
-    [SerializeField] private PartsData partData;
+    [SerializeField]public int Id;
 
-    public PartsData GetPartData() => partData;
+    public int GetPartID() => Id;
 }

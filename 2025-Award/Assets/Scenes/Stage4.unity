@@ -7536,7 +7536,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: -7688554658618337181, guid: 7ccfc4f4c6b832942bb28f777722e01b, type: 2}
-  m_audioClip: {fileID: 8300000, guid: 04e734a78de688141807ae37e23cbd9f, type: 3}
+  m_audioClip: {fileID: 0}
   m_Resource: {fileID: 8300000, guid: 04e734a78de688141807ae37e23cbd9f, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
@@ -9034,6 +9034,10 @@ PrefabInstance:
       value: Player
       objectReference: {fileID: 0}
     - target: {fileID: 2954224193279758385, guid: c858d76ffa2ea6f44b4528c9778a59b4, type: 3}
+      propertyPath: Reticle
+      value: 
+      objectReference: {fileID: 5083536310708656757}
+    - target: {fileID: 2954224193279758385, guid: c858d76ffa2ea6f44b4528c9778a59b4, type: 3}
       propertyPath: hitReticle
       value: 
       objectReference: {fileID: 1374518569}
@@ -9089,6 +9093,14 @@ PrefabInstance:
       propertyPath: camController
       value: 
       objectReference: {fileID: 27519066}
+    - target: {fileID: 7893764735077004113, guid: c858d76ffa2ea6f44b4528c9778a59b4, type: 3}
+      propertyPath: m_ActionEvents.Array.data[11].m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1389414126}
+    - target: {fileID: 7893764735077004113, guid: c858d76ffa2ea6f44b4528c9778a59b4, type: 3}
+      propertyPath: m_ActionEvents.Array.data[11].m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: OnCancel
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 3737925112008880768, guid: c858d76ffa2ea6f44b4528c9778a59b4, type: 3}
     m_RemovedGameObjects: []
@@ -12583,6 +12595,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5123fb37a98bd584cae0fd963c337cd4, type: 3}
+--- !u!114 &5083536310708656757 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7351701947562528137, guid: 5123fb37a98bd584cae0fd963c337cd4, type: 3}
+  m_PrefabInstance: {fileID: 5083536310708656756}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

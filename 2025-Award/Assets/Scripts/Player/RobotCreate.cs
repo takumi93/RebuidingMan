@@ -93,8 +93,6 @@ public class RobotCreate : MonoBehaviour
             {
                 headObj = Instantiate(head.prefab, clone.transform);
                 headObj.name = head.partName;
-                cloneHp.headData = head;
-
             }
 
             // 胴
@@ -102,8 +100,6 @@ public class RobotCreate : MonoBehaviour
             {
                 bodyObj = Instantiate(body.prefab, clone.transform);
                 bodyObj.name = body.partName;
-                cloneHp.bodyData = body;
-
             }
 
             // 足
@@ -111,21 +107,10 @@ public class RobotCreate : MonoBehaviour
             {
                 legObj = Instantiate(leg.prefab, clone.transform);
                 legObj.name = leg.partName;
-                cloneHp.legData = leg;
-
             }
-
-            // セットアップの処理に時間がかかるとロボットデータが取得できずないためデータ格納後に処理
-            headObj.GetComponent<HeadController>().CreateSetup();
-            bodyObj.GetComponent<BodyController>().CreateSetup();
-            legObj.GetComponent<LegController>().CreateSetup();
 
             // ロボットを作成したのでパーツをリセット
             inventory.ClearParts();
-        }
-        else
-        {
-            Debug.Log("部品が揃っていません！");
         }
     }
 }

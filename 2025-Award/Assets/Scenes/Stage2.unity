@@ -6092,7 +6092,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: -7688554658618337181, guid: 7ccfc4f4c6b832942bb28f777722e01b, type: 2}
-  m_audioClip: {fileID: 8300000, guid: 04e734a78de688141807ae37e23cbd9f, type: 3}
+  m_audioClip: {fileID: 0}
   m_Resource: {fileID: 8300000, guid: 04e734a78de688141807ae37e23cbd9f, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
@@ -6756,6 +6756,10 @@ PrefabInstance:
       value: Player
       objectReference: {fileID: 0}
     - target: {fileID: 2954224193279758385, guid: c858d76ffa2ea6f44b4528c9778a59b4, type: 3}
+      propertyPath: Reticle
+      value: 
+      objectReference: {fileID: 1582603102}
+    - target: {fileID: 2954224193279758385, guid: c858d76ffa2ea6f44b4528c9778a59b4, type: 3}
       propertyPath: hitReticle
       value: 
       objectReference: {fileID: 1374518569}
@@ -6767,6 +6771,14 @@ PrefabInstance:
       propertyPath: playerCamera
       value: 
       objectReference: {fileID: 27519060}
+    - target: {fileID: 2954224193279758385, guid: c858d76ffa2ea6f44b4528c9778a59b4, type: 3}
+      propertyPath: enemyLayer.m_Bits
+      value: 128
+      objectReference: {fileID: 0}
+    - target: {fileID: 2954224193279758385, guid: c858d76ffa2ea6f44b4528c9778a59b4, type: 3}
+      propertyPath: playerLayer.m_Bits
+      value: 64
+      objectReference: {fileID: 0}
     - target: {fileID: 4335315842612680877, guid: c858d76ffa2ea6f44b4528c9778a59b4, type: 3}
       propertyPath: robotAlly
       value: 
@@ -6827,6 +6839,10 @@ PrefabInstance:
       propertyPath: 'AllycrawlPositions.Array.data[12]'
       value: 
       objectReference: {fileID: 433741650}
+    - target: {fileID: 5444151600885062751, guid: c858d76ffa2ea6f44b4528c9778a59b4, type: 3}
+      propertyPath: _partsDatabase
+      value: 
+      objectReference: {fileID: 11400000, guid: ccc686629305e4d4da20a5f82052b6e1, type: 2}
     - target: {fileID: 6468418172060105064, guid: c858d76ffa2ea6f44b4528c9778a59b4, type: 3}
       propertyPath: hpBar
       value: 
@@ -6839,6 +6855,14 @@ PrefabInstance:
       propertyPath: camController
       value: 
       objectReference: {fileID: 27519066}
+    - target: {fileID: 7893764735077004113, guid: c858d76ffa2ea6f44b4528c9778a59b4, type: 3}
+      propertyPath: m_ActionEvents.Array.data[11].m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1389414126}
+    - target: {fileID: 7893764735077004113, guid: c858d76ffa2ea6f44b4528c9778a59b4, type: 3}
+      propertyPath: m_ActionEvents.Array.data[11].m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: OnCancel
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -6853,6 +6877,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6cf6cdba4f4a38d48ae198eec65955af, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1582603102 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7351701947562528137, guid: 5123fb37a98bd584cae0fd963c337cd4, type: 3}
+  m_PrefabInstance: {fileID: 5083536310708656756}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1001 &1583336179

@@ -9,11 +9,12 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1042318841768719370}
-  - component: {fileID: 7893764735077004113}
+  - component: {fileID: 5883048899865150159}
   - component: {fileID: 2954224193279758385}
   - component: {fileID: 6468418172060105064}
   - component: {fileID: 4335315842612680877}
   - component: {fileID: 5444151600885062751}
+  - component: {fileID: 7893764735077004113}
   - component: {fileID: 7206939754547169775}
   - component: {fileID: 172368467541275569}
   - component: {fileID: 2454724823362980279}
@@ -43,6 +44,108 @@ Transform:
   - {fileID: 6992546706704633079}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5883048899865150159
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1105095988933203209}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a381ce0674fab504bb221add8c2916de, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &2954224193279758385
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1105095988933203209}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 27f9df77d2290944ba1dcef3146a229e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  moveSpeed: 8
+  attackPower: 80
+  hitEffect: {fileID: 7703201475844362149, guid: 329f5ca0dc6dad24f8d83f23ba27d839, type: 3}
+  hitReticle: {fileID: 0}
+  plantPoint: {fileID: 7507640084037274490}
+  SwingSound: {fileID: 8300000, guid: d12060f429cb2954d8cc06f0f2669643, type: 3}
+  GrabSound: {fileID: 8300000, guid: 2790a3797e187c14585fa19806e08247, type: 3}
+  AttackSound: {fileID: 8300000, guid: 46e3b393fc9fc4a4c9131264d73fddb8, type: 3}
+  CreateSound: {fileID: 8300000, guid: fd1280f8a8a72ea41b15629465d06b38, type: 3}
+  Reticle: {fileID: 0}
+  InteractDistance: 10
+  itemLayer:
+    serializedVersion: 2
+    m_Bits: 0
+  enemyLayer:
+    serializedVersion: 2
+    m_Bits: 128
+  playerLayer:
+    serializedVersion: 2
+    m_Bits: 64
+--- !u!114 &6468418172060105064
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1105095988933203209}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9145e564661b02e4b9d9ea5649ab2b8a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  life: 100
+  HitEffect: {fileID: 0}
+  camController: {fileID: 0}
+  hpBar: {fileID: 0}
+--- !u!114 &4335315842612680877
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1105095988933203209}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 28c7cf14c4dc96c4596469636862e6b2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  inventory: {fileID: 5444151600885062751}
+  robotBasePrefab: {fileID: 816378015491594344, guid: 11b076216729f684f819bfa543fbbdfd, type: 3}
+  spawnPoint: {fileID: 6992546706704633079}
+  plantPoint: {fileID: 6992546706704633079}
+  robotAlly: {fileID: 0}
+  database: {fileID: 11400000, guid: ccc686629305e4d4da20a5f82052b6e1, type: 2}
+  headSlot: {fileID: 0}
+  bodySlot: {fileID: 0}
+  legSlot: {fileID: 0}
+  attack: {fileID: 4522685543126490467, guid: 028020bec4001614bbcedb5c58008abb, type: 3}
+  IsCreate: 0
+  IsHeadSet: 0
+  IsBodySet: 0
+  IsLegSet: 0
+  player: {fileID: 2954224193279758385}
+  clone: {fileID: 816378015491594344, guid: 11b076216729f684f819bfa543fbbdfd, type: 3}
+--- !u!114 &5444151600885062751
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1105095988933203209}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6cf6cdba4f4a38d48ae198eec65955af, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  equippedParts: []
+  _partsDatabase: {fileID: 11400000, guid: ccc686629305e4d4da20a5f82052b6e1, type: 2}
 --- !u!114 &7893764735077004113
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -70,8 +173,8 @@ MonoBehaviour:
   m_ActionEvents:
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2954224193279758385}
-        m_TargetAssemblyTypeName: Player, Assembly-CSharp
+      - m_Target: {fileID: 5883048899865150159}
+        m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
         m_MethodName: OnMove
         m_Mode: 0
         m_Arguments:
@@ -86,9 +189,9 @@ MonoBehaviour:
     m_ActionName: 'Player/Move[/Keyboard/w,/Keyboard/upArrow,/Keyboard/s,/Keyboard/downArrow,/Keyboard/a,/Keyboard/leftArrow,/Keyboard/d,/Keyboard/rightArrow]'
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: Player, Assembly-CSharp
-        m_MethodName: 
+      - m_Target: {fileID: 5883048899865150159}
+        m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
+        m_MethodName: OnLook
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -102,8 +205,8 @@ MonoBehaviour:
     m_ActionName: 'Player/Look[/Mouse/delta]'
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2954224193279758385}
-        m_TargetAssemblyTypeName: Player, Assembly-CSharp
+      - m_Target: {fileID: 5883048899865150159}
+        m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
         m_MethodName: OnFire
         m_Mode: 0
         m_Arguments:
@@ -150,8 +253,8 @@ MonoBehaviour:
     m_ActionName: 'UI/Submit[/Keyboard/enter]'
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2954224193279758385}
-        m_TargetAssemblyTypeName: Player, Assembly-CSharp
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: StageScene, Assembly-CSharp
         m_MethodName: OnCancel
         m_Mode: 0
         m_Arguments:
@@ -194,9 +297,9 @@ MonoBehaviour:
     m_ActionName: UI/TrackedDeviceOrientation
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2954224193279758385}
-        m_TargetAssemblyTypeName: Player, Assembly-CSharp
-        m_MethodName: OnGrab
+      - m_Target: {fileID: 5883048899865150159}
+        m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
+        m_MethodName: OnInteract
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -225,19 +328,7 @@ MonoBehaviour:
     m_ActionId: 8d7fb5fc-324e-419d-8359-4067ef94667b
     m_ActionName: 'Player/Create[/Keyboard/e,/XInputControllerWindows/buttonSouth]'
   - m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 2954224193279758385}
-        m_TargetAssemblyTypeName: Player, Assembly-CSharp
-        m_MethodName: OnDiscard
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
     m_ActionId: 7adefa8b-03aa-4fba-b943-bc6d211cd998
     m_ActionName: 'Player/Discard[/Keyboard/q]'
   m_NeverAutoSwitchControlSchemes: 0
@@ -245,96 +336,6 @@ MonoBehaviour:
   m_DefaultActionMap: Player
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
---- !u!114 &2954224193279758385
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1105095988933203209}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 27f9df77d2290944ba1dcef3146a229e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  moveSpeed: 8
-  playerAttackRange: 10
-  attackPower: 80
-  grabPosition: {x: 0, y: -1.5, z: 0}
-  hitEffect: {fileID: 7703201475844362149, guid: 329f5ca0dc6dad24f8d83f23ba27d839, type: 3}
-  hitReticle: {fileID: 0}
-  robotCreate: {fileID: 4335315842612680877}
-  plantPoint: {fileID: 7507640084037274490}
-  grabHead: {fileID: 0}
-  grabBody: {fileID: 0}
-  grabLeg: {fileID: 0}
-  SwingSound: {fileID: 8300000, guid: d12060f429cb2954d8cc06f0f2669643, type: 3}
-  GrabSound: {fileID: 8300000, guid: 2790a3797e187c14585fa19806e08247, type: 3}
-  AttackSound: {fileID: 8300000, guid: 46e3b393fc9fc4a4c9131264d73fddb8, type: 3}
-  CreateSound: {fileID: 8300000, guid: fd1280f8a8a72ea41b15629465d06b38, type: 3}
---- !u!114 &6468418172060105064
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1105095988933203209}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9145e564661b02e4b9d9ea5649ab2b8a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  life: 100
-  HitEffect: {fileID: 0}
-  camController: {fileID: 0}
-  hpBar: {fileID: 0}
---- !u!114 &4335315842612680877
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1105095988933203209}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 28c7cf14c4dc96c4596469636862e6b2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  inventory: {fileID: 5444151600885062751}
-  robotBasePrefab: {fileID: 816378015491594344, guid: 11b076216729f684f819bfa543fbbdfd, type: 3}
-  spawnPoint: {fileID: 6992546706704633079}
-  plantPoint: {fileID: 6992546706704633079}
-  robotAlly: {fileID: 0}
-  database: {fileID: 0}
-  headSlot: {fileID: 0}
-  bodySlot: {fileID: 0}
-  legSlot: {fileID: 0}
-  attack: {fileID: 4522685543126490467, guid: 028020bec4001614bbcedb5c58008abb, type: 3}
-  IsCreate: 0
-  IsHeadSet: 0
-  IsBodySet: 0
-  IsLegSet: 0
-  player: {fileID: 2954224193279758385}
-  AllycrawlPositions:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  FixPoint: {fileID: 6020323049867674008, guid: 4443737c393011b4aabf8fcb03431805, type: 3}
-  clone: {fileID: 816378015491594344, guid: 11b076216729f684f819bfa543fbbdfd, type: 3}
---- !u!114 &5444151600885062751
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1105095988933203209}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6cf6cdba4f4a38d48ae198eec65955af, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  equippedParts: []
 --- !u!54 &7206939754547169775
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -360,7 +361,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 80
   m_CollisionDetection: 1
 --- !u!136 &172368467541275569
 CapsuleCollider:
@@ -659,10 +660,37 @@ PrefabInstance:
       propertyPath: m_Name
       value: Aim_S_idle_48_H
       objectReference: {fileID: 0}
+    - target: {fileID: 4332820188656739919, guid: 66dfb597ae53eb943bd1b1a451a6a451, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 35.000004
+      objectReference: {fileID: 0}
+    - target: {fileID: 4332820188656739919, guid: 66dfb597ae53eb943bd1b1a451a6a451, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 9.999999
+      objectReference: {fileID: 0}
+    - target: {fileID: 4332820188656739919, guid: 66dfb597ae53eb943bd1b1a451a6a451, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0.00000026056625
+      objectReference: {fileID: 0}
+    - target: {fileID: 4553868524083801885, guid: 66dfb597ae53eb943bd1b1a451a6a451, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: -87.00004
+      objectReference: {fileID: 0}
+    - target: {fileID: 4553868524083801885, guid: 66dfb597ae53eb943bd1b1a451a6a451, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 180
+      objectReference: {fileID: 0}
+    - target: {fileID: 4553868524083801885, guid: 66dfb597ae53eb943bd1b1a451a6a451, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: -180
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 66dfb597ae53eb943bd1b1a451a6a451, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2836283215301647509}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 66dfb597ae53eb943bd1b1a451a6a451, type: 3}
       insertIndex: -1
       addedObject: {fileID: 682096371009292820}
@@ -672,6 +700,18 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 66dfb597ae53eb943bd1b1a451a6a451, type: 3}
   m_PrefabInstance: {fileID: 1854415692960324857}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &2836283215301647509
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1548496026317513128}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8a9c7dee851c9ef4782e299f93e5611a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!95 &682096371009292820
 Animator:
   serializedVersion: 7

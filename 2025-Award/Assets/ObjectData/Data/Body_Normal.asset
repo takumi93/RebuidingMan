@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e5198e902b7737745970c1a5c1968f96, type: 3}
   m_Name: Body_Normal
   m_EditorClassIdentifier: 
-  id: 0
+  id: 3
   partName: Body_Normal
   icon: {fileID: 0}
   prefab: {fileID: 2668936212951939357, guid: 5beaa79ec45246c47a2310b7e36debd2, type: 3}
@@ -34,3 +34,4 @@ MonoBehaviour:
   finishTimeB: 1
   attackSoundA: {fileID: 8300000, guid: e7515b94d702f9d40a01f1baf4eb3a96, type: 3}
   attackSoundB: {fileID: 8300000, guid: 8039f548721f4124fb303c500698dd27, type: 3}
+  AttackRange: 3

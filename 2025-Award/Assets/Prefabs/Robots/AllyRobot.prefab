@@ -10,7 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 9421384751846497}
   - component: {fileID: 4200471959333752324}
-  - component: {fileID: 8826162968745544007}
+  - component: {fileID: -5734006790724607169}
+  - component: {fileID: 2483178756221997380}
   - component: {fileID: 7203278328105254637}
   - component: {fileID: 1204726624242809882}
   - component: {fileID: 262577302388934373}
@@ -58,7 +59,7 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 1
---- !u!114 &8826162968745544007
+--- !u!114 &-5734006790724607169
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -67,15 +68,28 @@ MonoBehaviour:
   m_GameObject: {fileID: 816378015491594344}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6691b8f97cf783a42a32640af60331bb, type: 3}
+  m_Script: {fileID: 11500000, guid: 796ef930f0d64d94584159d043b2348d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hpManager: {fileID: 0}
-  agent: {fileID: 0}
-  Target: {fileID: 0}
-  targetDistance: 0
-  IsSet: 1
-  robotState: 0
+--- !u!114 &2483178756221997380
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 816378015491594344}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 10c6fa700ca18e047b441fb68dc945a8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _partsDatabase: {fileID: 11400000, guid: ccc686629305e4d4da20a5f82052b6e1, type: 2}
+  enemyLayer:
+    serializedVersion: 2
+    m_Bits: 128
+  playerLayer:
+    serializedVersion: 2
+    m_Bits: 64
 --- !u!114 &7203278328105254637
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -88,13 +102,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8a925ba83e5002e4a9324f98aff1f000, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  leg: {fileID: 0}
-  headData: {fileID: 0}
-  bodyData: {fileID: 0}
-  legData: {fileID: 0}
   explosionEffect: {fileID: 6037139083657312632, guid: 735eaa260f8dab2408e78144fb137f68, type: 3}
-  DeleteLayer: 0
   enemyCount: {fileID: 0}
+  _partsDatabase: {fileID: 11400000, guid: ccc686629305e4d4da20a5f82052b6e1, type: 2}
+  Parts: []
 --- !u!136 &1204726624242809882
 CapsuleCollider:
   m_ObjectHideFlags: 0

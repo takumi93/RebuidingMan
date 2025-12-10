@@ -58,7 +58,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 955aa1a1446b0804ba66c0e83c7cd72d, type: 3}
       propertyPath: m_TagString
-      value: Tire
+      value: Leg
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -72,10 +72,16 @@ PrefabInstance:
       addedObject: {fileID: 8101751435073651803}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 955aa1a1446b0804ba66c0e83c7cd72d, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 3476841822707728952}
+      addedObject: {fileID: 951447134025306607}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 955aa1a1446b0804ba66c0e83c7cd72d, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 7454774464701882700}
+      addedObject: {fileID: 6730828424557856984}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 955aa1a1446b0804ba66c0e83c7cd72d, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 6970640886492651783}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 955aa1a1446b0804ba66c0e83c7cd72d, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 3476841822707728952}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 955aa1a1446b0804ba66c0e83c7cd72d, type: 3}
       insertIndex: -1
       addedObject: {fileID: -1185036400129528842}
@@ -131,8 +137,45 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.510128, y: 0.581167, z: 0.1458939}
-  m_Center: {x: -0.011371613, y: 0.30252278, z: 0.00038705766}
+  m_Size: {x: 0.80848455, y: 0.581167, z: 0.68187904}
+  m_Center: {x: 0.00050997734, y: 0.30252278, z: 0.0017061234}
+--- !u!114 &951447134025306607
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6013006339386130469}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b4fd0c2b045d24c4ca42d7773cbdb4c0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  LegToBodyRig: {fileID: 6324339544589789327}
+--- !u!114 &6730828424557856984
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6013006339386130469}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 08a727265c975f34284e2aa667a33685, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &6970640886492651783
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6013006339386130469}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5abd168951ee12e488cf0dc60629a399, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!95 &3476841822707728952
 Animator:
   serializedVersion: 7
@@ -155,20 +198,6 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &7454774464701882700
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6013006339386130469}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 900b3bdb77294c34182425bbeec2b8f5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  LegToBodyRig: {fileID: 6324339544589789327}
-  legData: {fileID: 11400000, guid: d5abf6e160377af4a9ae5aec6d16b387, type: 2}
 --- !u!114 &-1185036400129528842
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -181,7 +210,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fccf995cac308de45bbd0a50bff6fbde, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  partData: {fileID: 11400000, guid: d5abf6e160377af4a9ae5aec6d16b387, type: 2}
+  Id: 6
 --- !u!1 &6324339544589789327 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 610103572406703611, guid: 955aa1a1446b0804ba66c0e83c7cd72d, type: 3}
