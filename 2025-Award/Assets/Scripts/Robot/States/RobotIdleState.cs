@@ -7,15 +7,15 @@ public class RobotIdleState : RobotStateBase
 
     public override void Enter(Robot robot)
     {
-        if (robot.head.IsPatrolling)
+        if (robot.Head.IsPatrolling)
         {
-            robot.body.Animation.SetTrigger("Walk");
-            robot.leg.Animation.SetTrigger("Walk");
+            robot.Body.Animation.SetTrigger("Walk");
+            robot.Leg.Animation.SetTrigger("Walk");
         }
         else
         {
-            robot.body.Animation.SetTrigger("Idle");
-            robot.leg.Animation.SetTrigger("Idle");
+            robot.Body.Animation.SetTrigger("Idle");
+            robot.Leg.Animation.SetTrigger("Idle");
         }
     }
 

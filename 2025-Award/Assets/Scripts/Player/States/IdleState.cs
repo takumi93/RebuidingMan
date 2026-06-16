@@ -1,30 +1,30 @@
 using UnityEngine;
 
-public class IdleState : IPlayerState
+public class IdleState : PlayerState
 {
     public IdleState(PlayerStateManager stateManager, Player player)
     : base(stateManager, player) { }
 
-    public override void Enter(Player player)
+    public override void Enter()
     {
-        player.Animation.SetTrigger("Idle");
+        _player.Animation.SetTrigger("Idle");
     }
 
-    public override void Tick(Player player, InputInfo inputInfo)
+    public override void Update()
     {
-        if (inputInfo.Interact)
+        if (_player.PlayerInputInfo.Interact)
         {
-            player.ChangeState(stateManager.InteractState);
+            _player.ChangeState(_stateManager.InteractState);
         }
-        if (inputInfo.IsAttack && !player.Animation.Attack)
+        if (_player.PlayerInputInfo.IsAttack && !_player.Animation.Attack)
         {
-            player.ChangeState(stateManager.AttackState);
+            _player.ChangeState(_stateManager.AttackState);
         }
-        if (inputInfo.IsWalk)
+        if (_player.PlayerInputInfo.IsMoving)
         {
-            player.ChangeState(stateManager.WalkState);
+            _player.ChangeState(_stateManager.WalkState);
         }
     }
 
-    public override void Exit(Player player) { }
+    public override void Exit() { }
 }

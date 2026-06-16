@@ -1,59 +1,53 @@
 using UnityEngine;
 using UnityEngine.UI;
-using UnityEngine.Events;
-public class OptionUI : MonoBehaviour
+
+public class OptionUI : BaseUI
 {
-    // UnityEvent
-    public UnityEvent onResumeButtonClick = null;
-    public UnityEvent onSoundButtonClick = null;
-    public UnityEvent onOperatingButtonClick = null;
+    [Header("ボタン")]
+    [SerializeField] private Button _resumeButton = null;
+    [SerializeField] private Button _soundButton = null;
+    [SerializeField] private Button _operationButton = null;
+    [SerializeField] private Button _iconListButton = null;
 
-    public UnityEvent onIconListButtonClick;
+    [Header("UI")]
+    [SerializeField] private BaseUI _soundUI = null;
+    [SerializeField] private BaseUI _operationUI = null;
+    [SerializeField] private BaseUI _iconListUI = null;
 
-    // Buttonを指定
-    [SerializeField] private Button resumeButton = null;
-    [SerializeField] private Button soundButton = null;
-    [SerializeField] private Button operatingButton = null;
-    [SerializeField] private Button IconListButton = null;
 
-    private void Awake()
+    protected override void Awake()
     {
         // UnityEvent
-        resumeButton.onClick.AddListener(() => { onResumeButtonClick.Invoke(); });
-        soundButton.onClick.AddListener(() => { onSoundButtonClick.Invoke(); });
-        operatingButton.onClick.AddListener(() => { onOperatingButtonClick.Invoke(); });
-        IconListButton.onClick.AddListener(() => { onIconListButtonClick.Invoke(); });
+        _resumeButton.onClick.AddListener(() => { UIManager.Instance.Pop(); });
+        _soundButton.onClick.AddListener(() => { UIManager.Instance.Push(_soundUI); });
+        _operationButton.onClick.AddListener(() => { UIManager.Instance.Push(_operationUI); });
+        _iconListButton.onClick.AddListener(() => { UIManager.Instance.Push(_iconListUI); });
 
         // UI非表示
         Hide();
     }
 
-    // UI表示
-    public void Show()
+    public override void Show()
     {
-        gameObject.SetActive(true);
-        soundButton.Select();
-    }
-    // UI非表示
-    public void Hide()
-    {
-        gameObject.SetActive(false);
+        base.Show();
+
+        _soundButton.Select();
     }
 
     // サウンド、操作説明表示時の裏側,イントロアニメーション中でボタンが反応しないようにする（非表示時は反応する）
     public void ToggleButtonEnabled()
     {
-        if (soundButton.enabled == false)
+        if (_soundButton.enabled == false)
         {
-            soundButton.enabled = true;
-            operatingButton.enabled = true;
-            resumeButton.enabled = true;
+            _soundButton.enabled = true;
+            _operationButton.enabled = true;
+            _resumeButton.enabled = true;
         }
         else
         {
-            soundButton.enabled = false;
-            operatingButton.enabled = false;
-            resumeButton.enabled = false;
+            _soundButton.enabled = false;
+            _operationButton.enabled = false;
+            _resumeButton.enabled = false;
         }
     }
 }

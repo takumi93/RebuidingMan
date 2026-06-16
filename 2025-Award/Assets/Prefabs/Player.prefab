@@ -13,6 +13,8 @@ GameObject:
   - component: {fileID: 2954224193279758385}
   - component: {fileID: 6468418172060105064}
   - component: {fileID: 4335315842612680877}
+  - component: {fileID: 1919084460966784498}
+  - component: {fileID: 3446530421762455737}
   - component: {fileID: 5444151600885062751}
   - component: {fileID: 7893764735077004113}
   - component: {fileID: 7206939754547169775}
@@ -56,6 +58,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a381ce0674fab504bb221add8c2916de, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _inputManager: {fileID: 0}
+  _defaultUI: {fileID: 0}
 --- !u!114 &2954224193279758385
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -68,26 +72,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 27f9df77d2290944ba1dcef3146a229e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 8
-  attackPower: 80
-  hitEffect: {fileID: 7703201475844362149, guid: 329f5ca0dc6dad24f8d83f23ba27d839, type: 3}
-  hitReticle: {fileID: 0}
-  plantPoint: {fileID: 7507640084037274490}
-  SwingSound: {fileID: 8300000, guid: d12060f429cb2954d8cc06f0f2669643, type: 3}
-  GrabSound: {fileID: 8300000, guid: 2790a3797e187c14585fa19806e08247, type: 3}
-  AttackSound: {fileID: 8300000, guid: 46e3b393fc9fc4a4c9131264d73fddb8, type: 3}
-  CreateSound: {fileID: 8300000, guid: fd1280f8a8a72ea41b15629465d06b38, type: 3}
-  Reticle: {fileID: 0}
-  InteractDistance: 10
-  itemLayer:
-    serializedVersion: 2
-    m_Bits: 0
-  enemyLayer:
-    serializedVersion: 2
-    m_Bits: 128
-  playerLayer:
-    serializedVersion: 2
-    m_Bits: 64
 --- !u!114 &6468418172060105064
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -100,7 +84,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9145e564661b02e4b9d9ea5649ab2b8a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  life: 100
+  currentLife: 100
   HitEffect: {fileID: 0}
   camController: {fileID: 0}
   hpBar: {fileID: 0}
@@ -116,22 +100,33 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 28c7cf14c4dc96c4596469636862e6b2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inventory: {fileID: 5444151600885062751}
-  robotBasePrefab: {fileID: 816378015491594344, guid: 11b076216729f684f819bfa543fbbdfd, type: 3}
-  spawnPoint: {fileID: 6992546706704633079}
-  plantPoint: {fileID: 6992546706704633079}
-  robotAlly: {fileID: 0}
-  database: {fileID: 11400000, guid: ccc686629305e4d4da20a5f82052b6e1, type: 2}
-  headSlot: {fileID: 0}
-  bodySlot: {fileID: 0}
-  legSlot: {fileID: 0}
-  attack: {fileID: 4522685543126490467, guid: 028020bec4001614bbcedb5c58008abb, type: 3}
-  IsCreate: 0
-  IsHeadSet: 0
-  IsBodySet: 0
-  IsLegSet: 0
-  player: {fileID: 2954224193279758385}
-  clone: {fileID: 816378015491594344, guid: 11b076216729f684f819bfa543fbbdfd, type: 3}
+  _robotFactory: {fileID: 1919084460966784498}
+--- !u!114 &1919084460966784498
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1105095988933203209}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c0dfab59fcfc033428cac8166b1b926a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _robotBasePrefab: {fileID: 816378015491594344, guid: 11b076216729f684f819bfa543fbbdfd, type: 3}
+  _robotParent: {fileID: 0}
+--- !u!114 &3446530421762455737
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1105095988933203209}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4fa5283fac480294c832a684d0ac155a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &5444151600885062751
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -144,7 +139,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6cf6cdba4f4a38d48ae198eec65955af, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  equippedParts: []
   _partsDatabase: {fileID: 11400000, guid: ccc686629305e4d4da20a5f82052b6e1, type: 2}
 --- !u!114 &7893764735077004113
 MonoBehaviour:
@@ -712,6 +706,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8a9c7dee851c9ef4782e299f93e5611a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _player: {fileID: 0}
 --- !u!95 &682096371009292820
 Animator:
   serializedVersion: 7

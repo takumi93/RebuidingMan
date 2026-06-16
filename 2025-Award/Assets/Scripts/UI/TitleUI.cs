@@ -2,7 +2,7 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
 
-public class TitleUI : MonoBehaviour
+public class TitleUI : BaseUI
 {
     //UnityEvent
     public UnityEvent onStageSelectButtonClick = null;
@@ -17,7 +17,7 @@ public class TitleUI : MonoBehaviour
     [SerializeField]
     private Button exitButton = null;
 
-    void Awake()
+    protected override void Awake()
     {
         // UnityEvent ‚ð’Ç‰Á
         stageSelectButton.onClick.AddListener(() => { onStageSelectButtonClick.Invoke(); });
@@ -26,15 +26,10 @@ public class TitleUI : MonoBehaviour
     }
 
     //‚±‚ÌUI‚ð•\Ž¦‚µ‚Ü‚·
-    public void Show()
+    public override void Show()
     {
-        gameObject.SetActive(true);
+        base.Show();
+        
         stageSelectButton.Select();
-    }
-
-    //‚±‚ÌUI‚ð”ñ•\Ž¦‚É‚µ‚Ü‚·
-    public void Hide()
-    {
-        gameObject.SetActive(false);
     }
 }

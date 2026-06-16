@@ -12,15 +12,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e5198e902b7737745970c1a5c1968f96, type: 3}
   m_Name: Body_Normal
   m_EditorClassIdentifier: 
-  id: 3
-  partName: Body_Normal
-  icon: {fileID: 0}
-  prefab: {fileID: 2668936212951939357, guid: 5beaa79ec45246c47a2310b7e36debd2, type: 3}
-  hp: 200
-  defense: 200
-  speed: 200
-  material: {fileID: 2100000, guid: ba758ded45c0f2748846c21da1d36b71, type: 2}
-  description: 
+  _id: 4
+  _partName: 
+  _icon: {fileID: 0}
+  _prefab: {fileID: 0}
+  _hp: 0
+  _defense: 0
+  _speed: 0
+  _allyMaterial: {fileID: 0}
   bodyType: 0
   damageA: 20
   damageB: 20

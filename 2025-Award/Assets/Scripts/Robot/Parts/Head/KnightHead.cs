@@ -1,106 +1,120 @@
-using System.Linq;
 using UnityEngine;
-using UnityEngine.AI;
 
 public class KnightHead : HeadBase
 {
-    [Header("“·‚É˜A“®‚·‚éRig‚ğw’è")]
-    [SerializeField] public GameObject HeadToBodyRig = null;
-    // “ª‚ª“·‚É˜A“®‚·‚éRig
-    public GameObject BodyToHeadRig = null;
-
     // Œì‰q‘ÎÛ
     public GameObject EscortTarget { get; private set; }
 
-    // ƒLƒƒƒ^ƒsƒ‰‚ÌŠp“x
-    const float moveStartAngle = 30.0f;
+    // ’Êí‚ÌŒì‰q‹——£
+    [SerializeField] private float escortDistance = 3.0f; 
+    
+    // “G‘Î‚ÌŒì‰q‚©‚ç—£‚ê‚ç‚ê‚éÅ‘å‹——£
+    [SerializeField] private float maxProtectDistance = 10f;
 
-    const float rotateSpeed = 120f;
-
-    [SerializeField] LayerMask category; // ƒŒƒCƒ„[–¼
-
-    public override void Init()
-    {
-        area = this.GetComponentInParent<NavMeshAgent>();
-        _robot = this.GetComponentInParent<Robot>();
-        IsPatrolling = true;
+    public override void Init() 
+    { 
+        base.Init(); 
     }
 
-    public override void CreateSetup()
-    {
-        transform.GetComponentInChildren<SkinnedMeshRenderer>().material = HeadData.material;
+    public override void CreateSetup() { 
+        FindEscortTarget(); 
+        UpdateMaterial();
     }
 
-    public override void SetupRig(GameObject rig, NavMeshAgent agent)
-    {
-        BodyToHeadRig = rig;
-        area = agent;
+    public override void ChaseTarget() 
+    { 
+        if (!_robot.MoveTarget.HasValue) return; 
+        MoveToTarget(_robot.MoveTarget.Value); 
     }
 
-    public override void ChaseTarget()
-    {
-        if (_robot.Target == null) return;
-
-        area.isStopped = false;
-
-        Vector3 targetDir = _robot.Target.transform.position - transform.position;
-        targetDir.y = 0f; // ã‰º•ûŒü‚Í–³‹‚µ‚Ä…•½‚¾‚¯‚Å’Ç”ö
-
-        // ù‰ñ
-        Quaternion targetRotation = Quaternion.LookRotation(targetDir, Vector3.up);
-
-        Transform body = transform.parent; // ‰ñ“]‚³‚¹‚½‚¢–{‘Ì
-        body.rotation = Quaternion.RotateTowards(
-            body.rotation,
-            targetRotation,
-            rotateSpeed * Time.deltaTime
-        );
-
-        // ©•ª‚ÌŒü‚«‚Æƒ^[ƒQƒbƒg•ûŒü‚ÌŠp“x·
-        float angle = Vector3.Angle(body.forward, targetDir);
-
-        if (angle < moveStartAngle)
-        {
-            area.isStopped = false;
-            area.destination = _robot.Target.transform.position;
-        }
-        else
-        {
-            area.isStopped = true; // Šp“x·‘å‚«‚¢ê‡‚Í‚»‚Ìê‚Åù‰ñ
-        }
-    }
-
-    /// <summary>
-    /// Idleó‘Ô‚É‚·‚é‚±‚Æ
-    /// õ“G’†‚É‚·‚é‚±‚Æ
-    /// “G‚Ì‚ÍŒì‰q‘ÎÛ‚ğ’T‚µˆê”Ô‹ß‚¢“G‚ğŒì‰q‘ÎÛ‚Æ‚·‚é
-    /// –¡•û‚Ì‚ÍƒvƒŒƒCƒ„[‚ğŒì‰q‘ÎÛ‚Æ‚·‚é
-    /// </summary>
-    public override void TrackingTarget()
+    /// <summary> 
+    /// Idleó‘Ô‚É‚·‚é‚±‚Æ 
+    /// õ“G’†‚É‚·‚é‚±‚Æ 
+    /// “G‚Ì‚ÍŒì‰q‘ÎÛ‚ğ’T‚µˆê”Ô‹ß‚¢“G‚ğŒì‰q‘ÎÛ‚Æ‚·‚é 
+    /// –¡•û‚Ì‚ÍƒvƒŒƒCƒ„[‚ğŒì‰q‘ÎÛ‚Æ‚·‚é 
+    /// </summary> 
+    public override void TrackingTarget() 
     {
         // Œì‰q‘ÎÛ‚ª‚¢‚È‚¢‚Æ‚«
-        if (!EscortTarget)
+        if (EscortTarget == null) 
+        { 
+            FindEscortTarget();
+            return;
+        } 
+        
+        Robot escortRobot = EscortTarget.GetComponent<Robot>(); 
+        
+        // Œì‰q‘ÎÛ‚ªÅŒã‚ÉUŒ‚‚µ‚½“G‚ª‚¢‚½‚Æ‚«
+        if (escortRobot != null && escortRobot.LastAttacker != null) 
         {
-            // “Gƒƒ{ƒbƒg‚Ìê‡
-            if (transform.parent.CompareTag("Enemy"))
-            {
-                GameObject[] allies = GameObject.FindGameObjectsWithTag("Enemy");
-                EscortTarget = allies
-                    .Where(a => a != this.transform.parent.gameObject) // ©•ª‚ğœŠO
-                    .OrderBy(a => Vector3.Distance(transform.position, a.transform.position))
-                    .FirstOrDefault();
-            }
-            else // –¡•û‚Ìê‡
-            {
-                EscortTarget = GameObject.FindGameObjectWithTag("Player");
-            }
-        }
-
-        if (EscortTarget)
-        {
-
-            // ˆÚ“®æİ’è
-            area.destination = EscortTarget.transform.position;
-        }
-    }
+            ProtectEscort(escortRobot.LastAttacker); 
+            return; 
+        } 
+        FollowEscort(); 
+    } 
+    
+    private void ProtectEscort(Robot attacker) 
+    { 
+        if (attacker == null) 
+        { 
+            FollowEscort();
+            return; 
+        } 
+        
+        float escortDistance = Vector3.Distance(transform.position, EscortTarget.transform.position);
+        
+        if (escortDistance > maxProtectDistance) 
+        { 
+            _robot.MoveTarget = null;
+            FollowEscort();
+            return;
+        } 
+        
+        _robot.MoveTarget = _robot.LastAttacker.transform.position; 
+        _robot.ChangeState(_robot.StateManager.WalkState); 
+    } 
+    
+    /// <summary> 
+    /// Œì‰q‘ÎÛ‚ğ’Ç”ö 
+    /// </summary> 
+    private void FollowEscort() 
+    { 
+        if (EscortTarget == null) return; 
+        float distance = Vector3.Distance(transform.position, EscortTarget.transform.position); 
+        // ‰“‚¢‚È‚ç’Ç”ö
+        if(distance > escortDistance) 
+        { 
+            _robot.MoveTarget = EscortTarget.transform.position; 
+            _robot.ChangeState(_robot.StateManager.WalkState); 
+        } 
+        else 
+        { 
+            _robot.MoveTarget = null;
+            _robot.ChangeState(_robot.StateManager.IdleState);
+        } 
+    } 
+    
+    /// <summary>
+    /// Œì‰q‘ÎÛ‚ğ’T‚· 
+    /// </summary> 
+    private void FindEscortTarget()
+    { 
+        // w‰c‚ªƒvƒŒƒCƒ„[w‰c‚Ì
+        if(_robot.TeamType == TeamType.Player) 
+        { 
+            GameObject player = GameObject.FindGameObjectWithTag("Player"); 
+            if (player != null) 
+            { 
+                EscortTarget = player; 
+            } 
+        } 
+        else 
+        { 
+            Robot ally = RobotManager.Instance.GetNearestAlly(_robot);
+            if (ally != null) 
+            { 
+                EscortTarget = ally.gameObject;
+            } 
+        } 
+    } 
 }

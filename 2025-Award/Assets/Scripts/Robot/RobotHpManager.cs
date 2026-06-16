@@ -3,71 +3,74 @@ using System.Linq;
 using UnityEngine;
 
 public class RobotHPManager : MonoBehaviour
-{
-    [SerializeField]GameObject explosionEffect;     //死んだときのエフェクト
-   
-    [SerializeField]EnemyCount enemyCount = null;
+{  
+    [SerializeField]private PartsDatabase _partsDatabase = null;
 
-    [SerializeField] PartsDatabase _partsDatabase = null;
+    [SerializeField]public EnemyCount EnemyCount = null;
+
+    [Header("HP管理")]
+    private bool _isDead;
+
+    public List<PartHp> Parts {  get; private set; }
 
     public int MaxTotalHP { get; private set; }
+
     public int CurrentTotalHP { get; private set; }
 
-    const int endurance = 3;                        // 耐久値からHPを求めるために使用する値
-    
-    // 爆発に必要な変数
-    float explosionRadius = 10f;                    //爆発の広さ
-    
-    float explosionPower = 300f;                    //爆発の強さ
+    private const int _endurance = 3;                        // 耐久値からHPを求めるために使用する値
 
-    public List<PartHp> Parts = new List<PartHp>();
+    [Header("爆発に使用する設定")]
+    [SerializeField] private GameObject _explosionEffect;     //死んだときのエフェクト
+
+    [SerializeField] private float _explosionRadius = 10f;  //爆発の広さ
+    
+    [SerializeField] private float _explosionPower = 300f;  //爆発の強さ
+
 
     private Robot _robot { get; set; }
 
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         // 新規追加
         Parts = GetComponentsInChildren<PartHp>().ToList();
         _robot = GetComponent<Robot>();
 
+        // HPの初期化
         MaxTotalHP = 0;
         foreach (var p in Parts)
         {
             p.Init(_partsDatabase);
             MaxTotalHP += p.MaxHP;
         }
-        MaxTotalHP = MaxTotalHP / endurance;
+        MaxTotalHP = MaxTotalHP / _endurance;
         CurrentTotalHP = MaxTotalHP;
     }
 
-    // 全体HPからダメージを減算
-    public void HitDamage(int damage)
-    {
-        CurrentTotalHP = Mathf.Max(CurrentTotalHP - damage, 0);
-    }
-
-    // ---- 部位が死んだ通知 ----
+    /// <summary>
+    /// 指定の部位を破壊
+    /// </summary>
+    /// <param name="deadPart"></param>
     public void OnPartDead(PartHp deadPart)
     {
-        DestroyLowestHPPart();
+        if (_isDead) return;
+
+        _isDead = true;
+
+        Destroy(deadPart.gameObject);
+
+        DestroyRobot();
     }
 
-    // ---- 総合HPが0になっても呼ぶ ----
-    public void CheckTotalHP()
+    /// <summary>
+    /// 一番HPが低い部位を破壊しそれ以外をステージに残す
+    /// </summary>
+    public void DestroyRobotByTotalHP()
     {
-        if (CurrentTotalHP <= 0)
-        {
-            DestroyLowestHPPart();
-        }
-    }
+        if (_isDead) return;
 
-    // ---- 一番HPが低い部位を破壊 ----
-    public void DestroyLowestHPPart()
-    {
         var target = Parts
-            .Where(p => p.CurrentHP >= 0)    // まだ壊れてない部位
+            .Where(p => p.CurrentHP > 0)    // まだ壊れてない部位
             .OrderBy(p => p.CurrentHP)
             .FirstOrDefault();
 
@@ -76,46 +79,67 @@ public class RobotHPManager : MonoBehaviour
             return;
         }
 
+        _isDead = true;
+
         // ここで実際の破壊
         Destroy(target.gameObject);
         DestroyRobot();
     }
 
-    // 親を削除して子を残す
+    /// <summary>
+    /// 親を削除して子を残す
+    /// </summary>
     public void DestroyRobot()
     {
         // 子をワールド空間に残す
         foreach (Transform child in transform)
         {
-            var childRigidbody = child.GetComponent<Rigidbody>();
-            childRigidbody.isKinematic = false;
-            childRigidbody.useGravity = true;
+            if(child.TryGetComponent<Rigidbody>(out var childRigidbody))
+            {
+                childRigidbody.isKinematic = false;
+                childRigidbody.useGravity = true;
+            }
+
             child.SetParent(transform.parent, true);
         }
 
         // 頭にアニメーションはないため無視
-        _robot.body?.Animation.DestoryAnimation();
-        _robot.leg?.Animation.DestoryAnimation();
+        _robot.Body?.Animation.DestoryAnimation();
+        _robot.Leg?.Animation.DestoryAnimation();
 
         //破壊時のエフェクト
         {
-            Instantiate(explosionEffect, new Vector3(transform.position.x, 1.5f, transform.position.z), transform.rotation);
+            Instantiate(_explosionEffect, new Vector3(transform.position.x, 1.5f, transform.position.z), transform.rotation);
 
-            Collider[] colliders = Physics.OverlapSphere(transform.position, explosionRadius);
+            Collider[] colliders = Physics.OverlapSphere(transform.position, _explosionRadius);
 
             foreach (Collider collider in colliders)
             {
-                Rigidbody rb = collider.GetComponent<Rigidbody>();
-
-                if (rb != null)
+                if (collider.TryGetComponent<Rigidbody>(out var rb))
                 {
-                    rb.AddExplosionForce(explosionPower, new Vector3(transform.position.x, 0, transform.position.z), 4);
+                    rb.AddExplosionForce(_explosionPower, new Vector3(transform.position.x, 0, transform.position.z), _explosionRadius);
                 }
             }
         }
 
-        enemyCount?.EnemyDecrease();
+        EnemyCount?.EnemyDecrease();
         // 親を削除
         Destroy(gameObject);
+    }
+
+    // 最後に攻撃してきた敵を保存
+    public void ApplyTotalDamage(int damage, GameObject attacker)
+    {
+        CurrentTotalHP = Mathf.Max(CurrentTotalHP - damage, 0);
+
+        if (attacker.TryGetComponent<Robot>(out var robot))
+        {
+            _robot.LastAttacker = robot;
+        }
+
+        if(CurrentTotalHP <= 0)
+        {
+            DestroyRobotByTotalHP();
+        }
     }
 }

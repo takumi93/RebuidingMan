@@ -1,26 +1,26 @@
 using UnityEngine;
 
-public class InteractState : IPlayerState
+public class InteractState : PlayerState
 {
     public InteractState(PlayerStateManager stateManager, Player player) 
         : base(stateManager, player) { }
 
-    public override void Enter(Player player)
+    public override void Enter()
     {
-        player.Interact();
+        _player.Interact.Interact(_player.Detection.GetHit());
     }
 
-    public override void Tick(Player player, InputInfo inputInfo)
+    public override void Update()
     {
-        if (!inputInfo.IsWalk)
+        if (!_player.PlayerInputInfo.IsMoving)
         {
-            player.ChangeState(stateManager.IdleState);
+            _player.ChangeState(_stateManager.IdleState);
         }
-        if (inputInfo.IsWalk)
+        if (_player.PlayerInputInfo.IsMoving)
         {
-            player.ChangeState(stateManager.WalkState);
+            _player.ChangeState(_stateManager.WalkState);
         }
     }
 
-    public override void Exit(Player player) { }
+    public override void Exit() { }
 }

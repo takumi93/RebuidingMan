@@ -12,15 +12,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dd1f93553694f0e458125fd2e17c7b06, type: 3}
   m_Name: Head_Rook
   m_EditorClassIdentifier: 
-  id: 1
-  partName: Head_Rook
-  icon: {fileID: 0}
-  prefab: {fileID: 1181944643908064975, guid: 637030c68b869f84591404470198a927, type: 3}
-  hp: 200
-  defense: 200
-  speed: 100
-  material: {fileID: 2100000, guid: ad95f229335e0a34db556e83898f1cd0, type: 2}
-  description: 
+  _id: 3
+  _partName: 
+  _icon: {fileID: 0}
+  _prefab: {fileID: 0}
+  _hp: 0
+  _defense: 0
+  _speed: 0
+  _allyMaterial: {fileID: 0}
   radius: 5
   distance: 10
   headType: 1

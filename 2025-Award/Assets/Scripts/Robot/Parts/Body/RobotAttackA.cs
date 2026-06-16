@@ -32,12 +32,12 @@ public class RobotAttackA : MonoBehaviour
             {
                 //プレイヤーのhpコンポーネントを取得
                 playerHp = other.GetComponent<PlayerHP>();
-                playerHp.Damage(DamageA);
+                //playerHp.Damage(DamageA);
             }
             else if (other.transform.parent.CompareTag("Ally"))
             {
                 robotAllyHp = other.transform.parent.GetComponent<RobotHPManager>();
-                robotAllyHp.HitDamage(DamageA);
+                //robotAllyHp.HitDamage(DamageA);
             }
             else
             {
@@ -51,7 +51,7 @@ public class RobotAttackA : MonoBehaviour
             if (other.transform.parent.CompareTag("Enemy"))
             {
                 robotAllyHp = other.transform.parent.GetComponent<RobotHPManager>();
-                robotAllyHp.HitDamage(DamageA);
+                //robotAllyHp.HitDamage(DamageA);
             }
         }
     }

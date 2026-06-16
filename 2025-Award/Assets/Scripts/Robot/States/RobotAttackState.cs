@@ -7,8 +7,8 @@ public class RobotAttackState : RobotStateBase
 
     public override void Enter(Robot robot)
     {
-        robot.leg.Animation.SetTrigger("Walk");
-        robot.body.Attack();
+        robot.Leg.Animation.SetTrigger("Walk");
+        robot.Body.Attack();
     }
 
     public override void Tick(Robot robot)

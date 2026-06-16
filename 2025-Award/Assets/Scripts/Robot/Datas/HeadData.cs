@@ -1,5 +1,3 @@
-using System;
-using System.Collections.Generic;
 using UnityEngine;
 
 public enum HeadType
@@ -12,7 +10,6 @@ public enum HeadType
 [CreateAssetMenu(fileName = "HeadData", menuName = "Scriptable Objects/HeadData")]
 public class HeadData : PartsData
 {
-
     [Tooltip("õ“G”ÍˆÍ")]
     public float radius;
     [Tooltip("õ“G”ÍˆÍ")]

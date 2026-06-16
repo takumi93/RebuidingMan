@@ -1,22 +1,30 @@
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Rendering;
 
 public abstract class PartsData : ScriptableObject
 {
-    public int id;
-    public string partName;
-    public Sprite icon;
-    public GameObject prefab;
-    [Tooltip("体力")]
-    public int hp;
-    [Tooltip("防御力")]
-    public int defense;
-    [Tooltip("速度")]
-    public int speed;
+    [Tooltip("ロボットのデータ")]
+    [SerializeField] private int _id;
+    [SerializeField] private string _partName;
+    [SerializeField] private Sprite _icon;
+    [SerializeField] private GameObject _prefab;
+
+    [Tooltip("ロボットの個体値")]
+    [SerializeField] private int _hp;
+    [SerializeField] private int _defense;
+    [SerializeField] private int _speed;
+
     [Tooltip("味方になった時のMaterial")]
-    public Material material;
-    public string description;
+    [SerializeField] private Material _allyMaterial;
+
+    // 値を参照させるための変数
+    public int Id => _id;
+    public string PartName => _partName;
+    public Sprite Icon => _icon;
+    public GameObject Prefab => _prefab;
+    public int Hp => _hp;
+    public int Defense => _defense;
+    public int Speed => _speed;
+    public Material AllyMaterial => _allyMaterial;
 
     public abstract PartsType GetPartsType();
 }

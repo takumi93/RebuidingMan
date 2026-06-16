@@ -28,7 +28,7 @@ public class MissileMove : MonoBehaviour
             if (other.gameObject.layer == LayerNumberEnemy)
             {
                 var Damage = other.gameObject.GetComponent<RobotHPManager>();
-                Damage.HitDamage(30);
+                //Damage.HitDamage(30);
                 Destroy(this.gameObject);
             }
         }else if (this.transform.gameObject.layer == LayerNumberEnemyShot)
@@ -36,11 +36,11 @@ public class MissileMove : MonoBehaviour
             if (other.gameObject.CompareTag("Ally"))
             {
                 var Damage = other.gameObject.GetComponent<RobotHPManager>();
-                Damage.HitDamage(12);
+                //Damage.HitDamage(12);
                 Destroy(this.gameObject);
             }else if (other.gameObject.CompareTag("Player")){
                 var playerHP = other.gameObject.GetComponent<PlayerHP>();
-                playerHP.Damage(20);
+                //playerHP.Damage(20);
                 Destroy(this.gameObject);
             }
         }

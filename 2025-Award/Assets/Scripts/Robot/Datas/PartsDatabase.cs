@@ -18,7 +18,7 @@ public class PartsDatabase : ScriptableObject
     public void Init()
     {
         // partName をキーにして Dictionary 化
-        allPartsDict = allParts.ToDictionary(p => p.id, p => p);
+        allPartsDict = allParts.ToDictionary(p => p.Id, p => p);
     }
 
     // データの検索

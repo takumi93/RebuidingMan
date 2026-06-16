@@ -12,15 +12,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dd1f93553694f0e458125fd2e17c7b06, type: 3}
   m_Name: Head_Pawn
   m_EditorClassIdentifier: 
-  id: 0
-  partName: Head_Pawn
-  icon: {fileID: 0}
-  prefab: {fileID: 9222174284307055933, guid: 0a22534a4bbd150488752ea884701989, type: 3}
-  hp: 200
-  defense: 200
-  speed: 100
-  material: {fileID: 2100000, guid: ba758ded45c0f2748846c21da1d36b71, type: 2}
-  description: 
+  _id: 2
+  _partName: 
+  _icon: {fileID: 0}
+  _prefab: {fileID: 0}
+  _hp: 0
+  _defense: 0
+  _speed: 0
+  _allyMaterial: {fileID: 0}
   radius: 5
   distance: 10
   headType: 0

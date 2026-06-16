@@ -11,6 +11,6 @@ public class TireLeg : LegBase
 
     public override void CreateSetup()
     {
-        this.transform.GetComponentInChildren<SkinnedMeshRenderer>().material = LegData.material;
+        this.transform.GetComponentInChildren<SkinnedMeshRenderer>().material = LegData.AllyMaterial;
     }
 }

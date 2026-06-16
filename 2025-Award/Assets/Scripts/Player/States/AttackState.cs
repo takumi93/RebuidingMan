@@ -1,31 +1,33 @@
 using UnityEngine;
 
-public class AttackState : IPlayerState
+public class AttackState : PlayerState
 {
     public AttackState(PlayerStateManager stateManager, Player player) 
         : base(stateManager, player) { }
 
-    public override void Enter(Player player)
+    public override void Enter()
     {
-        player.Animation.SetTrigger("Attack");
-        player.Animation.AttackStart();
-        player.Attack();
+        // 攻撃アニメーション開始
+        _player.Animation.SetTrigger("Attack");
+        // 攻撃開始フラグ
+        _player.Animation.AttackStart();
     }
 
-    public override void Tick(Player player, InputInfo inputInfo)
+    public override void Update()
     {
-        if (!player.Animation.Attack)
+        // 攻撃終了後
+        if (!_player.Animation.Attack)
         {
-            if (!inputInfo.IsWalk)
+            if (!_player.PlayerInputInfo.IsMoving)
             {
-                player.ChangeState(stateManager.IdleState);
+                _player.ChangeState(_stateManager.IdleState);
             }
-            if (inputInfo.IsWalk)
+            if (_player.PlayerInputInfo.IsMoving)
             {
-                player.ChangeState(stateManager.WalkState);
+                _player.ChangeState(_stateManager.WalkState);
             }
         }
     }
 
-    public override void Exit(Player player) { }
+    public override void Exit() { }
 }

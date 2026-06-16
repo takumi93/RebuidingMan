@@ -15,13 +15,43 @@ public abstract class HeadBase: MonoBehaviour
     [SerializeField] protected float loseTargetTime = 2.0f;
     protected float loseTimer = 0f;
 
+    [Header("胴に連動するRigを指定")]
+    [SerializeField] public GameObject HeadToBodyRig = null;
+    // 頭が胴に連動するRig
+    public GameObject BodyToHeadRig = null;
+
+    // キャタピラ時の角度
+    const float moveStartAngle = 30.0f;
+
+    const float rotateSpeed = 120f;
+
     // 敵の移動範囲
-    protected NavMeshAgent area;
+    protected NavMeshAgent _area;
     protected Robot _robot;
 
     public bool IsPatrolling;
 
-    public abstract void Init();
+    /// <summary>
+    /// 初期化
+    /// </summary>
+    public virtual void Init()
+    {
+        _area = GetComponentInParent<NavMeshAgent>();
+        _robot = GetComponentInParent<Robot>();
+    }
+
+    /// <summary>
+    /// プレイヤー陣営になった時マテリアルを変更する
+    /// </summary>
+    protected void UpdateMaterial()
+    {
+        var renderer = GetComponentInChildren<Renderer>();
+
+        if (renderer != null)
+        {
+            renderer.material = HeadData.AllyMaterial;
+        }
+    }
 
     /// <summary>
     /// Idle状態ですること
@@ -35,27 +65,26 @@ public abstract class HeadBase: MonoBehaviour
     public abstract void ChaseTarget();
 
     /// <summary>
-    /// ロボットができたときに行う初期設定
+    /// 移動先を指定
     /// </summary>
-    /// <param name="rig"></param>
-    /// <param name="agent"></param>
-    public abstract void SetupRig(GameObject rig, NavMeshAgent agent);
+    /// <param name="targetPos"></param>
+    public void MoveToTarget(Vector3 targetPos)
+    {
+        _area.isStopped = false;
+        _area.destination = targetPos;
+    }
+
+    ///// <summary>
+    ///// ロボットができたときに行う初期設定
+    ///// </summary>
+    ///// <param name="rig"></param>
+    ///// <param name="agent"></param>
+    //public abstract void SetupRig(GameObject rig, NavMeshAgent agent);
 
     /// <summary>
     /// ロボットがプレイヤーによって作成されたときの初期設定
     /// </summary>
     public abstract void CreateSetup();
-
-    // ここから下は変わらない処理
-
-    /// <summary>
-    /// 
-    /// </summary>
-    /// <returns></returns>
-    public virtual HeadData OutputData()
-    {
-        return HeadData;
-    }
 
     /// <summary>
     /// 敵を索敵
@@ -63,15 +92,26 @@ public abstract class HeadBase: MonoBehaviour
     /// </summary>
     /// <param name="category"></param>
     /// <returns></returns>
-    public virtual bool SearchTarget(LayerMask category)
+    public virtual bool SearchTarget()
     {
-        Collider[] cols = Physics.OverlapSphere(transform.position, searchRadius, category);
+        Collider[] cols = Physics.OverlapSphere(transform.position, searchRadius);
+
+        // 自分の陣営を確認
+        TeamObject myTeam = _robot.GetComponent<TeamObject>();
 
         float nearestDist = searchRadius;
         Transform nearestTarget = null;
 
         foreach (var col in cols)
         {
+            // 自分の視線の先にあるものの陣営を確認
+            TeamObject targetTeam = col.GetComponentInParent<TeamObject>();
+
+            // 陣営を取得できなかったとき
+            if(targetTeam == null) continue;
+            // 味方のとき
+            if(!myTeam.IsEnemy(targetTeam)) continue;
+
             Vector3 dir = col.transform.position - transform.position;
             float dist = dir.magnitude;
 
@@ -95,7 +135,7 @@ public abstract class HeadBase: MonoBehaviour
         if (nearestTarget != null)
         {
             loseTimer = 0f;
-            _robot.Target = nearestTarget.gameObject;
+            _robot.Target = nearestTarget;
             return true;
         }
 
@@ -122,4 +162,10 @@ public abstract class HeadBase: MonoBehaviour
 
         return true;
     }
+
+    //public virtual void SetupRig(GameObject rig, NavMeshAgent agent)
+    //{
+    //    BodyToHeadRig = rig;
+    //    _area = agent;
+    //}
 }

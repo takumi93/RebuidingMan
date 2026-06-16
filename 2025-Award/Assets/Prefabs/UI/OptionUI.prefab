@@ -649,6 +649,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7267208170261633678}
   - component: {fileID: 29878284382731733}
+  - component: {fileID: 350118810565379381}
   m_Layer: 0
   m_Name: OptionUI
   m_TagString: Untagged
@@ -690,70 +691,27 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3aa0ad813882d5f43b5ac5eb9f763b38, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  onResumeButtonClick:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: 
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: 
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  onSoundButtonClick:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: 
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: 
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  onOperatingButtonClick:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: 
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: 
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  onIconListButtonClick:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: 
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: 
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  resumeButton: {fileID: 2596839070703305335}
-  soundButton: {fileID: 5939533638531276912}
-  operatingButton: {fileID: 5079541999900040365}
-  IconListButton: {fileID: 1123995141897147033}
+  _canvasGroup: {fileID: 350118810565379381}
+  _canCloseByCancel: 1
+  _resumeButton: {fileID: 2596839070703305335}
+  _soundButton: {fileID: 5939533638531276912}
+  _operationButton: {fileID: 5079541999900040365}
+  _iconListButton: {fileID: 1123995141897147033}
+  _soundUI: {fileID: 0}
+  _operationUI: {fileID: 0}
+  _iconListUI: {fileID: 0}
+--- !u!225 &350118810565379381
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8704646266089824935}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1 &9169211419214020829
 GameObject:
   m_ObjectHideFlags: 0

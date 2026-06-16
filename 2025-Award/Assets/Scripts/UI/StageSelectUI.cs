@@ -1,42 +1,37 @@
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Events;
-public class StageSelectUI : MonoBehaviour
+
+public class StageSelectUI : BaseUI
 {
     //UnityEvent
-    public UnityEvent OnFirstStageButtonClick;
-    public UnityEvent OnSecondStageButtonClick;
-    public UnityEvent OnThirdStageButtonClick;
-    public UnityEvent OnForceStageButtonClick;
+    public UnityEvent FirstStageRequested;
+    public UnityEvent SecondStageRequested;
+    public UnityEvent ThirdStageRequested;
+    public UnityEvent ForceStageRequested;
 
-    //ボタンの指定
-    [SerializeField] private Button firstStageButton = null;
-    [SerializeField] private Button secondStagedButton = null;
-    [SerializeField] private Button thirdStageButton = null;
-    [SerializeField] private Button forceStageButton = null;
+    [Header("ボタン")]
+    [SerializeField] private Button _firstStageButton = null;
+    [SerializeField] private Button _secondStagedButton = null;
+    [SerializeField] private Button _thirdStageButton = null;
+    [SerializeField] private Button _forceStageButton = null;
 
-    private void Awake()
+    protected override void Awake()
     {
         //UnityEvent
-        firstStageButton.onClick.AddListener(() => { OnFirstStageButtonClick.Invoke(); });
-        secondStagedButton.onClick.AddListener(() => { OnSecondStageButtonClick.Invoke(); });
-        thirdStageButton.onClick.AddListener(() => { OnThirdStageButtonClick.Invoke(); });
-        forceStageButton.onClick.AddListener(() => { OnForceStageButtonClick.Invoke(); });
+        _firstStageButton.onClick.AddListener(() => { FirstStageRequested.Invoke(); });
+        _secondStagedButton.onClick.AddListener(() => { SecondStageRequested.Invoke(); });
+        _thirdStageButton.onClick.AddListener(() => { ThirdStageRequested.Invoke(); });
+        _forceStageButton.onClick.AddListener(() => { ForceStageRequested.Invoke(); });
 
         //UIの非表示
         Hide();
     }
 
-    //UIの表示
-    public void Show()
+    public override void Show()
     {
-        gameObject.SetActive(true);
-        firstStageButton.Select();
-    }
+        base.Show();
 
-    //UIの非表示
-    public void Hide()
-    {
-        gameObject.SetActive(false);
+        _firstStageButton.Select();
     }
 }

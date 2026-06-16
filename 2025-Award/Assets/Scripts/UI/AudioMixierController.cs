@@ -3,44 +3,47 @@ using UnityEngine.Audio;
 using UnityEngine.Events;
 using UnityEngine.UI;
 
-public class AudioMixerController : MonoBehaviour
+public class AudioMixerController : BaseUI
 {
     // Exit Button が押されたときに発生する UnityEvent
-    public UnityEvent onExitButtonClick;
+    public UnityEvent ExitRequested;
     // BGMSliderの値が変更されたときに発生する　UnityEvent
-    public UnityEvent<float> onBGMSliderValueChanged;
+    public UnityEvent<float> BGMValueChangedRequested;
     // SESliderの値が変更されたときに発生する　UnityEvent
-    public UnityEvent<float> onSESliderValueChanged;
+    public UnityEvent<float> SEValueChangedRequested;
 
     //Audioミキサーを格納
-    [SerializeField] private AudioMixer audioMixer;
+    [SerializeField] private AudioMixer _audioMixer;
 
-    [SerializeField] private Slider BGMSlider = null;
-    [SerializeField] private Slider SESlider = null;
+    [SerializeField] private Slider _BGMSlider = null;
+    [SerializeField] private Slider _SESlider = null;
+
     // SEのテスト再生時のサンプルサウンドを指定します。
     [SerializeField] private AudioClip soundOnTestSE;
 
-    AudioSource audioSource;
+    private AudioSource _audioSource;
 
-    void Awake()
+    protected override void Awake()
     {
-        audioSource = GetComponent<AudioSource>();
+        _audioSource = GetComponent<AudioSource>();
 
         var bgmValue = (float)PlayerPrefs.GetInt("BGM_Value", 3);
-        BGMSlider.value = bgmValue;
+        _BGMSlider.value = bgmValue;
         var seValue = (float)PlayerPrefs.GetInt("SE_Value", 3);
-        SESlider.value = seValue;
+        _SESlider.value = seValue;
 
         // UnityEvent を追加
-        BGMSlider.onValueChanged.AddListener((float value) => { onBGMSliderValueChanged.Invoke(value); });
-        SESlider.onValueChanged.AddListener((float value) => { onSESliderValueChanged.Invoke(value); });
+        _BGMSlider.onValueChanged.AddListener((float value) => { BGMValueChangedRequested.Invoke(value); });
+        _SESlider.onValueChanged.AddListener((float value) => { SEValueChangedRequested.Invoke(value); });
     }
 
-    private void Start()
+    protected override void Start()
     {
+        base.Start();
+
         // スライダーUIの現在値を10段階に補正してから[-80, 0]dBに変換
-        audioMixer.SetFloat("BGM", Mathf.Clamp(Mathf.Log10(BGMSlider.value / 10) * 20f, -80f, 0f));
-        audioMixer.SetFloat("SE", Mathf.Clamp(Mathf.Log10(SESlider.value / 10) * 20f, -80f, 0f));
+        _audioMixer.SetFloat("BGM", Mathf.Clamp(Mathf.Log10(_BGMSlider.value / 10) * 20f, -80f, 0f));
+        _audioMixer.SetFloat("SE", Mathf.Clamp(Mathf.Log10(_SESlider.value / 10) * 20f, -80f, 0f));
 
         Hide();
     }
@@ -48,47 +51,39 @@ public class AudioMixerController : MonoBehaviour
     // シーン切り替え時に音量情報を保存します。
     public void OnDestroy()
     {
-        PlayerPrefs.SetInt("BGM_Value", (int)BGMSlider.value);
-        PlayerPrefs.SetInt("SE_Value", (int)SESlider.value);
+        PlayerPrefs.SetInt("BGM_Value", (int)_BGMSlider.value);
+        PlayerPrefs.SetInt("SE_Value", (int)_SESlider.value);
         PlayerPrefs.Save();
     }
 
-    // BGMスライダーの値変更によって呼び出されます。
+    /// <summary>
+    /// BGMスライダーの値変更によって呼び出されます。
+    /// </summary>
+    /// <param name="value"></param>
     public void SetBGM(float value)
     {
         //スライダーBGMの現在値を10段階に補正してから[-80, 0]に変換
         var volume = Mathf.Clamp(Mathf.Log10(value / 10) * 20f, -80f, 0f);
-        audioMixer.SetFloat("BGM", volume);
+        _audioMixer.SetFloat("BGM", volume);
     }
 
-    // SEスライダーの値変更によって呼び出されます。
+    /// <summary>
+    /// SEスライダーの値変更によって呼び出されます。
+    /// </summary>
+    /// <param name="value"></param>
     public void SetSE(float value)
     {
         //スライダーSEの現在値を10段階に補正してから[-80, 0]に変換
         var volume = Mathf.Clamp(Mathf.Log10(value / 10) * 20f, -80f, 0f);
-        audioMixer.SetFloat("SE", volume);
+        _audioMixer.SetFloat("SE", volume);
         // テスト音声を再生
-        audioSource.PlayOneShot(soundOnTestSE);
+        _audioSource.PlayOneShot(soundOnTestSE);
     }
 
-    // SoundUIを表示します。
-    public void Show()
+    public override void Show()
     {
-        // 子オブジェクトをすべてアクティブ化
-        foreach (Transform child in transform)
-        {
-            child.gameObject.SetActive(true);
-        }
-        BGMSlider.Select();
-    }
+        base.Show();
 
-    // SoundUIUIを非表示します。
-    public void Hide()
-    {
-        // 子オブジェクトをすべて非アクティブ化
-        foreach (Transform child in transform)
-        {
-            child.gameObject.SetActive(false);
-        }
+        _BGMSlider.Select();
     }
 }

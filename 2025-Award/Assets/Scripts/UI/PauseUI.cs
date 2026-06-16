@@ -1,45 +1,52 @@
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
-public class PauseUI : MonoBehaviour
+
+public class PauseUI : BaseUI
 {
     //UnityEvent
-    public UnityEvent onResumeButtonClick = null;
-    public UnityEvent onRetryButtonClick = null;
-    public UnityEvent onOptionButtonClick = null;
-    public UnityEvent onTitleButtonClick = null;
+    public UnityEvent RetryRequested = null;
+    public UnityEvent TitleRequested = null;
 
     //Buttonを指定
     [SerializeField]
-    private Button resumeButton = null;
+    private Button _resumeButton = null;
     [SerializeField]
-    private Button retryButton = null;
+    private Button _retryButton = null;
     [SerializeField]
-    private Button optionButton = null;
+    private Button _optionButton = null;
     [SerializeField]
-    private Button titleButton = null;
+    private Button _titleButton = null;
 
-    void Awake()
+    // オプション画面
+    [SerializeField] private BaseUI _optionUI = null;
+
+    protected override void Awake()
     {
+        base.Awake();
+
         // UnityEvent を追加
-        resumeButton.onClick.AddListener(() => { onResumeButtonClick.Invoke(); });
-        retryButton.onClick.AddListener(() => { onRetryButtonClick.Invoke(); });
-        optionButton.onClick.AddListener(() => { onOptionButtonClick.Invoke(); });
-        titleButton.onClick.AddListener(() => { onTitleButtonClick.Invoke(); });
+        _resumeButton.onClick.AddListener(() => { UIManager.Instance.Pop(); });
+        _retryButton.onClick.AddListener(() => { RetryRequested.Invoke(); });
+        _optionButton.onClick.AddListener(() => { UIManager.Instance.Push(_optionUI); });
+        _titleButton.onClick.AddListener(() => { TitleRequested.Invoke(); });
 
         Hide();
     }
 
-    //このUIを表示します
-    public void Show()
+    public override void Show()
     {
-        gameObject.SetActive(true);
-        resumeButton.Select();
+        base.Show();
+
+        Time.timeScale = 0;
+
+        _resumeButton.Select();
     }
 
-    //このUIを非表示にします
-    public void Hide()
+    public override void Hide()
     {
-        gameObject.SetActive(false);
+        Time.timeScale = 1;
+
+        base.Hide();
     }
 }

@@ -12,15 +12,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e5198e902b7737745970c1a5c1968f96, type: 3}
   m_Name: Body_Axe
   m_EditorClassIdentifier: 
-  id: 5
-  partName: Body_axe
-  icon: {fileID: 0}
-  prefab: {fileID: 1066841041302124578, guid: d5f9545e9b7c8484b89265855a0e616a, type: 3}
-  hp: 300
-  defense: 300
-  speed: 100
-  material: {fileID: 2100000, guid: 7ab21b7f7b83bd049a7dbb70d45ac8b8, type: 2}
-  description: 
+  _id: 6
+  _partName: 
+  _icon: {fileID: 0}
+  _prefab: {fileID: 0}
+  _hp: 0
+  _defense: 0
+  _speed: 0
+  _allyMaterial: {fileID: 0}
   bodyType: 2
   damageA: 30
   damageB: 40

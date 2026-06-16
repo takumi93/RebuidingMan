@@ -1,62 +1,61 @@
 using UnityEngine;
-using UnityEngine.AI;
 
 public class Robot : MonoBehaviour
 {
-    [SerializeField] private PartsDatabase _partsDatabase; 
-
-    [SerializeField] private LayerMask enemyLayer;
-
-    [SerializeField] private LayerMask playerLayer;
-
-    RobotStateManager _stateManager { get; set; }
+    // ステートマシン
+    public RobotStateManager StateManager { get; private set; }
 
     // 頭のスクリプトの格納場所を指定
-    public HeadBase head {  get; private set; }
+    public HeadBase Head {  get; private set; }
     // 胴のスクリプトの格納場所を指定
-    public BodyBase body { get; private set; }
+    public BodyBase Body { get; private set; }
     // 足のスクリプトの格納場所を指定
-    public LegBase leg {  get; private set; }
+    public LegBase Leg {  get; private set; }
 
     // 追尾対象
-    public GameObject Target { get; set; } = null;
+    public Transform Target { get; set; }
 
-    LayerMask _searchCategory {  get; set; }
+    // 最後に攻撃してきた敵
+    public Robot LastAttacker { get; set; }
 
+    // 移動先
+    public Vector3? MoveTarget { get; set; }
+
+    // 攻撃モーションに入る距離
     public float attackDistance { get; private set; }
+
+    // 陣営
+    private TeamObject _teamObject;
+
+    public TeamType TeamType => _teamObject.GetTeamType();
 
 
     private void Start()
     {
+        _teamObject = GetComponent<TeamObject>();
+
         // 体の部位ごとに必要な情報を取得
-        head = GetComponentInChildren<HeadBase>(true);
-        body = GetComponentInChildren<BodyBase>(true);
-        leg = GetComponentInChildren<LegBase>(true);
+        Head = GetComponentInChildren<HeadBase>(true);
+        Body = GetComponentInChildren<BodyBase>(true);
+        Leg = GetComponentInChildren<LegBase>(true);
 
-        head.HeadData = _partsDatabase.GetPartById(head.GetComponent<PartsPickup>().GetPartID()) as HeadData;
-        body.BodyData = _partsDatabase.GetPartById(body.GetComponent<PartsPickup>().GetPartID()) as BodyData;
-        leg.LegData = _partsDatabase.GetPartById(leg.GetComponent<PartsPickup>().GetPartID()) as LegData;
-
-        head.Init();
-        body.Init();
-        leg.Init();
+        Head.Init();
+        Body.Init();
+        Leg.Init();
 
         // 敵か味方か識別
-        if (1 << gameObject.layer == (int)playerLayer)
+        var team = GetComponent<TeamObject>();
+
+        if (team != null && team.GetTeamType() == TeamType.Player)
         {
-            _searchCategory = enemyLayer;
-            head.CreateSetup();
-            body.CreateSetup();
-            leg.CreateSetup();
-        }
-        else
-        {
-            _searchCategory = playerLayer;
+            Head.CreateSetup();
+            Body.CreateSetup();
+            Leg.CreateSetup();
         }
 
-        attackDistance = body.BodyData.AttackRange;
+        attackDistance = Body.BodyData.AttackRange;
 
-        _stateManager = new RobotStateManager(this);
+        StateManager = new RobotStateManager(this);
     }
 
     /// <summary>
@@ -65,7 +64,7 @@ public class Robot : MonoBehaviour
     /// <param name="inputInfo"></param>
     public void Tick()
     {
-        _stateManager.CurrentState.Tick(this);
+        StateManager.CurrentState.Tick(this);
     }
 
     /// <summary>
@@ -75,7 +74,7 @@ public class Robot : MonoBehaviour
     /// <param name="newstate"></param>
     public void ChangeState(RobotStateBase newstate)
     {
-        _stateManager.ChangeState(newstate);
+        StateManager.ChangeState(newstate);
     }
 
     /// <summary>
@@ -85,8 +84,8 @@ public class Robot : MonoBehaviour
     /// <returns></returns>
     public bool HandleIdle()
     {
-        head.TrackingTarget();
-        if(head.SearchTarget(_searchCategory))
+        Head.TrackingTarget();
+        if(Head.SearchTarget())
         {
             return true;
         }
@@ -103,14 +102,14 @@ public class Robot : MonoBehaviour
         toAttack = false;
 
         // ターゲットが見えている場合
-        if (head.SearchTarget(_searchCategory))
+        if (Head.SearchTarget())
         {
-            head.ChaseTarget();
+            Head.ChaseTarget();
 
             // 攻撃距離判定
             if (Target != null)
             {
-                float distance = Vector3.Distance(head.transform.position, Target.transform.position);
+                float distance = Vector3.Distance(Head.transform.position, Target.transform.position);
                 if (distance <= attackDistance) // attackDistance は Inspector か定数で指定
                 {
                     toAttack = true;
@@ -122,9 +121,9 @@ public class Robot : MonoBehaviour
         }
 
         // 見失った場合の猶予チェック
-        if (head.CheckLose())
+        if (Head.CheckLose())
         {
-            head.ChaseTarget();
+            Head.ChaseTarget();
             return true; // Chase 継続
         }
 
@@ -149,7 +148,7 @@ public class Robot : MonoBehaviour
         }
 
         // 追尾しながら攻撃
-        head.ChaseTarget();
+        Head.ChaseTarget();
 
         float targetDistance = Vector3.Distance(transform.position, Target.transform.position);
 

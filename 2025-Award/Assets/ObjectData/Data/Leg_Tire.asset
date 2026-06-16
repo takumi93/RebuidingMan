@@ -12,13 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d4ec649f67010204fbf06297d0ddcbeb, type: 3}
   m_Name: Leg_Tire
   m_EditorClassIdentifier: 
-  id: 6
-  partName: Leg_Tire
-  icon: {fileID: 0}
-  prefab: {fileID: 6013006339386130469, guid: ba8e0e42a4ac37e4f970467ecdf27699, type: 3}
-  hp: 200
-  defense: 200
-  speed: 200
-  material: {fileID: 2100000, guid: ad95f229335e0a34db556e83898f1cd0, type: 2}
-  description: 
+  _id: 8
+  _partName: 
+  _icon: {fileID: 0}
+  _prefab: {fileID: 0}
+  _hp: 0
+  _defense: 0
+  _speed: 0
+  _allyMaterial: {fileID: 0}
   legType: 1

@@ -53,7 +53,7 @@ public class AxeBody : BodyBase
     /// </summary>
     public override void CreateSetup()
     {
-        transform.GetChild(0).GetChild(2).GetComponent<SkinnedMeshRenderer>().material = BodyData.material;
+        transform.GetChild(0).GetChild(2).GetComponent<SkinnedMeshRenderer>().material = BodyData.AllyMaterial;
         audioSource = GetComponentInParent<AudioSource>();
     }
 

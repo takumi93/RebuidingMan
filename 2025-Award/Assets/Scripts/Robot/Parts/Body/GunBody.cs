@@ -59,7 +59,7 @@ public class GunBody : BodyBase
     /// </summary>
     public override void CreateSetup()
     {
-        GetComponentInChildren<SkinnedMeshRenderer>().material = BodyData.material;
+        GetComponentInChildren<SkinnedMeshRenderer>().material = BodyData.AllyMaterial;
         audioSource = this.GetComponentInParent<AudioSource>();
     }
 

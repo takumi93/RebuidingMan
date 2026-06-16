@@ -1,4 +1,3 @@
-using System.Collections.Generic;
 using UnityEngine;
 
 public class RobotAttackB : MonoBehaviour
@@ -32,12 +31,12 @@ public class RobotAttackB : MonoBehaviour
             {
                 //プレイヤーのhpコンポーネントを取得
                 playerHp = other.GetComponent<PlayerHP>();
-                playerHp.Damage(DamageB);
+                //playerHp.Damage(DamageB);
             }
             else if (other.transform.parent.CompareTag("Ally"))
             {
                 robotAllyHp = other.transform.parent.GetComponent<RobotHPManager>();
-                robotAllyHp.HitDamage(DamageB);
+                //robotAllyHp.HitDamage(DamageB);
             }
             else
             {
@@ -51,7 +50,7 @@ public class RobotAttackB : MonoBehaviour
             if (other.transform.parent.CompareTag("Enemy"))
             {
                 robotAllyHp = other.transform.parent.GetComponent<RobotHPManager>();
-                robotAllyHp.HitDamage(DamageB);
+                //robotAllyHp.HitDamage(DamageB);
             }
         }
     }

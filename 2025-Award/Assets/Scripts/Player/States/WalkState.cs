@@ -1,30 +1,30 @@
 using UnityEngine;
 
-public class WalkState : IPlayerState
+public class WalkState : PlayerState
 {
     public WalkState(PlayerStateManager stateManager, Player player) 
         : base(stateManager, player){ }
 
-    public override void Enter(Player player)
+    public override void Enter()
     {
-        player.Animation.SetTrigger("Walk");
+        _player.Animation.SetTrigger("Walk");
     }
 
-    public override void Tick(Player player, InputInfo inputInfo)
+    public override void Update()
     {
-        if (inputInfo.Interact)
+        if (_player.PlayerInputInfo.Interact)
         {
-            player.ChangeState(stateManager.InteractState);
+            _player.ChangeState(_stateManager.InteractState);
         }
-        if (inputInfo.IsAttack && !player.Animation.Attack)
+        if (_player.PlayerInputInfo.IsAttack && !_player.Animation.Attack)
         {
-            player.ChangeState(stateManager.AttackState);
+            _player.ChangeState(_stateManager.AttackState);
         }
-        if (!inputInfo.IsWalk)
+        if (!_player.PlayerInputInfo.IsMoving)
         {
-            player.ChangeState(stateManager.IdleState);
+            _player.ChangeState(_stateManager.IdleState);
         }
     }
 
-    public override void Exit(Player player) { }
+    public override void Exit() { }
 }

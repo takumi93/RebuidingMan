@@ -12,13 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d4ec649f67010204fbf06297d0ddcbeb, type: 3}
   m_Name: Leg_Walk
   m_EditorClassIdentifier: 
-  id: 7
-  partName: Leg_Walk
-  icon: {fileID: 0}
-  prefab: {fileID: 2050600553940158714, guid: e4a123f264317434cba5c7f8a2b05d32, type: 3}
-  hp: 200
-  defense: 200
-  speed: 100
-  material: {fileID: 2100000, guid: ba758ded45c0f2748846c21da1d36b71, type: 2}
-  description: 
+  _id: 7
+  _partName: 
+  _icon: {fileID: 0}
+  _prefab: {fileID: 0}
+  _hp: 0
+  _defense: 0
+  _speed: 0
+  _allyMaterial: {fileID: 0}
   legType: 0

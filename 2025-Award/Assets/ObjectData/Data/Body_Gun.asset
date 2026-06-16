@@ -12,15 +12,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e5198e902b7737745970c1a5c1968f96, type: 3}
   m_Name: Body_Gun
   m_EditorClassIdentifier: 
-  id: 4
-  partName: Body_gun
-  icon: {fileID: 0}
-  prefab: {fileID: 6304453191028771697, guid: 90b4fd49a98b32549bf7e017af14c331, type: 3}
-  hp: 100
-  defense: 100
-  speed: 200
-  material: {fileID: 2100000, guid: ad95f229335e0a34db556e83898f1cd0, type: 2}
-  description: 
+  _id: 5
+  _partName: 
+  _icon: {fileID: 0}
+  _prefab: {fileID: 0}
+  _hp: 0
+  _defense: 0
+  _speed: 0
+  _allyMaterial: {fileID: 0}
   bodyType: 1
   damageA: 0
   damageB: 0
