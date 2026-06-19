@@ -8,7 +8,6 @@ public class CameraController : MonoBehaviour
 
     private CinemachineInputAxisController _inputAxis;
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
     private void Awake()
     {
         _follow = GetComponent<CinemachineFollow>();

@@ -62,10 +62,8 @@ public class PlayerInputReceiver : MonoBehaviour
     /// <param name="context"></param>
     public void OnFire(InputAction.CallbackContext context)
     {
-        Debug.Log($"Fire : {context.phase}");
         if (context.started)
         {
-            Debug.Log("Attack Start");
             _inputInfo.IsAttack = true;
         }
     }

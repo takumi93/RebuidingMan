@@ -46,6 +46,7 @@ public class Player : MonoBehaviour
         Move.Init();
         Interact.Init(this);
         Create.Init(this);
+        Animation.Init();
     }
 
     private void Start()

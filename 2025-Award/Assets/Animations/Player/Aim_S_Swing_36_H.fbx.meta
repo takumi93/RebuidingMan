@@ -3,7 +3,12 @@ guid: 40d1c346a74c33648b75262c482f13ad
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: standardSurface8
+    second: {fileID: 2100000, guid: f6cd5305744af144d9b5f15d55d3fb21, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
@@ -31,7 +36,7 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: Swing
+      name: Player_Swing
       takeName: Take 001
       internalID: 1827226128182048838
       firstFrame: 1

@@ -49,7 +49,7 @@ public class InputManager : MonoBehaviour
     /// <summary>
     /// ‘€ì‚ğƒvƒŒƒCƒ„[‚ÉØ‚è‘Ö‚¦‚é
     /// </summary>
-    public void EnablePlayerrInput()
+    public void EnablePlayerInput()
     {
         _uiMap.Disable();
 

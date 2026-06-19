@@ -70,8 +70,8 @@ MonoBehaviour:
   HomeRequested:
     m_PersistentCalls:
       m_Calls: []
-  _nextStageButton: {fileID: 0}
-  _homeButton: {fileID: 0}
+  _nextStageButton: {fileID: 3564500041010910340}
+  _homeButton: {fileID: 6392461395313712931}
 --- !u!225 &7673938064617235168
 CanvasGroup:
   m_ObjectHideFlags: 0

@@ -5,19 +5,18 @@ public class PlayerHP : MonoBehaviour
 {
     private Player _player;
 
-    const float MaxLife = 100.0f;
-    public float currentLife = 100.0f;
-    [SerializeField]
-    private GameObject HitEffect = null;
-    [SerializeField]
-    private CameraController camController;
+    private const float _maxLife = 100.0f;
+    public float CurrentLife = 100.0f;
 
-    const int mutekiTime = 1;
-    float coolDownTime = 0;
+    [SerializeField] private CameraController _camController;
 
-    bool isMuteki = true;
+    // ヒットエフェクトを表示するUI
+    [SerializeField] private HitEffectUI _hitEffect;
 
-    Animator HitAnim;
+    private const int _mutekiTime = 1;
+    private float _coolDownTime = 0;
+
+    bool _isMuteki = true;
 
     public Image hpBar;
 
@@ -30,24 +29,20 @@ public class PlayerHP : MonoBehaviour
     {
         if (hpBar != null)
         {
-            hpBar.fillAmount = currentLife / MaxLife;
-        }
-        if (HitEffect != null)
-        {
-            HitAnim = HitEffect.GetComponent<Animator>();
+            hpBar.fillAmount = CurrentLife / _maxLife;
         }
     }
 
     private void Update()
     {
-        if (!isMuteki)
+        if (!_isMuteki)
         {
-            coolDownTime += Time.deltaTime;
+            _coolDownTime += Time.deltaTime;
 
-            if (coolDownTime >= mutekiTime)
+            if (_coolDownTime >= _mutekiTime)
             {
-                isMuteki = true;
-                coolDownTime = 0.0f;
+                _isMuteki = true;
+                _coolDownTime = 0.0f;
             }
         }
     }
@@ -59,20 +54,22 @@ public class PlayerHP : MonoBehaviour
     /// <param name="robot"></param>
     public void Damage(int damage, GameObject robot)
     {
-        if (isMuteki)
+        if (_isMuteki)
         {
-            isMuteki = false;
-            HitAnim?.SetTrigger("Hit");
-            currentLife -= damage;
+            _isMuteki = false;
+
+            CurrentLife -= damage;
 
             _player.LastAttacker = robot;
 
-            StartCoroutine(camController.CameraShake(5, 0.01f));
+            _hitEffect.Play();
+
+            StartCoroutine(_camController.CameraShake(5, 0.01f));
             if (hpBar != null)
             {
-                hpBar.fillAmount = currentLife / MaxLife;
+                hpBar.fillAmount = CurrentLife / _maxLife;
             }
-            if (currentLife <= 0)
+            if (CurrentLife <= 0)
             {
                 OnDie();
             }

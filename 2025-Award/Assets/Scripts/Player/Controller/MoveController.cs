@@ -38,8 +38,8 @@ public class MoveController : MonoBehaviour
     /// </summary>
     public void Look()
     {
-        Quaternion cameraRtation = Camera.main.transform.rotation;
-        //プレイヤーを回転
-        transform.rotation = new Quaternion(0, cameraRtation.y, 0, cameraRtation.w);
+        Vector3 euler = Camera.main.transform.eulerAngles;
+        // プレイヤーオブジェクトを回転
+        transform.rotation = Quaternion.Euler(0, euler.y, 0);
     }
 }

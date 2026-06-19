@@ -137,7 +137,19 @@ MonoBehaviour:
   - eventID: 10
     callback:
       m_PersistentCalls:
-        m_Calls: []
+        m_Calls:
+        - m_Target: {fileID: 0}
+          m_TargetAssemblyTypeName: UnityEngine.AudioSource, UnityEngine
+          m_MethodName: PlayOneShot
+          m_Mode: 2
+          m_Arguments:
+            m_ObjectArgument: {fileID: 8300000, guid: 51cc31e4781884646a73c41209d460a7, type: 3}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.AudioClip, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
 --- !u!1 &2419874572466300408
 GameObject:
   m_ObjectHideFlags: 0
@@ -350,7 +362,19 @@ MonoBehaviour:
   - eventID: 10
     callback:
       m_PersistentCalls:
-        m_Calls: []
+        m_Calls:
+        - m_Target: {fileID: 0}
+          m_TargetAssemblyTypeName: UnityEngine.AudioSource, UnityEngine
+          m_MethodName: PlayOneShot
+          m_Mode: 2
+          m_Arguments:
+            m_ObjectArgument: {fileID: 8300000, guid: 51cc31e4781884646a73c41209d460a7, type: 3}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.AudioClip, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
 --- !u!1 &4947264596645071839
 GameObject:
   m_ObjectHideFlags: 0
@@ -362,6 +386,7 @@ GameObject:
   - component: {fileID: 932918041480500210}
   - component: {fileID: 1721845016137577083}
   - component: {fileID: 8345904849063976859}
+  - component: {fileID: 8234256327780592776}
   m_Layer: 0
   m_Name: GameOverUI
   m_TagString: Untagged
@@ -412,14 +437,28 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 67756c145ea9f724caf9d756ffa2f93d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  onRetryButtonClick:
+  _canvasGroup: {fileID: 8234256327780592776}
+  _canCloseByCancel: 0
+  RetryRequested:
     m_PersistentCalls:
       m_Calls: []
-  onHomeButtonClick:
+  HomeRequested:
     m_PersistentCalls:
       m_Calls: []
-  retryButton: {fileID: 4595021505664668094}
-  homeButton: {fileID: 9059942242716965958}
+  _retryButton: {fileID: 4595021505664668094}
+  _homeButton: {fileID: 9059942242716965958}
+--- !u!225 &8234256327780592776
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4947264596645071839}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1 &6085346269853020198
 GameObject:
   m_ObjectHideFlags: 0

@@ -31,12 +31,14 @@ public class PauseUI : BaseUI
         _optionButton.onClick.AddListener(() => { UIManager.Instance.Push(_optionUI); });
         _titleButton.onClick.AddListener(() => { TitleRequested.Invoke(); });
 
-        Hide();
+        base.Hide();
     }
 
     public override void Show()
     {
         base.Show();
+
+        InputManager.Instance.EnableUIInput();
 
         Time.timeScale = 0;
 
@@ -45,6 +47,8 @@ public class PauseUI : BaseUI
 
     public override void Hide()
     {
+        InputManager.Instance.EnablePlayerInput();
+
         Time.timeScale = 1;
 
         base.Hide();

@@ -7,11 +7,16 @@ public class PlayerAnimation : MonoBehaviour
     // Attackのアニメーションが開始か終了かを判定
     public bool Attack { get; private set; }
 
-    [SerializeField] private Player _player;
+    private Player _player;
 
-    private void Awake()
+    //private void Awake()
+    //{
+    //}
+
+    public void Init()
     {
         _animator = GetComponent<Animator>();
+        _player = GetComponentInParent<Player>();
     }
 
     /// <summary>

@@ -72,8 +72,10 @@ public class StageScene : MonoBehaviour
         _stageClearUI.HomeRequested.AddListener(LoadTitleScene);
         _stageClearUI.NextStageRequested.AddListener(NextStage);
 
-        gameState = SceneState.Play;    
+        gameState = SceneState.Play;
         Time.timeScale = 1;
+
+        InputManager.Instance.EnablePlayerInput();
     }
 
     private void Update()
@@ -152,6 +154,8 @@ public class StageScene : MonoBehaviour
     /// </summary>
     public void Retry()
     {
+        Debug.Log(UIManager.Instance.GetInstanceID());
+
         StartCoroutine(OnLoadScene(SceneManager.GetActiveScene().name));
     }
 

@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4153913497944809968}
   - component: {fileID: 4553143220205190916}
+  - component: {fileID: 3599072492030275214}
   - component: {fileID: 5491958320022636745}
   m_Layer: 5
   m_Name: SoundUI
@@ -56,43 +57,33 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9213b8b4deae5e84f99ba31e496631a6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  onExitButtonClick:
+  _canvasGroup: {fileID: 3599072492030275214}
+  _canCloseByCancel: 1
+  ExitRequested:
     m_PersistentCalls:
       m_Calls: []
-  onBGMSliderValueChanged:
+  BGMValueChangedRequested:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 4553143220205190916}
-        m_TargetAssemblyTypeName: AudioMixerController, Assembly-CSharp
-        m_MethodName: SetBGM
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  onSESliderValueChanged:
+      m_Calls: []
+  SEValueChangedRequested:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 4553143220205190916}
-        m_TargetAssemblyTypeName: AudioMixerController, Assembly-CSharp
-        m_MethodName: SetSE
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  audioMixer: {fileID: 24100000, guid: 7ccfc4f4c6b832942bb28f777722e01b, type: 2}
-  BGMSlider: {fileID: 3699581083375393501}
-  SESlider: {fileID: 4218187252097827511}
+      m_Calls: []
+  _audioMixer: {fileID: 24100000, guid: 7ccfc4f4c6b832942bb28f777722e01b, type: 2}
+  _BGMSlider: {fileID: 3699581083375393501}
+  _SESlider: {fileID: 4218187252097827511}
   soundOnTestSE: {fileID: 8300000, guid: 51cc31e4781884646a73c41209d460a7, type: 3}
+--- !u!225 &3599072492030275214
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 993962905413462497}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!82 &5491958320022636745
 AudioSource:
   m_ObjectHideFlags: 0
