@@ -1,13 +1,19 @@
 using UnityEngine;
 
-public class HitEffectUI : MonoBehaviour
+public class HitEffectUI : UIAnimation
 {
-    [SerializeField] private Animator _animator;
-
     static readonly int HitHash = Animator.StringToHash("Hit");
 
-    public void Play()
+    public override void Init()
     {
-        _animator.SetTrigger(HitHash);
+        base.Init();
+    }
+
+    /// <summary>
+    /// ヒットエフェクトの再生
+    /// </summary>
+    public void PlayHitEffect()
+    {
+        SetTrigger(HitHash);
     }
 }

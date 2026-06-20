@@ -1,134 +1,108 @@
-using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class RobotSetUI : MonoBehaviour
 {
-    [SerializeField] private PlayerInventory playerInventory;
-
+    [Header("部位ごとにセットされたら表示する画像")]
     // 頭のUIを指定
-    [SerializeField] GameObject ImageHead;
+    [SerializeField] private GameObject _headImage;
     // 胴のUIを指定
-    [SerializeField] GameObject ImageBody;
+    [SerializeField] private GameObject _bodyImage;
     // 足のUIを指定
-    [SerializeField] GameObject ImageLeg;
+    [SerializeField] private GameObject _legImage;
 
+    [Header("表示する役割アイコン")]
     // 頭の画像を指定
-    [SerializeField] Image IconHeadImage;
+    [SerializeField] private Image _headIconImage;
     // 胴の画像を指定
-    [SerializeField] Image IconBodyImage;
+    [SerializeField] private Image _bodyIconImage;
     // 足の画像を指定
-    [SerializeField] Image IconLegImage;
+    [SerializeField] private Image _legIconImage;
 
+    [Header("部位ごとの役割アイコン一覧")]
     // 頭の役割アイコンを指定
-    [SerializeField] Sprite[] IconHead;
+    [SerializeField] private Sprite[] _headIcons;
     // 胴の役割アイコンを指定
-    [SerializeField] Sprite[] IconBody;
+    [SerializeField] private Sprite[] _bodyIcons;
     // 足の役割アイコンを指定
-    [SerializeField] Sprite[] IconLeg;
+    [SerializeField] private Sprite[] _legIcons;
     // 役割アイコンを指定
-    [SerializeField] Sprite emptyIcon;
+    [SerializeField] private Sprite _iconEmpty;
 
-    // Update is called once per frame
-    void Update()
+    /// <summary>
+    /// アイコンの変更処理
+    /// </summary>
+    /// <param name="inventory"></param>
+    public void RefreshIcon(PlayerInventory inventory)
     {
-        // プレイヤーが頭オブジェクトを持っているとき
-        if (playerInventory.HasHead)
-        {
-            // 頭アイコンを表示
-            ImageHead.SetActive(true);
+        UpdateHead(inventory);
+        UpdateBody(inventory);
+        UpdateLeg(inventory);
+    }
 
-            PartsData headPart = playerInventory.GetPartOfType(PartsType.Head);
-
-            if (headPart is HeadData headData)
-            {
-                if (headData.headType == HeadType.Pawn)
-                {
-                    // アイコンを入れ替え
-                    IconHeadImage.sprite = IconHead[0];
-                } else if (headData.headType == HeadType.Rook)
-                {
-                    // アイコンを入れ替え
-                    IconHeadImage.sprite = IconHead[1];
-                }
-                else if (headData.headType == HeadType.Knight)
-                {
-                    // アイコンを入れ替え
-                    IconHeadImage.sprite = IconHead[2];
-                }
-            }
-        }
-        else
+    /// <summary>
+    /// 頭アイコンの変更処理
+    /// </summary>
+    private void UpdateHead(PlayerInventory inventory)
+    {
+        // インベントリに頭オブジェクトがないとき
+        if (!inventory.HasHead)
         {
-            // 頭アイコンを非表示
-            ImageHead.SetActive(false);
-            // アイコンを入れ替え
-            IconHeadImage.sprite = emptyIcon;
+            _headImage.SetActive(false);
+            _headIconImage.sprite = _iconEmpty;
+            return;
         }
 
-        // プレイヤーが頭オブジェクトを持っているとき
-        if (playerInventory.HasBody)
+        _headImage.SetActive(true);
+
+        // 頭オブジェクトの種類によって画像を入れ替える
+        if(inventory.GetPartOfType(PartsType.Head) is HeadData headData)
         {
-            // 胴アイコンを表示
-            ImageBody.SetActive(true);
-
-            PartsData bodyPart = playerInventory.GetPartOfType(PartsType.Body);
-
-            if (bodyPart is BodyData bodyData)
-            {
-                if (bodyData.bodyType == BodyType.Normal)
-                {
-                    // アイコンを入れ替え
-                    IconBodyImage.sprite = IconBody[0];
-                }
-                else if (bodyData.bodyType == BodyType.Gun)
-                {
-                    // アイコンを入れ替え
-                    IconBodyImage.sprite = IconBody[1];
-                }
-                else if (bodyData.bodyType == BodyType.Axe)
-                {
-                    // アイコンを入れ替え
-                    IconBodyImage.sprite = IconBody[2];
-                }
-            }
+            _headIconImage.sprite = _headIcons[(int)headData.headType];
         }
-        else
+    }
+
+    /// <summary>
+    /// 体アイコンの変更処理
+    /// </summary>
+    private void UpdateBody(PlayerInventory inventory)
+    {
+        // インベントリに体オブジェクトがないとき
+        if (!inventory.HasBody)
         {
-            // 胴アイコンを非表示
-            ImageBody.SetActive(false);
-            // アイコンを入れ替え
-            IconBodyImage.sprite = emptyIcon;
+            _bodyImage.SetActive(false);
+            _bodyIconImage.sprite = _iconEmpty;
+            return;
         }
 
-        // プレイヤーが頭オブジェクトを持っているとき
-        if (playerInventory.HasLeg)
+        _bodyImage.SetActive(true);
+
+        // 体オブジェクトの種類によって画像を入れ替える
+        if (inventory.GetPartOfType(PartsType.Body) is BodyData bodyData)
         {
-            // 足アイコンを表示
-            ImageLeg.SetActive(true);
-
-            PartsData legPart = playerInventory.GetPartOfType(PartsType.Leg);
-
-            if (legPart is LegData legData)
-            {
-                if (legData.legType == LegType.Normal)
-                {
-                    // アイコンを入れ替え
-                    IconLegImage.sprite = IconLeg[0];
-                }
-                else if (legData.legType == LegType.Caterpillar)
-                {
-                    // アイコンを入れ替え
-                    IconLegImage.sprite = IconLeg[1];
-                }
-            }
+            _bodyIconImage.sprite = _bodyIcons[(int)bodyData.bodyType];
         }
-        else
+    }
+
+    /// <summary>
+    /// 足アイコンの変更処理
+    /// </summary>
+    private void UpdateLeg(PlayerInventory inventory)
+    {
+        // インベントリに足オブジェクトがないとき
+        if (!inventory.HasLeg)
         {
-            // 足アイコンを非表示
-            ImageLeg.SetActive(false);
-            // アイコンを入れ替え
-            IconLegImage.sprite = emptyIcon;
+            _legImage.SetActive(false);
+            _legIconImage.sprite = _iconEmpty;
+            return;
+        }
+
+        _legImage.SetActive(true);
+
+        // 足オブジェクトの種類によって画像を入れ替える
+        if (inventory.GetPartOfType(PartsType.Leg) is LegData legData)
+        {
+            _legIconImage.sprite = _legIcons[(int)legData.legType];
         }
     }
 }

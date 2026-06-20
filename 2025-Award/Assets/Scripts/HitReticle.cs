@@ -9,7 +9,7 @@ public class HitReticle : MonoBehaviour
 
     Image reticle = null;
     float alpha = 0f;
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+
     void Start()
     {
         reticle = GetComponent<Image>();

@@ -7,11 +7,10 @@ public class PlayerInventory: MonoBehaviour
     // 今回頭、胴、足ごとに1種類だけのためDictionary型を使用
     private readonly Dictionary<PartsType, PartsData> EquippedParts = new Dictionary<PartsType, PartsData>();
 
-    // 部品が変更された時のイベント
-    public System.Action OnPartsChanged;
-
     // 部品データベース
     [SerializeField] private PartsDatabase _partsDatabase;
+
+    [SerializeField] private PlayUI _playUI;
 
     /// <summary>
     /// 部品を拾った時に呼ぶ処理
@@ -44,7 +43,7 @@ public class PlayerInventory: MonoBehaviour
         EquippedParts[_data.GetPartsType()] = partCopy;
 
         // UI更新通知
-        OnPartsChanged?.Invoke();
+        _playUI.RefreshParts(this);
 
         return true;
     }
@@ -97,7 +96,7 @@ public class PlayerInventory: MonoBehaviour
         EquippedParts.Remove(type);
 
         // UI更新通知
-        OnPartsChanged?.Invoke();
+        _playUI.RefreshParts(this);
     }
 
     /// <summary>
@@ -108,7 +107,7 @@ public class PlayerInventory: MonoBehaviour
         EquippedParts.Clear();
 
         // UI更新通知
-        OnPartsChanged?.Invoke();
+        _playUI.RefreshParts(this);
     }
 
     // 各パーツ専用の参照プロパティ

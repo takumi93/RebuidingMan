@@ -9,10 +9,6 @@ public class PlayerAnimation : MonoBehaviour
 
     private Player _player;
 
-    //private void Awake()
-    //{
-    //}
-
     public void Init()
     {
         _animator = GetComponent<Animator>();

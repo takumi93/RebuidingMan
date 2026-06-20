@@ -1,24 +1,25 @@
 using UnityEngine;
-using UnityEngine.UI;
 
 public class PlayerHP : MonoBehaviour
 {
-    private Player _player;
-
-    private const float _maxLife = 100.0f;
-    public float CurrentLife = 100.0f;
-
     [SerializeField] private CameraController _camController;
 
-    // ヒットエフェクトを表示するUI
-    [SerializeField] private HitEffectUI _hitEffect;
+    [SerializeField] private PlayUI _playUI;
+
+    private Player _player;
+
+    // HP設定
+    private const float _maxHp = 100.0f;
+
+    private float _currentHp;
+
+    public float MaxHp => _maxHp;
+    public float CurrentHp => _currentHp;
 
     private const int _mutekiTime = 1;
     private float _coolDownTime = 0;
 
-    bool _isMuteki = true;
-
-    public Image hpBar;
+    bool _isInvincible = false;
 
     private void Awake()
     {
@@ -27,21 +28,20 @@ public class PlayerHP : MonoBehaviour
 
     private void Start()
     {
-        if (hpBar != null)
-        {
-            hpBar.fillAmount = CurrentLife / _maxLife;
-        }
+        _currentHp = _maxHp;
+
+        _playUI.InitializeHp(_currentHp, _maxHp);
     }
 
     private void Update()
     {
-        if (!_isMuteki)
+        if (_isInvincible)
         {
             _coolDownTime += Time.deltaTime;
 
             if (_coolDownTime >= _mutekiTime)
             {
-                _isMuteki = true;
+                _isInvincible = false;
                 _coolDownTime = 0.0f;
             }
         }
@@ -54,33 +54,22 @@ public class PlayerHP : MonoBehaviour
     /// <param name="robot"></param>
     public void Damage(int damage, GameObject robot)
     {
-        if (_isMuteki)
+        if (_isInvincible)
         {
-            _isMuteki = false;
+            _isInvincible = true;
 
-            CurrentLife -= damage;
+            _currentHp = Mathf.Clamp(_currentHp - damage, 0, _maxHp);
+
+            _playUI.OnDamage(_currentHp, _maxHp);
 
             _player.LastAttacker = robot;
 
-            _hitEffect.Play();
-
             StartCoroutine(_camController.CameraShake(5, 0.01f));
-            if (hpBar != null)
+
+            if (_currentHp <= 0)
             {
-                hpBar.fillAmount = CurrentLife / _maxLife;
-            }
-            if (CurrentLife <= 0)
-            {
-                OnDie();
+                StageScene.Instance.GameOver();
             }
         }
-    }
-
-    /// <summary>
-    /// ゲームオーバー
-    /// </summary>
-    void OnDie()
-    {
-        StageScene.Instance.GameOver();
     }
 }

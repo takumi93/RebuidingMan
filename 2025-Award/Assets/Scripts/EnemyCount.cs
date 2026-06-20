@@ -21,19 +21,13 @@ public class EnemyCount : MonoBehaviour
         UpdateEnemyCountSprite();
     }
 
-    private void FixedUpdate()
-    {
-        UpdateEnemyCountSprite();
-        if (EnemyCountCurrent <= 0)
-        {
-            StageScene.Instance.StageClear();
-        }
-    }
-
+    /// <summary>
+    /// “G‚Ì”‚ğ•ÏX‚·‚é
+    /// </summary>
     private void UpdateEnemyCountSprite()
     {
         int ones = EnemyCountCurrent % 10;
-        int tens = EnemyCountTotal / 10;
+        int tens = EnemyCountCurrent / 10;
 
         // ‰æ‘œ‚ª³‚µ‚­İ’è‚³‚ê‚Ä‚¢‚é‚©Šm”F‚µ‚Äİ’è
         if (digit0 != null && numberSprites.Count > ones)
@@ -46,14 +40,29 @@ public class EnemyCount : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// “G‚Ì’Ç‰Á
+    /// </summary>
     public void EnemyIncrease()
     {
-        EnemyCountTotal += 1;
-        EnemyCountCurrent += 1;
+        EnemyCountTotal++;
+        EnemyCountCurrent++;
+
+        UpdateEnemyCountSprite();
     }
 
+    /// <summary>
+    /// “G‚ÌŒ¸­
+    /// </summary>
     public void EnemyDecrease()
     {
-        EnemyCountCurrent -= 1;
+        EnemyCountCurrent--;
+
+        UpdateEnemyCountSprite();
+
+        if (EnemyCountCurrent <= 0)
+        {
+            StageScene.Instance.StageClear();
+        }
     }
 }
