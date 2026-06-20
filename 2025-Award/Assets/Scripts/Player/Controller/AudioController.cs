@@ -17,7 +17,7 @@ public class AudioController : MonoBehaviour
     // ƒƒ{ƒbƒg‚ğì¬‚µ‚½‰¹
     [SerializeField] private AudioClip _createSound = null;
 
-    private void Awake()
+    public void Init()
     {
         _audioSource = GetComponent<AudioSource>();
     }

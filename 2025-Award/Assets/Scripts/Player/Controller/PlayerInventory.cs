@@ -3,6 +3,9 @@ using UnityEngine;
 
 public class PlayerInventory: MonoBehaviour
 {
+    // プレイヤー
+    private Player _player;
+
     // 部品を追加（インベントリ）（既に同じ種類がある場合は無視 or 入れ替え）
     // 今回頭、胴、足ごとに1種類だけのためDictionary型を使用
     private readonly Dictionary<PartsType, PartsData> EquippedParts = new Dictionary<PartsType, PartsData>();
@@ -10,7 +13,10 @@ public class PlayerInventory: MonoBehaviour
     // 部品データベース
     [SerializeField] private PartsDatabase _partsDatabase;
 
-    [SerializeField] private PlayUI _playUI;
+    public void Init(Player player)
+    {
+        _player = player;
+    }
 
     /// <summary>
     /// 部品を拾った時に呼ぶ処理
@@ -43,7 +49,7 @@ public class PlayerInventory: MonoBehaviour
         EquippedParts[_data.GetPartsType()] = partCopy;
 
         // UI更新通知
-        _playUI.RefreshParts(this);
+        _player.UI.RefreshParts(this);
 
         return true;
     }
@@ -96,7 +102,7 @@ public class PlayerInventory: MonoBehaviour
         EquippedParts.Remove(type);
 
         // UI更新通知
-        _playUI.RefreshParts(this);
+        _player.UI.RefreshParts(this);
     }
 
     /// <summary>
@@ -107,7 +113,7 @@ public class PlayerInventory: MonoBehaviour
         EquippedParts.Clear();
 
         // UI更新通知
-        _playUI.RefreshParts(this);
+        _player.UI.RefreshParts(this);
     }
 
     // 各パーツ専用の参照プロパティ

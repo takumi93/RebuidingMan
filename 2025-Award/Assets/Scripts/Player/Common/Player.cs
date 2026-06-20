@@ -5,6 +5,10 @@ public class Player : MonoBehaviour
     // ステートマシン
     private PlayerStateManager _stateManager;
 
+    [SerializeField] private PlayUI _playUI;
+
+    public PlayUI UI => _playUI;
+
     public PlayerInputInfo PlayerInputInfo {  get; private set; }
 
     // 最後に攻撃してきた敵
@@ -43,10 +47,14 @@ public class Player : MonoBehaviour
 
         Inventory = GetComponent<PlayerInventory>();
 
+        Detection.Init(this);
+        Attack.Init(this);
         Move.Init();
         Interact.Init(this);
         Create.Init(this);
+        Sound.Init();
         Animation.Init();
+        Inventory.Init(this);
     }
 
     private void Start()

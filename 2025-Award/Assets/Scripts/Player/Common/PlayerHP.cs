@@ -4,8 +4,6 @@ public class PlayerHP : MonoBehaviour
 {
     [SerializeField] private CameraController _camController;
 
-    [SerializeField] private PlayUI _playUI;
-
     private Player _player;
 
     // HPê›íË
@@ -30,7 +28,7 @@ public class PlayerHP : MonoBehaviour
     {
         _currentHp = _maxHp;
 
-        _playUI.InitializeHp(_currentHp, _maxHp);
+        _player.UI.InitializeHp(_currentHp, _maxHp);
     }
 
     private void Update()
@@ -60,7 +58,7 @@ public class PlayerHP : MonoBehaviour
 
             _currentHp = Mathf.Clamp(_currentHp - damage, 0, _maxHp);
 
-            _playUI.OnDamage(_currentHp, _maxHp);
+            _player.UI.OnDamage(_currentHp, _maxHp);
 
             _player.LastAttacker = robot;
 

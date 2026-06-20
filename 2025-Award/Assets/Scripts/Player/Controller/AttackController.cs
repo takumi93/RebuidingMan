@@ -12,9 +12,9 @@ public class AttackController : MonoBehaviour
     // ƒvƒŒƒCƒ„[
     private Player _player;
 
-    private void Awake()
+    public void Init(Player player)
     {
-        _player = GetComponent<Player>();
+        _player = player;
     }
 
     /// <summary>

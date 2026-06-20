@@ -1,11 +1,13 @@
 using UnityEngine;
-using UnityEngine.UI;
 
 /// <summary>
 /// 視線に使う機能
 /// </summary>
 public class DetectionController : MonoBehaviour
 {
+    // プレイヤー
+    private Player _player;
+
     // 視線
     private Ray _ray;
 
@@ -15,14 +17,17 @@ public class DetectionController : MonoBehaviour
     // 拾える距離
     [SerializeField] private float _interactDistance = 10.0f;
 
-    [SerializeField] private PlayUI _playUI;
-
     [Header("オブジェクトの識別判定")]
     public bool IsEnemy {  get; private set; }
 
     public bool IsAlly { get; private set; }
 
     public bool IsItem { get; private set; }
+
+    public void Init(Player player)
+    {
+        _player = player;
+    }
 
     /// <summary>
     /// プレイヤーで使用する更新処理をまとめたもの
@@ -69,7 +74,7 @@ public class DetectionController : MonoBehaviour
             if(enemy.GetTeamType() == TeamType.Enemy)
             {
                 IsEnemy = true;
-                _playUI.SetReticleEnemy();
+                _player.UI.SetReticleEnemy();
             }
             else
             {
@@ -82,10 +87,10 @@ public class DetectionController : MonoBehaviour
         if(_hit.collider.GetComponentInParent<ItemObject>() != null)
         {
             IsItem = true;
-            _playUI.SetReticleItem();
+            _player.UI.SetReticleItem();
         }
 
-        _playUI.SetReticleNormal();
+        _player.UI.SetReticleNormal();
     }
 
     /// <summary>
