@@ -9,10 +9,10 @@ public class PlayerAnimation : MonoBehaviour
 
     private Player _player;
 
-    public void Init()
+    public void Init(Player player)
     {
         _animator = GetComponent<Animator>();
-        _player = GetComponentInParent<Player>();
+        _player = player;
     }
 
     /// <summary>
@@ -29,6 +29,7 @@ public class PlayerAnimation : MonoBehaviour
     /// </summary>
     public void AttackStart()
     {
+        Debug.Log("AttackStart");
         Attack = true;
     }
 
@@ -43,6 +44,7 @@ public class PlayerAnimation : MonoBehaviour
     /// </summary>
     private void AttackEnd()
     {
+        Debug.Log("AttackEnd");
         Attack = false;
     }
 }

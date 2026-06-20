@@ -37,15 +37,6 @@ public class InputManager : MonoBehaviour
 
     }
 
-    private void Start()
-    {
-        //// inputSystem‚É“o˜^‚µ‚Ä‚¢‚éPlayer‚ğ’T‚·
-        //_playerMap = _playerInputSystem.actions.FindActionMap("Player");
-
-        //// inputSystem‚É“o˜^‚µ‚Ä‚¢‚éUI‚ğ’T‚·
-        //_uiMap = _playerInputSystem.actions.FindActionMap("UI");
-    }
-
     /// <summary>
     /// ‘€ì‚ğƒvƒŒƒCƒ„[‚ÉØ‚è‘Ö‚¦‚é
     /// </summary>

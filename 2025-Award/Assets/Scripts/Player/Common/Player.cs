@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.InputSystem.LowLevel;
 
 public class Player : MonoBehaviour
 {
@@ -53,7 +54,7 @@ public class Player : MonoBehaviour
         Interact.Init(this);
         Create.Init(this);
         Sound.Init();
-        Animation.Init();
+        Animation.Init(this);
         Inventory.Init(this);
     }
 
@@ -84,6 +85,7 @@ public class Player : MonoBehaviour
     /// <param name="newstate"></param>
     public void ChangeState(PlayerState newstate)
     {
+        Debug.Log($"ChangeState : {newstate}");
         _stateManager.ChangeState(newstate);
     }
 }

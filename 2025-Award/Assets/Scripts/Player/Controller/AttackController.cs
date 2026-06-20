@@ -1,5 +1,4 @@
 using UnityEngine;
-using System.Collections;
 
 public class AttackController : MonoBehaviour
 {
@@ -38,8 +37,6 @@ public class AttackController : MonoBehaviour
         
         partHp.ApplyPartDamage(_attackPower, _player.gameObject);
 
-        //レティクルを表示。
-        //_hitReticle.Show();
         Vector3 spawnPos = hit.point;
 
         //ヒットエフェクトを表示。
