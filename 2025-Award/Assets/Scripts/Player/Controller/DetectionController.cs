@@ -6,12 +6,6 @@ using UnityEngine.UI;
 /// </summary>
 public class DetectionController : MonoBehaviour
 {
-    //HitReticleを指定します。
-    [SerializeField]
-    HitReticle hitReticle = null;
-
-    [SerializeField] Image Reticle = null;
-
     // 視線
     private Ray _ray;
 
@@ -20,6 +14,8 @@ public class DetectionController : MonoBehaviour
 
     // 拾える距離
     [SerializeField] private float _interactDistance = 10.0f;
+
+    [SerializeField] private PlayUI _playUI;
 
     [Header("オブジェクトの識別判定")]
     public bool IsEnemy {  get; private set; }
@@ -73,7 +69,7 @@ public class DetectionController : MonoBehaviour
             if(enemy.GetTeamType() == TeamType.Enemy)
             {
                 IsEnemy = true;
-                //Reticle.color = Color.red;
+                _playUI.SetReticleEnemy();
             }
             else
             {
@@ -82,13 +78,14 @@ public class DetectionController : MonoBehaviour
 
         }
 
-        //Reticle.color = Color.white;
-
         // アイテム判定
         if(_hit.collider.GetComponentInParent<ItemObject>() != null)
         {
             IsItem = true;
+            _playUI.SetReticleItem();
         }
+
+        _playUI.SetReticleNormal();
     }
 
     /// <summary>

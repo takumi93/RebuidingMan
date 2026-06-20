@@ -22,26 +22,24 @@ public class StageScene : MonoBehaviour
     public SceneState gameState = SceneState.Play;
 
     [Header("UI")]
+    // プレイUIを指定
+    [SerializeField] private PlayUI _playUI;
     //　ポーズUIを指定
-    [SerializeField] private PauseUI _pauseUI = null;
+    [SerializeField] private PauseUI _pauseUI;
     // ゲームオーバーUIを指定
-    [SerializeField] private GameOverUI _gameOverUI = null;
+    [SerializeField] private GameOverUI _gameOverUI;
     // ステージクリアUIを指定
-    [SerializeField] private GameClearUI _stageClearUI = null;
+    [SerializeField] private GameClearUI _stageClearUI;
 
     [Header("味方の設定")]
     // 味方になった時に必要な値
-    [SerializeField] private PatrolRoute _allyRoute = null;
+    [SerializeField] private PatrolRoute _allyRoute;
 
     public PatrolRoute AllyRoute => _allyRoute;                     // 味方の巡回ルート
 
     [SerializeField] public GameObject GuardianPoint;               // 護衛ポジション
 
     [SerializeField] public GameObject GuardianTransform;           // 護衛ポジションの親
-
-    private Animator _animator;
-
-    static readonly int outroId = Animator.StringToHash("Outro");
 
     // 現在のシーンを保存するstaticの変数
     public static string nowSceneName;
@@ -56,8 +54,6 @@ public class StageScene : MonoBehaviour
 
     void Start()
     {
-        _animator = GetComponent<Animator>();
-
         //playIntroUI.onPlayGame.AddListener(PlayGame);
 
         // ポーズ画面でのボタン処理
