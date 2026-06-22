@@ -7,11 +7,6 @@ public class ReticleUI : UIAnimation
 
     static readonly int HitHash = Animator.StringToHash("Hit");
 
-    private void Awake()
-    {
-        _animator = GetComponent<Animator>();
-    }
-
     /// <summary>
     /// ヒットマーカーの表示するアニメーションを再生する
     /// </summary>

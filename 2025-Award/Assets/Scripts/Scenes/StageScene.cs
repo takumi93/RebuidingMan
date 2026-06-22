@@ -24,6 +24,7 @@ public class StageScene : MonoBehaviour
     [Header("UI")]
     // プレイUIを指定
     [SerializeField] private PlayUI _playUI;
+    [SerializeField] private StageFadeUI _stageFadeUI;
     //　ポーズUIを指定
     [SerializeField] private PauseUI _pauseUI;
     // ゲームオーバーUIを指定
@@ -54,7 +55,13 @@ public class StageScene : MonoBehaviour
 
     void Start()
     {
-        //playIntroUI.onPlayGame.AddListener(PlayGame);
+        // Intro状態
+        gameState = SceneState.Intro;
+
+        // フェードが終了した通知を受け取る
+        _playUI.OnFadeInFinish.AddListener(PlayGame);
+
+        InputManager.Instance.DisablePlayerInput();
 
         // ポーズ画面でのボタン処理
         _pauseUI.RetryRequested.AddListener(Retry);
@@ -67,16 +74,21 @@ public class StageScene : MonoBehaviour
         // ゲームクリアでのボタン処理
         _stageClearUI.HomeRequested.AddListener(LoadTitleScene);
         _stageClearUI.NextStageRequested.AddListener(NextStage);
-
-        gameState = SceneState.Play;
-        Time.timeScale = 1;
-
-        InputManager.Instance.EnablePlayerInput();
     }
 
     private void Update()
     {
         UpdateCursor();
+    }
+
+    public void PlayGame()
+    {
+        gameState = SceneState.Play;
+        Time.timeScale = 1;
+
+        InputManager.Instance.EnablePlayerInput();
+
+        //PlayBGM.Play();
     }
 
     /// <summary>
@@ -94,12 +106,6 @@ public class StageScene : MonoBehaviour
             Cursor.visible = true;
             Cursor.lockState = CursorLockMode.None;
         }
-    }
-
-    public void PlayGame()
-    {
-        gameState = SceneState.Play;
-        //PlayBGM.Play();
     }
 
     /// <summary>

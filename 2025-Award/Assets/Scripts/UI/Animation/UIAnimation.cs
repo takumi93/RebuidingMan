@@ -4,10 +4,7 @@ public abstract class UIAnimation : MonoBehaviour
 {
     protected Animator _animator;
 
-    /// <summary>
-    /// ‰Šú‰»
-    /// </summary>
-    public virtual void Init()
+    protected virtual void Awake()
     {
         _animator = GetComponent<Animator>();
     }

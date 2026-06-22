@@ -38,6 +38,21 @@ public class InputManager : MonoBehaviour
     }
 
     /// <summary>
+    /// プレイヤーの操作を禁止する
+    /// </summary>
+    public void DisablePlayerInput()
+    {
+        _playerMap.Disable();
+
+        _cameraController.DisableCameraInput();
+
+        playerInput.Move = Vector3.zero;
+        playerInput.Look = Vector3.zero;
+
+        IsPlayerInput = false;
+    }
+
+    /// <summary>
     /// 操作をプレイヤーに切り替える
     /// </summary>
     public void EnablePlayerInput()

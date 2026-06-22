@@ -1,8 +1,10 @@
 using UnityEngine;
+using UnityEngine.Events;
 
 // 常時表示させるためBaseUIは継承させない
 public class PlayUI : MonoBehaviour
 {
+    [Header("UI")]
     [SerializeField] private HitEffectUI _hitEffectUI;
 
     [SerializeField] private HPBarUI _hpBarUI;
@@ -14,6 +16,17 @@ public class PlayUI : MonoBehaviour
     [SerializeField] private ReticleUI _reticleUI;
 
     [SerializeField] private StageFadeUI _stageFadeUI;
+
+    // UnityEvent
+    public UnityEvent OnFadeInFinish;
+
+    private void Start()
+    {
+        _stageFadeUI.OnFadeInFinished.AddListener(() =>
+        {
+            OnFadeInFinish?.Invoke();
+        });
+    }
 
     /// <summary>
     /// HPの初期化
@@ -83,14 +96,6 @@ public class PlayUI : MonoBehaviour
     public void SetReticleItem()
     {
         _reticleUI.SetReticleColor(Color.yellow);
-    }
-
-    /// <summary>
-    /// フェードイン
-    /// </summary>
-    public void FadeIn()
-    {
-        _stageFadeUI.FadeIn();
     }
 
     /// <summary>
