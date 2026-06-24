@@ -2,15 +2,15 @@ using UnityEngine;
 
 public class AttackHitDetector : MonoBehaviour
 {
-    private WeaponBase weapon;
+    private WeaponBase _weapon;
 
     private void Awake()
     {
-        weapon = GetComponentInParent<WeaponBase>();
+        _weapon = GetComponentInParent<WeaponBase>();
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        weapon?.OnHit(other);
+        _weapon?.OnHit(other);
     }
 }

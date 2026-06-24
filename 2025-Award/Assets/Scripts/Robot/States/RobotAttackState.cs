@@ -8,21 +8,31 @@ public class RobotAttackState : RobotStateBase
     public override void Enter(Robot robot)
     {
         robot.Leg.Animation.SetTrigger("Walk");
-        robot.Body.Attack();
     }
 
     public override void Tick(Robot robot)
     {
+        robot.Body.Attack();
+
         bool toChase;
         if (!robot.HandleAttack(out toChase))
         {
             if (toChase)
             {
+                Debug.Log("aruki");
                 robot.ChangeState(stateManager.WalkState);
             }else
             {
+                Debug.Log("aidoru");
                 robot.ChangeState(stateManager.IdleState);
             }
+
+            return;
+        }
+
+        if (!robot.Body.IsAttacking)
+        {
+            robot.ChangeState(stateManager.WalkState);
         }
     }
 

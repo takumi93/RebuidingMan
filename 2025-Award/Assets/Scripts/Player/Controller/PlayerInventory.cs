@@ -26,7 +26,7 @@ public class PlayerInventory: MonoBehaviour
     public bool AddPart(GameObject part)
     {
         // 部品につけてるpartsPickupからIDを取得しデータベースからデータを取得
-        var _data = _partsDatabase.GetPartById(part.GetComponent<PartsPickup>().GetPartID());
+        var _data = _partsDatabase.GetPartById(part.GetComponent<PartsPickup>().Id);
 
         // 部品の種類を取得
         var type = _data.GetPartsType();

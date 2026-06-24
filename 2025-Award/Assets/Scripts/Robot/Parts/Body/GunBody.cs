@@ -1,13 +1,7 @@
-using System.Collections;
 using UnityEngine;
 
 public class GunBody : BodyBase
 {
-    [Header("頭に連動するRigを指定")]
-    [SerializeField] public GameObject BodyToHeadRig = null;
-    [Header("足に連動するRigを指定")]
-    [SerializeField] public GameObject BodyToLegRig = null;
-
     [Header("gun時のパラメータ")]
 
     [SerializeField] GameObject Allybullet;
@@ -23,35 +17,9 @@ public class GunBody : BodyBase
     /// </summary>
     public override void Init()
     {
-        Animation = GetComponentInChildren<RobotAnimation>();
-        audioSource = GetComponentInParent<AudioSource>();
+        base.Init();
+        
         _robot = GetComponentInParent<Robot>();
-
-        lapseTime = 0.0f;
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        if (ConnectRig)
-        {
-            BodyToLegRig.transform.position = ConnectRig.transform.position;
-        }
-
-        // 攻撃のクールタイム
-        // isAttackableがfalseなら、直前のフレームからの経過時間を足す
-        if (!IsAttackable)
-        {
-            lapseTime += Time.deltaTime;
-
-            //lapsetimeがクールタイムを越えたら、isAttackableをtrueに戻して
-            //次に備えて、lapseTimeを0で初期化
-            if (lapseTime >= currentCoolTime)
-            {
-                IsAttackable = true;
-                lapseTime = 0.0f;
-            }
-        }
     }
 
     /// <summary>
@@ -68,12 +36,12 @@ public class GunBody : BodyBase
     /// </summary>
     public override void AttackA()
     {
-        Animation.SetTrigger("AttackA");
-        StartCoroutine(Attack(BodyData.preparationTimeA, 0));
+        OnAttackStart();
 
-        currentCoolTime = BodyData.coolTimeA;
-        IsAttackable = false;
-        lapseTime = 0f;
+        Animation.SetTrigger("AttackA");
+
+        Damage = BodyData.DamageA;
+        currentCoolTime = BodyData.CoolTimeA;
     }
 
     /// <summary>
@@ -81,73 +49,63 @@ public class GunBody : BodyBase
     /// </summary>
     public override void AttackB()
     {
+        OnAttackStart();
+
         Animation.SetTrigger("AttackB");
-        StartCoroutine(Attack(BodyData.preparationTimeB, 1));
 
-        currentCoolTime = BodyData.coolTimeB;
-        IsAttackable = false;
-        lapseTime = 0f;
+        Damage = BodyData.DamageB;
+        currentCoolTime = BodyData.CoolTimeB;
     }
 
-    public override int GetDamageA()
-    {
-        return BodyData.damageA;
-    }
+    //IEnumerator Attack(float preparationTime, int AttackType)
+    //{
+    //    // ターゲットがいないなら攻撃しない
+    //    if (_robot.Target == null)
+    //    {
+    //        yield break;
+    //    }
 
-    public override int GetDamageB()
-    {
-        return BodyData.damageB;
-    }
+    //    //準備時間まで待つ
+    //    yield return new WaitForSeconds(preparationTime);
 
-    IEnumerator Attack(float preparationTime, int AttackType)
-    {
-        // ターゲットがいないなら攻撃しない
-        if (_robot.Target == null)
-        {
-            yield break;
-        }
+    //    Transform _target = _robot.Target.transform;
 
-        //準備時間まで待つ
-        yield return new WaitForSeconds(preparationTime);
+    //    Vector3 flatTargetPos = new Vector3(
+    //        _target.position.x,
+    //        shotPointRight.position.y,
+    //        _target.position.z
+    //    );
 
-        Transform _target = _robot.Target.transform;
+    //    // 発射方向をターゲットへ向ける
+    //    shotPointRight.LookAt(_target.position);
+    //    shotPointLeft.LookAt(_target.position);
 
-        Vector3 flatTargetPos = new Vector3(
-            _target.position.x,
-            shotPointRight.position.y,
-            _target.position.z
-        );
+    //    GameObject bulletPrefab;
 
-        // 発射方向をターゲットへ向ける
-        shotPointRight.LookAt(_target.position);
-        shotPointLeft.LookAt(_target.position);
+    //    if (transform.parent.CompareTag("Enemy"))
+    //    {
+    //        bulletPrefab = Enemybullet;
+    //    }
+    //    else
+    //    {
+    //        bulletPrefab = Allybullet;
+    //    }
 
-        GameObject bulletPrefab;
+    //    if (AttackType == 0)
+    //    {
+    //        // 弾発射
+    //        Instantiate(bulletPrefab, shotPointRight.position, shotPointRight.rotation);
+    //        Instantiate(bulletPrefab, shotPointLeft.position, shotPointLeft.rotation);
 
-        if (transform.parent.CompareTag("Enemy"))
-        {
-            bulletPrefab = Enemybullet;
-        }
-        else
-        {
-            bulletPrefab = Allybullet;
-        }
+    //        audioSource?.PlayOneShot(BodyData.attackSoundA);
+    //    }
+    //    else
+    //    {
+    //        // 弾発射
+    //        Instantiate(bulletPrefab, shotPointRight.position, shotPointRight.rotation);
+    //        Instantiate(bulletPrefab, shotPointLeft.position, shotPointLeft.rotation);
 
-        if (AttackType == 0)
-        {
-            // 弾発射
-            Instantiate(bulletPrefab, shotPointRight.position, shotPointRight.rotation);
-            Instantiate(bulletPrefab, shotPointLeft.position, shotPointLeft.rotation);
-
-            audioSource?.PlayOneShot(BodyData.attackSoundA);
-        }
-        else
-        {
-            // 弾発射
-            Instantiate(bulletPrefab, shotPointRight.position, shotPointRight.rotation);
-            Instantiate(bulletPrefab, shotPointLeft.position, shotPointLeft.rotation);
-
-            audioSource?.PlayOneShot(BodyData.attackSoundB);
-        }
-    }
+    //        audioSource?.PlayOneShot(BodyData.attackSoundB);
+    //    }
+    //}
 }

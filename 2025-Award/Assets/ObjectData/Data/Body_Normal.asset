@@ -13,24 +13,18 @@ MonoBehaviour:
   m_Name: Body_Normal
   m_EditorClassIdentifier: 
   _id: 4
-  _partName: 
-  _icon: {fileID: 0}
-  _prefab: {fileID: 0}
-  _hp: 0
+  _partName: Body_Normal
+  _icon: {fileID: 21300000, guid: 225911ff9d04bf84e8027dbf73edc611, type: 3}
+  _prefab: {fileID: 2668936212951939357, guid: 5beaa79ec45246c47a2310b7e36debd2, type: 3}
+  _hp: 200
   _defense: 0
   _speed: 0
-  _allyMaterial: {fileID: 0}
-  bodyType: 0
-  damageA: 20
-  damageB: 20
-  coolTimeA: 5
-  coolTimeB: 5
-  preparationTimeA: 1
-  preparationTimeB: 1
-  occurrenceTimeA: 0.5
-  occurrenceTimeB: 5
-  finishTimeA: 0.5
-  finishTimeB: 1
-  attackSoundA: {fileID: 8300000, guid: e7515b94d702f9d40a01f1baf4eb3a96, type: 3}
-  attackSoundB: {fileID: 8300000, guid: 8039f548721f4124fb303c500698dd27, type: 3}
-  AttackRange: 3
+  _allyMaterial: {fileID: 2100000, guid: ba758ded45c0f2748846c21da1d36b71, type: 2}
+  _bodyType: 0
+  _damageA: 20
+  _damageB: 20
+  _coolTimeA: 2
+  _coolTimeB: 2
+  _attackSoundA: {fileID: 0}
+  _attackSoundB: {fileID: 0}
+  _attackRange: 3

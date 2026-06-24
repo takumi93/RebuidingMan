@@ -5,33 +5,52 @@ public class BodyData : PartsData
 {
     [Header("‘Ì‚ÌÝ’è€–Ú")]
     [Tooltip("“ª‚Ìƒ^ƒCƒv")]
-    public BodyType bodyType;
+    [SerializeField]
+    private BodyType _bodyType;
+
+    public BodyType BodyType => _bodyType;
+
     [Tooltip("UŒ‚A‚Ìƒ_ƒ[ƒWŠ„‡")]
-    public int damageA;
+    [SerializeField]
+    private int _damageA;
+
+    public int DamageA => _damageA;
+
     [Tooltip("UŒ‚B‚Ìƒ_ƒ[ƒWŠ„‡")]
-    public int damageB;
+    [SerializeField]
+    private int _damageB;
+
+    public int DamageB => _damageB;
+
     [Tooltip("UŒ‚A‚ÌƒN[ƒ‹ƒ^ƒCƒ€")]
-    public float coolTimeA;
+    [SerializeField]
+    private float _coolTimeA;
+
+    public float CoolTimeA => _coolTimeA;
+
     [Tooltip("UŒ‚B‚ÌƒN[ƒ‹ƒ^ƒCƒ€")]
-    public float coolTimeB;
-    [Tooltip("UŒ‚A‚ÌUŒ‚€”õŽžŠÔ")]
-    public float preparationTimeA;
-    [Tooltip("UŒ‚B‚ÌUŒ‚€”õŽžŠÔ")]
-    public float preparationTimeB;
-    [Tooltip("UŒ‚A‚ÌUŒ‚”ÍˆÍ”­¶ŽžŠÔ")]
-    public float occurrenceTimeA;
-    [Tooltip("UŒ‚B‚ÌUŒ‚”ÍˆÍ”­¶ŽžŠÔ")]
-    public float occurrenceTimeB;
-    [Tooltip("UŒ‚A‚ÌUŒ‚I—¹ŽžŠÔ")]
-    public float finishTimeA;
-    [Tooltip("UŒ‚B‚ÌUŒ‚I—¹ŽžŠÔ")]
-    public float finishTimeB;
+    [SerializeField]
+    private float _coolTimeB;
+
+    public float CoolTimeB => _coolTimeB;
+
     [Tooltip("UŒ‚A‚ÌUŒ‚ƒTƒEƒ“ƒh")]
-    public AudioClip attackSoundA;
+    [SerializeField]
+    private AudioClip _attackSoundA;
+
+    public AudioClip AttackSoundA => _attackSoundA;
+
     [Tooltip("UŒ‚B‚ÌUŒ‚ƒTƒEƒ“ƒh")]
-    public AudioClip attackSoundB;
+    [SerializeField]
+    private AudioClip _attackSoundB;
+
+    public AudioClip AttackSoundB => _attackSoundB; 
+
     [Tooltip("UŒ‚‚É“ü‚é‹——£")]
-    public int AttackRange;
+    [SerializeField]
+    private int _attackRange;
+
+    public int AttackRange => _attackRange;
 
     public override PartsType GetPartsType() => PartsType.Body;
 }

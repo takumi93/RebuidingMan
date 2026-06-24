@@ -1,10 +1,10 @@
 using UnityEngine;
 using UnityEngine.AI;
 
-public abstract class HeadBase: MonoBehaviour
+public abstract class HeadBase: PartBase
 {
     [Header("HeadData")]
-    public HeadData HeadData { get; set; }
+    public HeadData HeadData { get; private set; }
 
     [Header("Search Settings")]
     [SerializeField] protected float searchRadius = 10f;
@@ -17,13 +17,6 @@ public abstract class HeadBase: MonoBehaviour
 
     [Header("胴に連動するRigを指定")]
     [SerializeField] public GameObject HeadToBodyRig = null;
-    // 頭が胴に連動するRig
-    public GameObject BodyToHeadRig = null;
-
-    // キャタピラ時の角度
-    const float moveStartAngle = 30.0f;
-
-    const float rotateSpeed = 120f;
 
     // 敵の移動範囲
     protected NavMeshAgent _area;
@@ -60,7 +53,7 @@ public abstract class HeadBase: MonoBehaviour
     public abstract void TrackingTarget();
 
     /// <summary>
-    /// 敵を追尾する処理
+    /// 敵を見つけたとき移動先を敵にする
     /// </summary>
     public abstract void ChaseTarget();
 
@@ -73,6 +66,12 @@ public abstract class HeadBase: MonoBehaviour
         _area.isStopped = false;
         _area.destination = targetPos;
     }
+
+    public void SetData(HeadData data)
+    {
+        HeadData = data;
+    }
+
 
     ///// <summary>
     ///// ロボットができたときに行う初期設定
@@ -135,7 +134,10 @@ public abstract class HeadBase: MonoBehaviour
         if (nearestTarget != null)
         {
             loseTimer = 0f;
+
             _robot.Target = nearestTarget;
+            _robot.MoveTarget = nearestTarget.position;
+
             return true;
         }
 
@@ -157,6 +159,7 @@ public abstract class HeadBase: MonoBehaviour
         if (loseTimer > loseTargetTime)
         {
             _robot.Target = null;
+            _robot.MoveTarget = null;
             return false;
         }
 

@@ -13,11 +13,11 @@ MonoBehaviour:
   m_Name: Leg_Walk
   m_EditorClassIdentifier: 
   _id: 7
-  _partName: 
-  _icon: {fileID: 0}
-  _prefab: {fileID: 0}
-  _hp: 0
+  _partName: Leg_Walk
+  _icon: {fileID: 21300000, guid: 370690b1bbec2da41b3fb47a46e92475, type: 3}
+  _prefab: {fileID: 2050600553940158714, guid: e4a123f264317434cba5c7f8a2b05d32, type: 3}
+  _hp: 100
   _defense: 0
   _speed: 0
-  _allyMaterial: {fileID: 0}
+  _allyMaterial: {fileID: 2100000, guid: ba758ded45c0f2748846c21da1d36b71, type: 2}
   legType: 0

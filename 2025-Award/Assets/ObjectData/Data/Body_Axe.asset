@@ -13,24 +13,18 @@ MonoBehaviour:
   m_Name: Body_Axe
   m_EditorClassIdentifier: 
   _id: 6
-  _partName: 
-  _icon: {fileID: 0}
-  _prefab: {fileID: 0}
-  _hp: 0
+  _partName: Body_Axe
+  _icon: {fileID: 21300000, guid: d4a0d66d6465e0e46b3bacf3efb2571a, type: 3}
+  _prefab: {fileID: 1066841041302124578, guid: d5f9545e9b7c8484b89265855a0e616a, type: 3}
+  _hp: 200
   _defense: 0
   _speed: 0
-  _allyMaterial: {fileID: 0}
-  bodyType: 2
-  damageA: 30
-  damageB: 40
-  coolTimeA: 5
-  coolTimeB: 5
-  preparationTimeA: 3
-  preparationTimeB: 8
-  occurrenceTimeA: 1
-  occurrenceTimeB: 1
-  finishTimeA: 1.5
-  finishTimeB: 3
-  attackSoundA: {fileID: 8300000, guid: e7515b94d702f9d40a01f1baf4eb3a96, type: 3}
-  attackSoundB: {fileID: 8300000, guid: e7515b94d702f9d40a01f1baf4eb3a96, type: 3}
-  AttackRange: 5
+  _allyMaterial: {fileID: 2100000, guid: 7ab21b7f7b83bd049a7dbb70d45ac8b8, type: 2}
+  _bodyType: 2
+  _damageA: 30
+  _damageB: 80
+  _coolTimeA: 3
+  _coolTimeB: 8
+  _attackSoundA: {fileID: 0}
+  _attackSoundB: {fileID: 0}
+  _attackRange: 4

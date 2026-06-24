@@ -15,7 +15,7 @@ public class RobotStateManager
 
     public RobotStateManager(Robot robot)
     {
-        this._robot = robot;
+        _robot = robot;
 
         IdleState = new RobotIdleState(this, _robot);
         WalkState = new RobotWalkState(this, _robot);

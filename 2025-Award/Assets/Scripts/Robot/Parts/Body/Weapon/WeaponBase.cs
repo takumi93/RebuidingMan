@@ -3,21 +3,21 @@ using UnityEngine;
 
 public abstract class WeaponBase : MonoBehaviour
 {
-    protected BodyBase body;
-    protected TeamObject teamObject;
-    protected Robot robot;
+    protected BodyBase _body;
+    protected TeamObject _teamObject;
+    protected Robot _robot;
 
     // 武器に当たった判定を残すための変数
-    private HashSet<GameObject> hitTargets = new HashSet<GameObject>();
+    private HashSet<GameObject> _hitTargets = new HashSet<GameObject>();
 
     /// <summary>
     /// 初期化
     /// </summary>
     public virtual void Init()
     {
-        body = GetComponentInParent<BodyBase>();
-        teamObject = GetComponentInParent<TeamObject>();
-        robot = GetComponentInParent<Robot>();
+        _body = GetComponentInParent<BodyBase>();
+        _teamObject = GetComponentInParent<TeamObject>();
+        _robot = GetComponentInParent<Robot>();
     }
 
     /// <summary>
@@ -26,7 +26,7 @@ public abstract class WeaponBase : MonoBehaviour
     public virtual void HitOn()
     {
         // 攻撃2回目以降の際にその前に使った内容をクリアするため
-        hitTargets.Clear();
+        _hitTargets.Clear();
     }
 
 
@@ -45,20 +45,20 @@ public abstract class WeaponBase : MonoBehaviour
     public virtual void OnHit(Collider other)
     {
         // 自分は無視
-        if (other.transform.IsChildOf(robot.transform)) return;
+        if (other.transform.IsChildOf(_robot.transform)) return;
 
-        // 陣営を取得
+        // 攻撃が当たったオブジェクトの陣営を取得
         TeamObject target = other.transform.GetComponentInParent<TeamObject>();
 
         // 味方は無視
-        if (target != null && target.GetTeamType() == teamObject.GetTeamType()) return;
+        if (target != null && target.GetTeamType() == _teamObject.GetTeamType()) return;
 
-        // 多段Hitを防止するため
+        // 多段Hitを防止するため当たったオブジェクトの親オブジェクトを参照
         GameObject root = other.transform.root.gameObject;
 
-        if (hitTargets.Contains(root)) return;
+        if (_hitTargets.Contains(root)) return;
 
-        hitTargets.Add(root);
+        _hitTargets.Add(root);
 
         ApplyDamage(other);
     }
@@ -71,11 +71,11 @@ public abstract class WeaponBase : MonoBehaviour
     {
         if(other.GetComponentInParent<PlayerHP>() is PlayerHP playerHP)
         {
-            playerHP.Damage(body.Damage, robot.gameObject);
+            playerHP.Damage(_body.Damage, _robot.gameObject);
         }
         if(other.GetComponentInParent<RobotHPManager>() is  RobotHPManager robotHP)
         {
-            robotHP.ApplyTotalDamage(body.Damage, robot.gameObject);
+            robotHP.ApplyTotalDamage(_body.Damage, _robot.gameObject);
         }
     }
 }

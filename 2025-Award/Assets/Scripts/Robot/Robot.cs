@@ -5,6 +5,8 @@ public class Robot : MonoBehaviour
     // ステートマシン
     public RobotStateManager StateManager { get; private set; }
 
+    [SerializeField] private PartsDatabase partsDatabase;
+
     // 頭のスクリプトの格納場所を指定
     public HeadBase Head {  get; private set; }
     // 胴のスクリプトの格納場所を指定
@@ -39,6 +41,10 @@ public class Robot : MonoBehaviour
         Body = GetComponentInChildren<BodyBase>(true);
         Leg = GetComponentInChildren<LegBase>(true);
 
+        Head.SetData((HeadData)partsDatabase.GetPartById(Head.Id));
+        Body.SetData((BodyData)partsDatabase.GetPartById(Body.Id));
+        Leg.SetData((LegData)partsDatabase.GetPartById(Leg.Id));
+
         Head.Init();
         Body.Init();
         Leg.Init();
@@ -64,6 +70,8 @@ public class Robot : MonoBehaviour
     /// <param name="inputInfo"></param>
     public void Tick()
     {
+        Body.UpdateCoolTime();
+
         StateManager.CurrentState.Tick(this);
     }
 
@@ -85,11 +93,13 @@ public class Robot : MonoBehaviour
     public bool HandleIdle()
     {
         Head.TrackingTarget();
-        if(Head.SearchTarget())
+
+        if (MoveTarget.HasValue)
         {
-            return true;
+            Leg.Move(MoveTarget.Value);
         }
-        return false;
+
+        return Head.SearchTarget();
     }
 
     /// <summary>
@@ -104,15 +114,18 @@ public class Robot : MonoBehaviour
         // ターゲットが見えている場合
         if (Head.SearchTarget())
         {
+            // 移動先設定
             Head.ChaseTarget();
 
             // 攻撃距離判定
             if (Target != null)
             {
-                float distance = Vector3.Distance(Head.transform.position, Target.transform.position);
+                float distance = Vector3.Distance(transform.position, Target.transform.position);
+
                 if (distance <= attackDistance) // attackDistance は Inspector か定数で指定
                 {
                     toAttack = true;
+
                     return false; // Chase 終了
                 }
             }
@@ -123,7 +136,11 @@ public class Robot : MonoBehaviour
         // 見失った場合の猶予チェック
         if (Head.CheckLose())
         {
-            Head.ChaseTarget();
+            if (MoveTarget.HasValue)
+            {
+                Leg.Move(MoveTarget.Value);
+            }
+
             return true; // Chase 継続
         }
 

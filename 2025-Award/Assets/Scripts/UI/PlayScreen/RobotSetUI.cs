@@ -80,7 +80,7 @@ public class RobotSetUI : MonoBehaviour
         // 体オブジェクトの種類によって画像を入れ替える
         if (inventory.GetPartOfType(PartsType.Body) is BodyData bodyData)
         {
-            _bodyIconImage.sprite = _bodyIcons[(int)bodyData.bodyType];
+            _bodyIconImage.sprite = _bodyIcons[(int)bodyData.BodyType];
         }
     }
 

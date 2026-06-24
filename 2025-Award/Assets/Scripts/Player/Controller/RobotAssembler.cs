@@ -15,9 +15,9 @@ public class RobotAssembler : MonoBehaviour
         var bodyObj = CreatePart(body.Prefab, parent, body.PartName);
         var legObj = CreatePart(leg.Prefab, parent, leg.PartName);
 
-        headObj.GetComponent<HeadBase>().HeadData = (HeadData)head;
-        bodyObj.GetComponent<BodyBase>().BodyData = (BodyData)body;
-        legObj.GetComponent<LegBase>().LegData = (LegData)leg;
+        headObj.GetComponent<HeadBase>().SetData((HeadData)head);
+        bodyObj.GetComponent<BodyBase>().SetData((BodyData)body);
+        legObj.GetComponent<LegBase>().SetData((LegData)leg);
     }
 
     /// <summary>

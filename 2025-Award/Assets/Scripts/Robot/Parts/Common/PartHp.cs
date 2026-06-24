@@ -16,7 +16,7 @@ public class PartHp : MonoBehaviour
 
     private void Awake()
     {
-        PartId = GetComponent<PartsPickup>().GetPartID();
+        PartId = GetComponent<PartsPickup>().Id;
     }
 
     /// <summary>

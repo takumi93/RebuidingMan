@@ -52,7 +52,7 @@ public class PlayerHP : MonoBehaviour
     /// <param name="robot"></param>
     public void Damage(int damage, GameObject robot)
     {
-        if (_isInvincible)
+        if (!_isInvincible)
         {
             _isInvincible = true;
 

@@ -6,7 +6,7 @@ public class RobotHPManager : MonoBehaviour
 {  
     [SerializeField]private PartsDatabase _partsDatabase = null;
 
-    [SerializeField]public EnemyCount EnemyCount = null;
+    [SerializeField] private PlayUI _playUI = null;
 
     [Header("HPŠÇ—")]
     private bool _isDead;
@@ -28,7 +28,6 @@ public class RobotHPManager : MonoBehaviour
 
 
     private Robot _robot { get; set; }
-
 
     void Start()
     {
@@ -122,7 +121,8 @@ public class RobotHPManager : MonoBehaviour
             }
         }
 
-        EnemyCount?.EnemyDecrease();
+        _playUI?.EnemyDecrease();
+
         // e‚ğíœ
         Destroy(gameObject);
     }

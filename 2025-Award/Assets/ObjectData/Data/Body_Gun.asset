@@ -13,24 +13,18 @@ MonoBehaviour:
   m_Name: Body_Gun
   m_EditorClassIdentifier: 
   _id: 5
-  _partName: 
-  _icon: {fileID: 0}
-  _prefab: {fileID: 0}
-  _hp: 0
+  _partName: Body_Gun
+  _icon: {fileID: 21300000, guid: 20616529f92dbcd4dbc776349b7994ff, type: 3}
+  _prefab: {fileID: 6304453191028771697, guid: 90b4fd49a98b32549bf7e017af14c331, type: 3}
+  _hp: 100
   _defense: 0
   _speed: 0
-  _allyMaterial: {fileID: 0}
-  bodyType: 1
-  damageA: 0
-  damageB: 0
-  coolTimeA: 5
-  coolTimeB: 5
-  preparationTimeA: 3
-  preparationTimeB: 7
-  occurrenceTimeA: 0
-  occurrenceTimeB: 0
-  finishTimeA: 0
-  finishTimeB: 0
-  attackSoundA: {fileID: 8300000, guid: 99953bb6ba2d7bf44a91fc19563f2661, type: 3}
-  attackSoundB: {fileID: 8300000, guid: abdb82f4b175c3d4da91f2ffcc619803, type: 3}
-  AttackRange: 10
+  _allyMaterial: {fileID: 2100000, guid: ad95f229335e0a34db556e83898f1cd0, type: 2}
+  _bodyType: 1
+  _damageA: 20
+  _damageB: 50
+  _coolTimeA: 2
+  _coolTimeB: 5
+  _attackSoundA: {fileID: 0}
+  _attackSoundB: {fileID: 0}
+  _attackRange: 8

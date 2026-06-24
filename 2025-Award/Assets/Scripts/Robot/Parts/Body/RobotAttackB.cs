@@ -18,7 +18,7 @@ public class RobotAttackB : MonoBehaviour
 
         robotAction = this.transform.GetComponentInParent<RobotAction>();
 
-        DamageB = body.GetDamageB();
+        //DamageB = body.DamageB;
     }
 
     private void OnTriggerEnter(Collider other)
