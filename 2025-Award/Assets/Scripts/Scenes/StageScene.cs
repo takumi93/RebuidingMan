@@ -156,8 +156,6 @@ public class StageScene : MonoBehaviour
     /// </summary>
     public void Retry()
     {
-        Debug.Log(UIManager.Instance.GetInstanceID());
-
         StartCoroutine(OnLoadScene(SceneManager.GetActiveScene().name));
     }
 

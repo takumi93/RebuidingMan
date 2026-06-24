@@ -2644,6 +2644,10 @@ MonoBehaviour:
   blendDistance: 0
   weight: 1
   sharedProfile: {fileID: 11400000, guid: 10fc4df2da32a41aaa32d77bc913491c, type: 2}
+  m_Colliders: []
+  m_PreviousLayer: 0
+  m_PreviousPriority: 0
+  m_InternalProfile: {fileID: 0}
 --- !u!4 &832575519
 Transform:
   m_ObjectHideFlags: 0
