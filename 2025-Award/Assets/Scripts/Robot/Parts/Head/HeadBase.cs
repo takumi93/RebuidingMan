@@ -151,15 +151,40 @@ public abstract class HeadBase: PartBase
     /// <returns></returns>
     public virtual bool CheckLose()
     {
-        if (_robot.Target == null)
-            return false;
+        if (_robot.Target == null) return false;
+
+        Vector3 dir = _robot.Target.position - transform.position;
+
+        float dist = dir.magnitude;
+
+        bool canSee = true;
+
+        // ‹——£”»’è
+        if(dist > viewDistance) canSee = false;
+
+        // “G‚ÌŽ‹ŠE‚É“ü‚Á‚Ä‚¢‚é‚©”»’è
+        if(Vector3.Angle(transform.forward, dir) > viewAngle * 0.5f) canSee = false;
+
+        // •Çƒ`ƒFƒbƒN
+        if (Physics.Raycast(transform.position, dir.normalized, out RaycastHit hit, dist))
+            if (!hit.transform.IsChildOf(_robot.Target))
+                canSee = false;
+
+        // Œ©‚¦‚Ä‚é‚È‚ç’Ç”ö‚·‚é
+        if (canSee)
+        {
+            loseTimer = 0.0f;
+
+            _robot.MoveTarget = _robot.Target.position;
+
+            return true;
+        }
 
         loseTimer += Time.deltaTime;
 
-        if (loseTimer > loseTargetTime)
+        if (loseTimer >= loseTargetTime)
         {
             _robot.Target = null;
-            _robot.MoveTarget = null;
             return false;
         }
 

@@ -44,8 +44,8 @@ public class DetectionController : MonoBehaviour
     /// </summary>
     public RaycastHit SetUpViewPoint()
     {
-        // Rayを飛ばす位置を指定（メインカメラを指定）
-        _ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        // Rayを飛ばす位置を指定（画面の中心を指定）
+        _ray = Camera.main.ScreenPointToRay(new Vector3(Screen.width * 0.5f,Screen.height * 0.5f));
 
         // Rayがオブジェクトに当たった時hitに値を入れる
         // アイテム以外にも参照できるようにLayer指定は行わない

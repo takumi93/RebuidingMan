@@ -295,8 +295,12 @@ PrefabInstance:
       value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 5620919851407603308, guid: e4a123f264317434cba5c7f8a2b05d32, type: 3}
+      propertyPath: _id
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 5620919851407603308, guid: e4a123f264317434cba5c7f8a2b05d32, type: 3}
       propertyPath: _rotateSpeed
-      value: 3
+      value: 5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -370,6 +374,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3137596052412889693, guid: 5beaa79ec45246c47a2310b7e36debd2, type: 3}
       propertyPath: id
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 3137596052412889693, guid: 5beaa79ec45246c47a2310b7e36debd2, type: 3}
+      propertyPath: _id
       value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 3362368161762973469, guid: 5beaa79ec45246c47a2310b7e36debd2, type: 3}
@@ -537,6 +545,14 @@ PrefabInstance:
     - target: {fileID: 3589108813190714286, guid: 0a22534a4bbd150488752ea884701989, type: 3}
       propertyPath: id
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3589108813190714286, guid: 0a22534a4bbd150488752ea884701989, type: 3}
+      propertyPath: _id
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3589108813190714286, guid: 0a22534a4bbd150488752ea884701989, type: 3}
+      propertyPath: viewAngle
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 8408341493972803463, guid: 0a22534a4bbd150488752ea884701989, type: 3}
       propertyPath: m_LocalPosition.x

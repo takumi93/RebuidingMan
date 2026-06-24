@@ -24,8 +24,12 @@ public class PartHp : MonoBehaviour
     /// </summary>
     public void Init(PartsDatabase partsDatabase)
     {
+        Debug.Log($"Database : {partsDatabase}");
+        Debug.Log($"PartId : {PartId}");
         _robotHP = GetComponentInParent<RobotHPManager>();
         _partData = partsDatabase.GetPartById(PartId);
+
+        Debug.Log($"PartData : {_partData}");
         MaxHP = _partData.Hp;
         CurrentHP = _partData.Hp;
     }

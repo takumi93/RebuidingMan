@@ -117,6 +117,11 @@ public class Robot : MonoBehaviour
             // 移動先設定
             Head.ChaseTarget();
 
+            if (MoveTarget.HasValue)
+            {
+                Leg.Move(MoveTarget.Value);
+            }
+
             // 攻撃距離判定
             if (Target != null)
             {
@@ -152,30 +157,21 @@ public class Robot : MonoBehaviour
     /// AttackStateの時に実行する
     /// </summary>
     /// <param name="toChase"></param>
-    /// <returns></returns>
-    public bool HandleAttack(out bool toChase)
+    /// <returns>攻撃最中はTrue、ターゲットがいないまたは攻撃終了時はFalse</returns>
+    public bool HandleAttack()
     {
-        toChase = false;
-
-        if (Target == null)
-        {
-            // ターゲット消失 → Chase または Idle へ
-            toChase = true;
-            return false;
-        }
+        // ターゲットがいないならFalse
+        if (!Target) return false;
 
         // 追尾しながら攻撃
         Head.ChaseTarget();
 
-        float targetDistance = Vector3.Distance(transform.position, Target.transform.position);
-
-        // 攻撃範囲外になったら Chase に戻す
-        if (targetDistance > attackDistance)
+        if (MoveTarget.HasValue)
         {
-            toChase = true;
-            return false; // Attack 終了
+            Leg.Move(MoveTarget.Value);
         }
 
-        return true; // Attack 継続
+        // 攻撃が終了しているならFalse、攻撃最中ならTrue
+        return Body.IsAttacking;
     }
 }

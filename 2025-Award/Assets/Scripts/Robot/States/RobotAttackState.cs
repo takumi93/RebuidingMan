@@ -14,26 +14,28 @@ public class RobotAttackState : RobotStateBase
     {
         robot.Body.Attack();
 
-        bool toChase;
-        if (!robot.HandleAttack(out toChase))
-        {
-            if (toChase)
-            {
-                Debug.Log("aruki");
-                robot.ChangeState(stateManager.WalkState);
-            }else
-            {
-                Debug.Log("aidoru");
-                robot.ChangeState(stateManager.IdleState);
-            }
+        // çUåÇç≈íÜÇ»ÇÁñ≥éã
+        if (robot.HandleAttack()) return;
 
-            return;
-        }
-
-        if (!robot.Body.IsAttacking)
+        // ìGÇ™Ç¢ÇÈéû
+        if (robot.Target)
         {
             robot.ChangeState(stateManager.WalkState);
         }
+        else
+        {
+            robot.ChangeState(stateManager.IdleState);
+        }
+
+        //if (!robot.Body.IsAttacking)
+        //{
+        //    if(robot.Target)
+        //    {
+        //        robot.MoveTarget = robot.Target.position;
+        //    }
+
+        //    robot.ChangeState(stateManager.WalkState);
+        //}
     }
 
     public override void Exit(Robot robot)
