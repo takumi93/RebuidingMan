@@ -2,8 +2,6 @@ using UnityEngine;
 
 public class AxeBody : BodyBase
 {
-    public Axe Axe { get; private set; }
-
     /// <summary>
     /// èâä˙ê›íË
     /// </summary>
@@ -11,8 +9,8 @@ public class AxeBody : BodyBase
     {
         base.Init();
 
-        Axe = GetComponentInChildren<Axe>();
-        Axe.Init();
+        Weapon = GetComponentInChildren<Axe>();
+        Weapon.Init();
     }
 
     /// <summary>

@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 3611647262222669459}
   - component: {fileID: 8779540749712806524}
   - component: {fileID: 5441513069838918238}
+  - component: {fileID: 3713068095990423410}
   - component: {fileID: 3395437980642169816}
   - component: {fileID: 7869135558601708317}
   m_Layer: 7
@@ -86,13 +87,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10c6fa700ca18e047b441fb68dc945a8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _partsDatabase: {fileID: 11400000, guid: ccc686629305e4d4da20a5f82052b6e1, type: 2}
-  enemyLayer:
-    serializedVersion: 2
-    m_Bits: 128
-  playerLayer:
-    serializedVersion: 2
-    m_Bits: 64
+  partsDatabase: {fileID: 11400000, guid: ccc686629305e4d4da20a5f82052b6e1, type: 2}
 --- !u!114 &5441513069838918238
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -105,10 +100,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8a925ba83e5002e4a9324f98aff1f000, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  explosionEffect: {fileID: 6037139083657312632, guid: 735eaa260f8dab2408e78144fb137f68, type: 3}
-  enemyCount: {fileID: 0}
   _partsDatabase: {fileID: 11400000, guid: ccc686629305e4d4da20a5f82052b6e1, type: 2}
-  Parts: []
+  _playUI: {fileID: 0}
+  _explosionEffect: {fileID: 6037139083657312632, guid: 735eaa260f8dab2408e78144fb137f68, type: 3}
+  _explosionRadius: 10
+  _explosionPower: 300
+--- !u!114 &3713068095990423410
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1059766257493041210}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1347a4f2d658eaf45a34c6e0c3e952f3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::TeamObject
+  _team: 1
 --- !u!136 &3395437980642169816
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -301,7 +310,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1066841041302124578, guid: d5f9545e9b7c8484b89265855a0e616a, type: 3}
       propertyPath: m_Name
-      value: Body_axe
+      value: Body_Axe
       objectReference: {fileID: 0}
     - target: {fileID: 2505402358779623985, guid: d5f9545e9b7c8484b89265855a0e616a, type: 3}
       propertyPath: m_LocalPosition.x

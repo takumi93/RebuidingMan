@@ -24,12 +24,9 @@ public class PartHp : MonoBehaviour
     /// </summary>
     public void Init(PartsDatabase partsDatabase)
     {
-        Debug.Log($"Database : {partsDatabase}");
-        Debug.Log($"PartId : {PartId}");
         _robotHP = GetComponentInParent<RobotHPManager>();
         _partData = partsDatabase.GetPartById(PartId);
 
-        Debug.Log($"PartData : {_partData}");
         MaxHP = _partData.Hp;
         CurrentHP = _partData.Hp;
     }
@@ -44,13 +41,15 @@ public class PartHp : MonoBehaviour
 
         // 部品へのダメージ処理
         CurrentHP = Mathf.Max(CurrentHP - (int)actualDamage, 0);
-        // ロボット本体へのダメージ処理
-        _robotHP.ApplyTotalDamage((int)actualDamage, attacker);
 
         // 部位破壊チェック
         if (CurrentHP <= 0)
         {
             _robotHP.OnPartDead(this);
+            return;
         }
+
+        // ロボット本体へのダメージ処理
+        _robotHP.ApplyTotalDamage((int)actualDamage, attacker);
     }
 }

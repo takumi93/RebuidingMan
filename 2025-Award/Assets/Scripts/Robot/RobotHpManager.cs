@@ -11,6 +11,8 @@ public class RobotHPManager : MonoBehaviour
     [Header("HP管理")]
     private bool _isDead;
 
+    public bool IsDead => _isDead;
+
     public List<PartHp> Parts {  get; private set; }
 
     public int MaxTotalHP { get; private set; }
@@ -54,11 +56,7 @@ public class RobotHPManager : MonoBehaviour
     {
         if (_isDead) return;
 
-        _isDead = true;
-
-        Destroy(deadPart.gameObject);
-
-        DestroyRobot();
+        DestroyRobot(deadPart);
     }
 
     /// <summary>
@@ -69,7 +67,7 @@ public class RobotHPManager : MonoBehaviour
         if (_isDead) return;
 
         var target = Parts
-            .Where(p => p.CurrentHP > 0)    // まだ壊れてない部位
+            .Where(p => p.CurrentHP >= 0)    // まだ壊れてない部位
             .OrderBy(p => p.CurrentHP)
             .FirstOrDefault();
 
@@ -78,20 +76,33 @@ public class RobotHPManager : MonoBehaviour
             return;
         }
 
-        _isDead = true;
+        foreach (var part in Parts)
+        {
+            Debug.Log($"{part.name} HP:{part.CurrentHP}");
+        }
 
-        // ここで実際の破壊
-        Destroy(target.gameObject);
-        DestroyRobot();
+        Debug.Log($"Destroy Target : {target.name}");
+
+        DestroyRobot(target);
     }
 
     /// <summary>
-    /// 親を削除して子を残す
+    /// 指定のオブジェクトだけ削除してそれ以外は親から外し削除
     /// </summary>
-    public void DestroyRobot()
+    /// <param name="deadPart">破壊するオブジェクト</param>
+    public void DestroyRobot(PartHp deadPart)
     {
+
+        if (_isDead) return;
+
+        _isDead = true;
+
+        Destroy(deadPart.gameObject);
+
+        var children = transform.Cast<Transform>().ToList();
+
         // 子をワールド空間に残す
-        foreach (Transform child in transform)
+        foreach (Transform child in children)
         {
             if(child.TryGetComponent<Rigidbody>(out var childRigidbody))
             {
@@ -105,6 +116,8 @@ public class RobotHPManager : MonoBehaviour
         // 頭にアニメーションはないため無視
         _robot.Body?.Animation.DestoryAnimation();
         _robot.Leg?.Animation.DestoryAnimation();
+
+        _robot.Body?.Weapon?.HitOff();
 
         //破壊時のエフェクト
         {

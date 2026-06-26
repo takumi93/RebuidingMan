@@ -27,6 +27,8 @@ public abstract class BodyBase: PartBase
 
     public AudioSource audioSource { get; protected set; }
 
+    public WeaponBase Weapon { get; protected set; }
+
     /// <summary>
     /// 初期化
     /// </summary>
@@ -58,6 +60,22 @@ public abstract class BodyBase: PartBase
     /// 攻撃B
     /// </summary>
     public abstract void AttackB();
+    
+    /// <summary>
+    /// 攻撃Aで使用する発射イベント
+    /// </summary>
+    public virtual void AttackAEvent()
+    {
+
+    }
+
+    /// <summary>
+    /// 攻撃Bで使用する発射イベント
+    /// </summary>
+    public virtual void AttackBEvent()
+    {
+
+    }
 
     /// <summary>
     /// 味方になった時のセットアップ

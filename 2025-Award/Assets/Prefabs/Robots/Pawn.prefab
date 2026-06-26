@@ -115,7 +115,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _partsDatabase: {fileID: 11400000, guid: ccc686629305e4d4da20a5f82052b6e1, type: 2}
   _playUI: {fileID: 0}
-  _explosionEffect: {fileID: 0}
+  _explosionEffect: {fileID: 6037139083657312632, guid: 735eaa260f8dab2408e78144fb137f68, type: 3}
   _explosionRadius: 10
   _explosionPower: 300
 --- !u!136 &729269237679214735
@@ -553,6 +553,10 @@ PrefabInstance:
     - target: {fileID: 3589108813190714286, guid: 0a22534a4bbd150488752ea884701989, type: 3}
       propertyPath: viewAngle
       value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 3589108813190714286, guid: 0a22534a4bbd150488752ea884701989, type: 3}
+      propertyPath: IsPatrolling
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8408341493972803463, guid: 0a22534a4bbd150488752ea884701989, type: 3}
       propertyPath: m_LocalPosition.x

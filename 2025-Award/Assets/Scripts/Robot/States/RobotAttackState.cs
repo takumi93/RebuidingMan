@@ -26,16 +26,6 @@ public class RobotAttackState : RobotStateBase
         {
             robot.ChangeState(stateManager.IdleState);
         }
-
-        //if (!robot.Body.IsAttacking)
-        //{
-        //    if(robot.Target)
-        //    {
-        //        robot.MoveTarget = robot.Target.position;
-        //    }
-
-        //    robot.ChangeState(stateManager.WalkState);
-        //}
     }
 
     public override void Exit(Robot robot)

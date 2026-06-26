@@ -96,10 +96,10 @@ Rigidbody:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1181944643908064975}
-  serializedVersion: 4
+  serializedVersion: 5
   m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
+  m_LinearDamping: 0
+  m_AngularDamping: 0.05
   m_CenterOfMass: {x: 0, y: 0, z: 0}
   m_InertiaTensor: {x: 1, y: 1, z: 1}
   m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
@@ -175,14 +175,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2af9824845b7cb14b83c787a62d9dbce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _id: 3
   searchRadius: 10
   viewDistance: 15
-  viewAngle: 60
+  viewAngle: 100
   loseTargetTime: 2
-  IsPatrolling: 0
   HeadToBodyRig: {fileID: 2155069106239469612}
-  BodyToHeadRig: {fileID: 0}
+  IsPatrolling: 0
   FixedPosition: {fileID: 0}
+  defendRadius: 15
 --- !u!1 &2155069106239469612 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 94050415646053298, guid: a7f4afb3c1aa3894cb287eae4afdf19a, type: 3}

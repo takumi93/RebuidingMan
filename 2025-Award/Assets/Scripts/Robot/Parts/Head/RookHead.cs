@@ -1,10 +1,11 @@
 using UnityEngine;
+
 public class RookHead : HeadBase 
 { 
     [Header("ñhâqê›íË")]
     [SerializeField] private Transform FixedPosition; 
     // ñhâqínì_
-    [SerializeField] private float defendRadius = 8.0f; 
+    [SerializeField] private float defendRadius = 15.0f; 
 
     // ñhâqîÕàÕ
     public override void Init() {
@@ -27,8 +28,8 @@ public class RookHead : HeadBase
     { 
         // É^Å[ÉQÉbÉgÇ™Ç¢Ç»Ç¢éû
         if (!_robot.Target) 
-        { 
-            ReturnToPosition(); 
+        {
+            _robot.MoveTarget = FixedPosition.position;
             return; 
         }
         
@@ -39,18 +40,12 @@ public class RookHead : HeadBase
         { 
             // àÍíËãóó£à»è„ó£ÇÍÇΩÇÁÉ^Å[ÉQÉbÉgí˙ÇﬂÇÈ
             _robot.Target = null; 
-            _robot.MoveTarget = null; 
+            _robot.MoveTarget = FixedPosition.position; 
             ReturnToPosition();
             return; 
         }
 
-        MoveToTarget(_robot.Target.position);
-
-        // ãAä“íÜ
-        if (_robot.MoveTarget.HasValue)
-        {
-            MoveToTarget(_robot.MoveTarget.Value);
-        }
+        _robot.MoveTarget = _robot.Target.position;
     }
 
     /// <summary> 
@@ -61,21 +56,24 @@ public class RookHead : HeadBase
     public override void TrackingTarget()
     {
         // ìGî≠å©
-        if (SearchTarget())
-        {
-            return;
-        }
+        if (SearchTarget()) return;
 
         // ñhâqínì_Ç©ÇÁó£ÇÍÇƒÇ¢ÇΩÇÁñﬂÇÈ
-        float distance =
-            Vector3.Distance(transform.position,
-                             FixedPosition.position);
+        float distance = Vector3.Distance(transform.position, FixedPosition.position);
 
-        if (distance > 1.0f)
+        if (distance > 2.0f)
         {
             _robot.MoveTarget = FixedPosition.position;
+        }
+        else
+        {
+            _robot.MoveTarget = null;
 
-            _robot.ChangeState(_robot.StateManager.WalkState);
+            _robot.transform.rotation = Quaternion.RotateTowards(
+                    _robot.transform.rotation,
+                    FixedPosition.rotation,
+                    180f * Time.deltaTime
+                );
         }
     }
 
@@ -83,8 +81,7 @@ public class RookHead : HeadBase
     /// ñhâqínì_Ç…ñﬂÇÈ 
     /// </summary> 
     private void ReturnToPosition() 
-    { 
-        _area.isStopped = false; 
-        _area.destination = FixedPosition.position; 
+    {
+        _robot.MoveTarget = FixedPosition.position; 
     } 
 }

@@ -45,7 +45,7 @@ public abstract class WeaponBase : MonoBehaviour
     public virtual void OnHit(Collider other)
     {
         // 自分は無視
-        if (other.transform.IsChildOf(_robot.transform)) return;
+        if (other.transform.IsChildOf(_robot?.transform)) return;
 
         // 攻撃が当たったオブジェクトの陣営を取得
         TeamObject target = other.transform.GetComponentInParent<TeamObject>();

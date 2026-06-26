@@ -4,13 +4,14 @@ public class GunBody : BodyBase
 {
     [Header("gun時のパラメータ")]
 
-    [SerializeField] GameObject Allybullet;
-    [SerializeField] GameObject Enemybullet;
+    [SerializeField] private GameObject _bulletPrefab;
 
-    [SerializeField] Transform shotPointRight;
-    [SerializeField] Transform shotPointLeft;
+    [SerializeField] private Transform[] _attackAShotPoints;
+    [SerializeField] private Transform[] _attackBShotPoints;
 
-    Robot _robot { get; set; }
+    private Robot _robot { get; set; }
+
+    private TeamObject _teamObject { get; set; }
 
     /// <summary>
     /// 初期設定
@@ -20,6 +21,8 @@ public class GunBody : BodyBase
         base.Init();
         
         _robot = GetComponentInParent<Robot>();
+
+        _teamObject = transform.GetComponentInParent<TeamObject>();
     }
 
     /// <summary>
@@ -28,7 +31,7 @@ public class GunBody : BodyBase
     public override void CreateSetup()
     {
         GetComponentInChildren<SkinnedMeshRenderer>().material = BodyData.AllyMaterial;
-        audioSource = this.GetComponentInParent<AudioSource>();
+        audioSource = GetComponentInParent<AudioSource>();
     }
 
     /// <summary>
@@ -57,55 +60,32 @@ public class GunBody : BodyBase
         currentCoolTime = BodyData.CoolTimeB;
     }
 
-    //IEnumerator Attack(float preparationTime, int AttackType)
-    //{
-    //    // ターゲットがいないなら攻撃しない
-    //    if (_robot.Target == null)
-    //    {
-    //        yield break;
-    //    }
+    public override void AttackAEvent()
+    {
+        Fire(_attackAShotPoints, BodyData.AttackSoundA);
+    }
 
-    //    //準備時間まで待つ
-    //    yield return new WaitForSeconds(preparationTime);
+    public override void AttackBEvent()
+    {
+        Fire(_attackBShotPoints, BodyData.AttackSoundB);
+    }
 
-    //    Transform _target = _robot.Target.transform;
+    public void Fire(Transform[] shotPoints, AudioClip clip)
+    {
+        if (!_robot.Target) return;
 
-    //    Vector3 flatTargetPos = new Vector3(
-    //        _target.position.x,
-    //        shotPointRight.position.y,
-    //        _target.position.z
-    //    );
+        Transform target = _robot.Target.transform;
 
-    //    // 発射方向をターゲットへ向ける
-    //    shotPointRight.LookAt(_target.position);
-    //    shotPointLeft.LookAt(_target.position);
+        // 弾の生成と弾の初期化
+        foreach (Transform shotPoint in shotPoints)
+        {
+            shotPoint.LookAt(target.position);
 
-    //    GameObject bulletPrefab;
+            GameObject bullet = Instantiate(_bulletPrefab, shotPoint.position, shotPoint.rotation);
 
-    //    if (transform.parent.CompareTag("Enemy"))
-    //    {
-    //        bulletPrefab = Enemybullet;
-    //    }
-    //    else
-    //    {
-    //        bulletPrefab = Allybullet;
-    //    }
+            bullet.GetComponent<Bullet>().Init(_teamObject.GetTeamType(), Damage, _robot);
+        }
 
-    //    if (AttackType == 0)
-    //    {
-    //        // 弾発射
-    //        Instantiate(bulletPrefab, shotPointRight.position, shotPointRight.rotation);
-    //        Instantiate(bulletPrefab, shotPointLeft.position, shotPointLeft.rotation);
-
-    //        audioSource?.PlayOneShot(BodyData.attackSoundA);
-    //    }
-    //    else
-    //    {
-    //        // 弾発射
-    //        Instantiate(bulletPrefab, shotPointRight.position, shotPointRight.rotation);
-    //        Instantiate(bulletPrefab, shotPointLeft.position, shotPointLeft.rotation);
-
-    //        audioSource?.PlayOneShot(BodyData.attackSoundB);
-    //    }
-    //}
+        audioSource?.PlayOneShot(clip);
+    }
 }

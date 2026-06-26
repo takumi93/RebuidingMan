@@ -46,13 +46,7 @@ public class PawnHead : HeadBase
     /// õ“G’†‚É‚·‚é‚±‚Æ 
     /// </summary> 
     public override void TrackingTarget() 
-    { 
-        //// Œo˜H’Tõ‚Ì€”õ‚ª‚Å‚«‚Ä‚¢‚é‚©
-        //if (_area.pathPending) return; 
-        //if (_area.remainingDistance <= _area.stoppingDistance) 
-        //{
-        //    SetNextDestination(); 
-        //} 
+    {
         // ƒ^[ƒQƒbƒg‚ª‚¢‚È‚¢‚È‚ç„‰ñ‚·‚é
         if(!_robot.MoveTarget.HasValue)
         {
@@ -78,8 +72,6 @@ public class PawnHead : HeadBase
 
         _robot.MoveTarget = _patrolRoute.GetPoint(_currentPoint).position;
 
-        //_area.isStopped = false; 
-        //_area.SetDestination(_patrolRoute.GetPoint(_currentPoint).position); 
         _currentPoint = (_currentPoint + 1) % _patrolRoute.GetPointLength(); 
     } 
 }

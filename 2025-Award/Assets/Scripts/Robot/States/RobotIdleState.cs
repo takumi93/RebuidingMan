@@ -7,7 +7,7 @@ public class RobotIdleState : RobotStateBase
 
     public override void Enter(Robot robot)
     {
-        if (robot.Head.IsPatrolling)
+        if (robot.MoveTarget.HasValue)
         {
             robot.Body.Animation.SetTrigger("Walk");
             robot.Leg.Animation.SetTrigger("Walk");
@@ -21,8 +21,20 @@ public class RobotIdleState : RobotStateBase
 
     public override void Tick(Robot robot)
     {
+        if (robot.MoveTarget.HasValue)
+        {
+            robot.Body.Animation.SetTrigger("Walk");
+            robot.Leg.Animation.SetTrigger("Walk");
+        }
+        else
+        {
+            robot.Body.Animation.SetTrigger("Idle");
+            robot.Leg.Animation.SetTrigger("Idle");
+        }
+
         if (robot.HandleIdle())
         {
+            Debug.Log("hennkou");
             robot.ChangeState(stateManager.WalkState);
         }
     }

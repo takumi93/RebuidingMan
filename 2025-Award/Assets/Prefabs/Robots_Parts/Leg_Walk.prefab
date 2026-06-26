@@ -98,10 +98,10 @@ Rigidbody:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2050600553940158714}
-  serializedVersion: 4
+  serializedVersion: 5
   m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
+  m_LinearDamping: 0
+  m_AngularDamping: 0.05
   m_CenterOfMass: {x: 0, y: 0, z: 0}
   m_InertiaTensor: {x: 1, y: 1, z: 1}
   m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
@@ -163,7 +163,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dee2e1e71e260f7439e1ecc073739244, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _id: 7
   LegToBodyRig: {fileID: 6039693393402510040}
+  _rotateSpeed: 5
 --- !u!114 &2126877731273576517
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -188,7 +190,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fccf995cac308de45bbd0a50bff6fbde, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Id: 7
 --- !u!95 &1578525067033770888
 Animator:
   serializedVersion: 7

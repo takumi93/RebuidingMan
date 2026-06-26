@@ -2,14 +2,15 @@ using UnityEngine;
 
 public class KnightHead : HeadBase
 {
+    [Header("Œì‰qAI‚Ìİ’è")]
     // Œì‰q‘ÎÛ
-    public GameObject EscortTarget { get; private set; }
+    [SerializeField] private GameObject _escortTarget;
 
     // ’Êí‚ÌŒì‰q‹——£
-    [SerializeField] private float escortDistance = 3.0f; 
+    [SerializeField] private float _escortDistance = 3.0f; 
     
     // “G‘Î‚ÌŒì‰q‚©‚ç—£‚ê‚ç‚ê‚éÅ‘å‹——£
-    [SerializeField] private float maxProtectDistance = 10f;
+    [SerializeField] private float _maxProtectDistance = 10f;
 
     public override void Init() 
     { 
@@ -17,7 +18,7 @@ public class KnightHead : HeadBase
     }
 
     public override void CreateSetup() { 
-        FindEscortTarget(); 
+        FindEscortTarget();
         UpdateMaterial();
     }
 
@@ -36,16 +37,16 @@ public class KnightHead : HeadBase
     public override void TrackingTarget() 
     {
         // Œì‰q‘ÎÛ‚ª‚¢‚È‚¢‚Æ‚«
-        if (EscortTarget == null) 
+        if (_escortTarget == null) 
         { 
             FindEscortTarget();
             return;
         } 
         
-        Robot escortRobot = EscortTarget.GetComponent<Robot>(); 
+        Robot escortRobot = _escortTarget.GetComponent<Robot>(); 
         
         // Œì‰q‘ÎÛ‚ªÅŒã‚ÉUŒ‚‚µ‚½“G‚ª‚¢‚½‚Æ‚«
-        if (escortRobot != null && escortRobot.LastAttacker != null) 
+        if (escortRobot?.LastAttacker != null)
         {
             ProtectEscort(escortRobot.LastAttacker); 
             return; 
@@ -61,9 +62,9 @@ public class KnightHead : HeadBase
             return; 
         } 
         
-        float escortDistance = Vector3.Distance(transform.position, EscortTarget.transform.position);
+        float escortDistance = Vector3.Distance(transform.position, _escortTarget.transform.position);
         
-        if (escortDistance > maxProtectDistance) 
+        if (escortDistance > _maxProtectDistance) 
         { 
             _robot.MoveTarget = null;
             FollowEscort();
@@ -79,12 +80,12 @@ public class KnightHead : HeadBase
     /// </summary> 
     private void FollowEscort() 
     { 
-        if (EscortTarget == null) return; 
-        float distance = Vector3.Distance(transform.position, EscortTarget.transform.position); 
+        if (_escortTarget == null) return; 
+        float distance = Vector3.Distance(transform.position, _escortTarget.transform.position); 
         // ‰“‚¢‚È‚ç’Ç”ö
-        if(distance > escortDistance) 
+        if(distance > _escortDistance) 
         { 
-            _robot.MoveTarget = EscortTarget.transform.position; 
+            _robot.MoveTarget = _escortTarget.transform.position; 
             _robot.ChangeState(_robot.StateManager.WalkState); 
         } 
         else 
@@ -105,7 +106,7 @@ public class KnightHead : HeadBase
             GameObject player = GameObject.FindGameObjectWithTag("Player"); 
             if (player != null) 
             { 
-                EscortTarget = player; 
+                _escortTarget = player; 
             } 
         } 
         else 
@@ -113,7 +114,7 @@ public class KnightHead : HeadBase
             Robot ally = RobotManager.Instance.GetNearestAlly(_robot);
             if (ally != null) 
             { 
-                EscortTarget = ally.gameObject;
+                _escortTarget = ally.gameObject;
             } 
         } 
     } 

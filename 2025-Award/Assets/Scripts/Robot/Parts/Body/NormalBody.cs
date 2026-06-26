@@ -2,8 +2,6 @@ using UnityEngine;
 
 public class NormalBody : BodyBase
 {
-    public Normal Normal {  get; private set; }
-
     /// <summary>
     /// èâä˙ê›íË
     /// </summary>
@@ -11,8 +9,8 @@ public class NormalBody : BodyBase
     {
         base.Init();
 
-        Normal = GetComponentInChildren<Normal>();
-        Normal.Init();
+        Weapon = GetComponentInChildren<Normal>();
+        Weapon.Init();
     }
 
     /// <summary>
