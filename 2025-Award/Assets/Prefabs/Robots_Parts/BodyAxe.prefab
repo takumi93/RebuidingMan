@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 5944524372750208480}
   - component: {fileID: 8995488699567516424}
   m_Layer: 9
-  m_Name: Body_Axe
+  m_Name: BodyAxe
   m_TagString: Body
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
