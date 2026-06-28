@@ -12,10 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dd1f93553694f0e458125fd2e17c7b06, type: 3}
   m_Name: Head_Knight
   m_EditorClassIdentifier: 
-  _id: 1
+  _id: 2
   _partName: Head_Knight
   _icon: {fileID: 21300000, guid: 11d6a17790d934d4c86567eed87fe9b2, type: 3}
-  _prefab: {fileID: 3951978571332786885, guid: ce7af4cdbe2e08b4d93cf7c458cefe8a, type: 3}
+  _prefab: {fileID: 1516631686391123509, guid: 4c1db6a76c8a43e408ed60b02ee97f7b, type: 3}
   _hp: 150
   _defense: 0
   _speed: 0

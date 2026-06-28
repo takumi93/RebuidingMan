@@ -25,13 +25,13 @@ public class PlayerInventory: MonoBehaviour
     /// <returns></returns>
     public bool AddPart(GameObject part)
     {
-        // 部品につけてるpartsPickupからIDを取得しデータベースからデータを取得
-        var _data = _partsDatabase.GetPartById(part.GetComponent<PartsPickup>().Id);
+        // 部品からIDを取得しデータベースからデータを取得
+        var _data = _partsDatabase.GetPartById(part.GetComponent<PartBase>().Id);
 
-        // 部品の種類を取得
+        // 部品の種類を取得(頭、胴、足の3種類)
         var type = _data.GetPartsType();
 
-        // インベントリの部品と同じ時は無視、違う場合はインベントリの部品を落とす
+        // インベントリにある部位の部品と同じ時は無視（IDで判断）、違う場合はインベントリの部品を落とす
         if (EquippedParts.TryGetValue(type, out var currentPart))
         {
             if (currentPart.Id == _data.Id)
@@ -60,7 +60,7 @@ public class PlayerInventory: MonoBehaviour
     /// <param name="type"></param>
     private void DropPart(PartsType type)
     {
-        // 拾った部品が元々持っている部品と一緒の場合は無視
+        // 指定した種類の部品がインベントリになかったら無視する
         if (!EquippedParts.TryGetValue(type, out var oldPart)) return;
 
         // 元々持っていた部品を落とす

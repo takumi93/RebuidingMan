@@ -34,19 +34,6 @@ public abstract class HeadBase: PartBase
     }
 
     /// <summary>
-    /// プレイヤー陣営になった時マテリアルを変更する
-    /// </summary>
-    protected void UpdateMaterial()
-    {
-        var renderer = GetComponentInChildren<Renderer>();
-
-        if (renderer != null)
-        {
-            renderer.material = HeadData.AllyMaterial;
-        }
-    }
-
-    /// <summary>
     /// Idle状態ですること
     /// 索敵中にすること
     /// </summary>

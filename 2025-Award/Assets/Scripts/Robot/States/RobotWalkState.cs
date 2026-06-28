@@ -7,7 +7,6 @@ public class RobotWalkState : RobotStateBase
 
     public override void Enter(Robot robot)
     {
-        Debug.Log("Chase");
         robot.Body.Animation.SetTrigger("Walk");
         robot.Leg.Animation.SetTrigger("Walk");
     }

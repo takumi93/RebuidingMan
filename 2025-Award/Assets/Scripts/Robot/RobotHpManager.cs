@@ -26,8 +26,7 @@ public class RobotHPManager : MonoBehaviour
 
     [SerializeField] private float _explosionRadius = 10f;  //爆発の広さ
     
-    [SerializeField] private float _explosionPower = 300f;  //爆発の強さ
-
+    [SerializeField] private float _explosionPower = 100f;  //爆発の強さ
 
     private Robot _robot { get; set; }
 
@@ -76,13 +75,6 @@ public class RobotHPManager : MonoBehaviour
             return;
         }
 
-        foreach (var part in Parts)
-        {
-            Debug.Log($"{part.name} HP:{part.CurrentHP}");
-        }
-
-        Debug.Log($"Destroy Target : {target.name}");
-
         DestroyRobot(target);
     }
 
@@ -92,26 +84,13 @@ public class RobotHPManager : MonoBehaviour
     /// <param name="deadPart">破壊するオブジェクト</param>
     public void DestroyRobot(PartHp deadPart)
     {
-
         if (_isDead) return;
 
         _isDead = true;
 
-        Destroy(deadPart.gameObject);
-
-        var children = transform.Cast<Transform>().ToList();
-
-        // 子をワールド空間に残す
-        foreach (Transform child in children)
-        {
-            if(child.TryGetComponent<Rigidbody>(out var childRigidbody))
-            {
-                childRigidbody.isKinematic = false;
-                childRigidbody.useGravity = true;
-            }
-
-            child.SetParent(transform.parent, true);
-        }
+        DetachPart(_robot.Head, deadPart);
+        DetachPart(_robot.Body, deadPart);
+        DetachPart(_robot.Leg, deadPart);
 
         // 頭にアニメーションはないため無視
         _robot.Body?.Animation.DestoryAnimation();
@@ -127,9 +106,14 @@ public class RobotHPManager : MonoBehaviour
 
             foreach (Collider collider in colliders)
             {
-                if (collider.TryGetComponent<Rigidbody>(out var rb))
+                Rigidbody rb = collider.attachedRigidbody;
+
+                if (rb != null)
                 {
-                    rb.AddExplosionForce(_explosionPower, new Vector3(transform.position.x, 0, transform.position.z), _explosionRadius);
+                    rb.AddExplosionForce(
+                        _explosionPower,
+                        new Vector3(transform.position.x, 0, transform.position.z),
+                        _explosionRadius);
                 }
             }
         }
@@ -140,7 +124,26 @@ public class RobotHPManager : MonoBehaviour
         Destroy(gameObject);
     }
 
-    // 最後に攻撃してきた敵を保存
+    /// <summary>
+    /// 部品をロボットから切り離す
+    /// </summary>
+    /// <param name="part">切り離す部品</param>
+    /// <param name="deadPart">破壊される部品</param>
+    private void DetachPart(PartBase part, PartHp deadPart)
+    {
+        if (part == null) return;
+        if (part.GetComponent<PartHp>() == deadPart) return;
+
+        part.transform.SetParent(transform.parent, true);
+
+        DropUtility.SetupDroppedPart(part.gameObject);
+    }
+
+    /// <summary>
+    /// 最後に攻撃してきた敵を保存
+    /// </summary>
+    /// <param name="damage">与えるダメージ</param>
+    /// <param name="attacker">攻撃してきた敵</param>
     public void ApplyTotalDamage(int damage, GameObject attacker)
     {
         CurrentTotalHP = Mathf.Max(CurrentTotalHP - damage, 0);

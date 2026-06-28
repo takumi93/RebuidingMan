@@ -17,6 +17,8 @@ public class DetectionController : MonoBehaviour
     // 拾える距離
     [SerializeField] private float _interactDistance = 10.0f;
 
+    private int _itemLayer;
+
     [Header("オブジェクトの識別判定")]
     public bool IsEnemy {  get; private set; }
 
@@ -27,6 +29,7 @@ public class DetectionController : MonoBehaviour
     public void Init(Player player)
     {
         _player = player;
+        _itemLayer = LayerMask.NameToLayer("Item");
     }
 
     /// <summary>
@@ -64,7 +67,11 @@ public class DetectionController : MonoBehaviour
         IsAlly = false;
         IsItem = false;
 
-        if (_hit.collider == null) return;
+        if (_hit.collider == null)
+        {
+            _player.UI.SetReticleNormal();
+            return;
+        }
 
         TeamObject enemy = _hit.collider.GetComponentInParent<TeamObject>();
 
@@ -75,19 +82,18 @@ public class DetectionController : MonoBehaviour
             {
                 IsEnemy = true;
                 _player.UI.SetReticleEnemy();
-            }
-            else
-            {
-                IsEnemy = false;
-            }
 
+                return;
+            }
         }
 
         // アイテム判定
-        if(_hit.collider.GetComponentInParent<ItemObject>() != null)
+        if(_hit.collider.gameObject.layer == _itemLayer)
         {
             IsItem = true;
             _player.UI.SetReticleItem();
+
+            return;
         }
 
         _player.UI.SetReticleNormal();

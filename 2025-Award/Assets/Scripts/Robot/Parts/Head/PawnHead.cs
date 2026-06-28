@@ -9,7 +9,7 @@ public class PawnHead : HeadBase
     { 
         base.Init();
         IsPatrolling = true;
-        SetNextDestination(); 
+        SetNextDestination();
     } 
     
     /// <summary>
@@ -17,15 +17,9 @@ public class PawnHead : HeadBase
     /// </summary> 
     public override void CreateSetup() 
     {
-        //// 味方用にマテリアルを変更
-        //SkinnedMeshRenderer renderer = transform.GetComponentInChildren<SkinnedMeshRenderer>(); 
-        //Material[] mats = renderer.materials; 
-        //for (int i = 0; i < mats.Length; i++) 
-        //{ 
-        //    mats[i] = HeadData.AllyMaterial;
-        //} 
-        //renderer.materials = mats; 
-        UpdateMaterial();
+        UpdateMaterial(HeadData);
+
+        // 巡回ルートの設定
         _patrolRoute = StageScene.Instance.AllyRoute;
         _currentPoint = 0; 
         SetNextDestination(); 

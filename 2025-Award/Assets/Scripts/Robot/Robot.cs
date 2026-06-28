@@ -127,7 +127,7 @@ public class Robot : MonoBehaviour
             {
                 float distance = Vector3.Distance(transform.position, Target.transform.position);
 
-                if (distance <= attackDistance) // attackDistance ‚Í Inspector ‚©’è”‚ÅŽw’è
+                if (distance <= attackDistance)
                 {
                     toAttack = true;
 

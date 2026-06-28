@@ -15,7 +15,7 @@ MonoBehaviour:
   _id: 7
   _partName: Leg_Walk
   _icon: {fileID: 21300000, guid: 370690b1bbec2da41b3fb47a46e92475, type: 3}
-  _prefab: {fileID: 2050600553940158714, guid: e4a123f264317434cba5c7f8a2b05d32, type: 3}
+  _prefab: {fileID: 8398582155743438830, guid: 39c61f26461c8604ab8316ecee23bb7b, type: 3}
   _hp: 100
   _defense: 0
   _speed: 0

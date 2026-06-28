@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: -5734006790724607169}
   - component: {fileID: 2483178756221997380}
   - component: {fileID: 7203278328105254637}
+  - component: {fileID: -5136093727730442692}
   - component: {fileID: 1204726624242809882}
   - component: {fileID: 262577302388934373}
   m_Layer: 6
@@ -83,6 +84,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10c6fa700ca18e047b441fb68dc945a8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  partsDatabase: {fileID: 11400000, guid: ccc686629305e4d4da20a5f82052b6e1, type: 2}
 --- !u!114 &7203278328105254637
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -96,10 +98,23 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _partsDatabase: {fileID: 11400000, guid: ccc686629305e4d4da20a5f82052b6e1, type: 2}
-  EnemyCount: {fileID: 0}
+  _playUI: {fileID: 0}
   _explosionEffect: {fileID: 6037139083657312632, guid: 735eaa260f8dab2408e78144fb137f68, type: 3}
   _explosionRadius: 10
   _explosionPower: 300
+--- !u!114 &-5136093727730442692
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 816378015491594344}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1347a4f2d658eaf45a34c6e0c3e952f3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::TeamObject
+  _team: 0
 --- !u!136 &1204726624242809882
 CapsuleCollider:
   m_ObjectHideFlags: 0

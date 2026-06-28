@@ -18,8 +18,10 @@ public class KnightHead : HeadBase
     }
 
     public override void CreateSetup() { 
+        UpdateMaterial(HeadData);
+
+        // Œì‰q‘ÎÛ‚Ìİ’è
         FindEscortTarget();
-        UpdateMaterial();
     }
 
     public override void ChaseTarget() 

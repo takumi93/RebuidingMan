@@ -17,10 +17,12 @@ public abstract class LegBase : PartBase
 
     public virtual void Init()
     {
-        Animation = GetComponent<RobotAnimation>();
+        Animation = GetComponentInChildren<RobotAnimation>();
         Animation.Init();
 
         _agent = GetComponentInParent<NavMeshAgent>();
+
+        rb = GetComponent<Rigidbody>();
     }
 
     ///// <summary>

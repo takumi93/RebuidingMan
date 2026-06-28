@@ -15,7 +15,7 @@ MonoBehaviour:
   _id: 8
   _partName: Leg_TIre
   _icon: {fileID: 21300000, guid: 94c7d08392539ba49a725c1104d5aa88, type: 3}
-  _prefab: {fileID: 6013006339386130469, guid: ba8e0e42a4ac37e4f970467ecdf27699, type: 3}
+  _prefab: {fileID: 8666837138144145400, guid: 1468814072473c5429ec903bad76186e, type: 3}
   _hp: 50
   _defense: 0
   _speed: 0

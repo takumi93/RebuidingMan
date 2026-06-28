@@ -18,10 +18,6 @@ public class InteractController : MonoBehaviour
         // 識別したオブジェクトがアイテム以外なら無視
         if (!_player.Detection.IsItem) return;
 
-        var item = hit.collider.GetComponentInParent<ItemObject>();
-
-        if (item == null) return;
-
         // インベントリに追加する
         if (_player.Inventory.AddPart(hit.transform.gameObject))
         {

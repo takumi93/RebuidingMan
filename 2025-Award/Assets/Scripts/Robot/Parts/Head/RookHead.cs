@@ -14,7 +14,8 @@ public class RookHead : HeadBase
     } 
     
     public override void CreateSetup() { 
-        UpdateMaterial();
+        UpdateMaterial(HeadData);
+        // ñhâqínì_ÇÃê›íË
         var Fix = Instantiate(StageScene.Instance.GuardianPoint, StageScene.Instance.GuardianTransform.transform); 
         Fix.name = "GuardianPoint";
         Fix.transform.position = StageScene.Instance.GuardianTransform.transform.position;

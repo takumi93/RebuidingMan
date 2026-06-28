@@ -23,8 +23,6 @@ GameObject:
   - component: {fileID: 4335315842612680877}
   - component: {fileID: 628329245805779495}
   - component: {fileID: 1919084460966784498}
-  - component: {fileID: 3446530421762455737}
-  - component: {fileID: 5444151600885062751}
   - component: {fileID: 7206939754547169775}
   - component: {fileID: 172368467541275569}
   - component: {fileID: 2454724823362980279}
@@ -237,31 +235,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _robotBasePrefab: {fileID: 816378015491594344, guid: 11b076216729f684f819bfa543fbbdfd, type: 3}
   _robotParent: {fileID: 0}
---- !u!114 &3446530421762455737
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1105095988933203209}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4fa5283fac480294c832a684d0ac155a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &5444151600885062751
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1105095988933203209}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6cf6cdba4f4a38d48ae198eec65955af, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _partsDatabase: {fileID: 11400000, guid: ccc686629305e4d4da20a5f82052b6e1, type: 2}
 --- !u!54 &7206939754547169775
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -269,10 +242,10 @@ Rigidbody:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1105095988933203209}
-  serializedVersion: 4
+  serializedVersion: 5
   m_Mass: 100
-  m_Drag: 0.6
-  m_AngularDrag: 0.6
+  m_LinearDamping: 0.6
+  m_AngularDamping: 0.6
   m_CenterOfMass: {x: 0, y: 0, z: 0}
   m_InertiaTensor: {x: 1, y: 1, z: 1}
   m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}

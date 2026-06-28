@@ -19,9 +19,23 @@ public static class DropUtility
             rb.useGravity = true;
         }
 
-        if(!obj.TryGetComponent<ItemObject>(out var _))
+        int itemLayer = LayerMask.NameToLayer("Item");
+
+        SetLayerRecursively(obj, itemLayer);
+    }
+
+    /// <summary>
+    /// オブジェクトのレイヤーを変更する
+    /// </summary>
+    /// <param name="obj">変更するオブジェクト</param>
+    /// <param name="layer">変更先レイヤー</param>
+    private static void SetLayerRecursively(GameObject obj, int layer)
+    {
+        obj.layer = layer;
+
+        foreach (Transform child in obj.transform)
         {
-            obj.AddComponent<ItemObject>();
+            SetLayerRecursively(child.gameObject, layer);
         }
     }
 }

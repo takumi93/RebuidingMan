@@ -33743,7 +33743,7 @@ AnimationClip:
     intParameter: 0
     messageOptions: 0
   - time: 6.0833335
-    functionName: HitOnB
+    functionName: HitOn
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0

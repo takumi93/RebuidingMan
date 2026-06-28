@@ -5,7 +5,7 @@ public class PlayerAnimation : MonoBehaviour
     private Animator _animator;
 
     // Attackのアニメーションが開始か終了かを判定
-    public bool Attack { get; private set; }
+    public bool IsAttacking { get; private set; }
 
     private Player _player;
 
@@ -25,26 +25,25 @@ public class PlayerAnimation : MonoBehaviour
     }
 
     /// <summary>
-    /// Attackのアニメーションを呼び出したときに使用するクラス
+    /// AnimationEventで使用する攻撃の開始イベント
     /// </summary>
-    public void AttackStart()
+    private void OnAttackStart()
     {
         Debug.Log("AttackStart");
-        Attack = true;
+        _player.Attack.OnAttackStart();
     }
 
-    public void AttackHit()
+    private void AttackHit()
     {
         _player.Attack.AttackHit();
     }
 
     /// <summary>
-    /// アニメーションが終了したときに呼び出すクラス
-    /// Attackのアニメーションにトリガーとして登録しているため呼び出し不要
+    /// AnimationEventで使用する攻撃の終了イベント
     /// </summary>
-    private void AttackEnd()
+    private void OnAttackEnd()
     {
         Debug.Log("AttackEnd");
-        Attack = false;
+        _player.Attack.OnAttackEnd();
     }
 }

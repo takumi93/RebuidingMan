@@ -2,6 +2,9 @@ using UnityEngine;
 
 public class AttackController : MonoBehaviour
 {
+    // Attack‚ÌŠJn‚©I—¹‚©‚ğ”»’è
+    public bool IsAttacking { get; private set; }
+
     // UŒ‚—Í
     [SerializeField] private int _attackPower = 50;
 
@@ -14,6 +17,16 @@ public class AttackController : MonoBehaviour
     public void Init(Player player)
     {
         _player = player;
+    }
+
+    public void OnAttackStart()
+    {
+        IsAttacking = true;
+    }
+
+    public void OnAttackEnd()
+    {
+        IsAttacking = false;
     }
 
     /// <summary>

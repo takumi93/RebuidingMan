@@ -9,15 +9,14 @@ public class AttackState : PlayerState
     {
         // 攻撃アニメーション開始
         _player.Animation.SetTrigger("Attack");
-        // 攻撃開始フラグ
-        _player.Animation.AttackStart();
     }
 
     public override void Update()
     {
         // 攻撃終了後
-        if (!_player.Animation.Attack)
+        if (!_player.Attack.IsAttacking)
         {
+            // 移動入力のあるなしで状態を変更する
             if (!_player.PlayerInputInfo.IsMoving)
             {
                 _player.ChangeState(_stateManager.IdleState);

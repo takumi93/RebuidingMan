@@ -12,10 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dd1f93553694f0e458125fd2e17c7b06, type: 3}
   m_Name: Head_Pawn
   m_EditorClassIdentifier: 
-  _id: 2
+  _id: 1
   _partName: Head_Pawn
   _icon: {fileID: 21300000, guid: a1bfe7191624bcb46acba682304d4255, type: 3}
-  _prefab: {fileID: 9222174284307055933, guid: 0a22534a4bbd150488752ea884701989, type: 3}
+  _prefab: {fileID: 2023131751048834487, guid: 379a054b60ac7af41848446b66b786db, type: 3}
   _hp: 100
   _defense: 0
   _speed: 0
