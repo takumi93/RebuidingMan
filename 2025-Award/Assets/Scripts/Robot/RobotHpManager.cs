@@ -119,6 +119,7 @@ public class RobotHPManager : MonoBehaviour
         }
 
         _playUI?.EnemyDecrease();
+        RobotManager.Instance.UnRegister(_robot);
 
         // e‚ğíœ
         Destroy(gameObject);

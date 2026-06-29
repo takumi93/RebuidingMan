@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 2048550104750399571}
   - component: {fileID: 2118299022246277061}
   - component: {fileID: 3679152049665721501}
-  - component: {fileID: 7399319379104036954}
   m_Layer: 7
   m_Name: LegTire
   m_TagString: Untagged
@@ -89,18 +88,6 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 08a727265c975f34284e2aa667a33685, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &7399319379104036954
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8666837138144145400}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fccf995cac308de45bbd0a50bff6fbde, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1001 &8076778470591319540

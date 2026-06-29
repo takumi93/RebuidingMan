@@ -32,12 +32,14 @@ public class UIManager : MonoBehaviour
         if (_uiStack.Count > 0)
         {
             _uiStack.Peek().OnUnFocus();
+            _uiStack.Peek().Hide();
         }
 
         // UI‚Ìƒf[ƒ^‚É’Ç‰Á‚·‚é
         _uiStack.Push(ui);
 
         ui.Show();
+        ui.OnOpen();
         ui.OnFocus();
     }
 
@@ -51,11 +53,13 @@ public class UIManager : MonoBehaviour
 
         BaseUI current = _uiStack.Pop();
 
+        current.OnClose();
         current.OnUnFocus();
         current.Hide();
 
         if (_uiStack.Count > 0)
         {
+            _uiStack.Peek().Show();
             _uiStack.Peek().OnFocus();
         }
     }

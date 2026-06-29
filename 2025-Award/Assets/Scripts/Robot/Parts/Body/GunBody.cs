@@ -9,20 +9,12 @@ public class GunBody : BodyBase
     [SerializeField] private Transform[] _attackAShotPoints;
     [SerializeField] private Transform[] _attackBShotPoints;
 
-    private Robot _robot { get; set; }
-
-    private TeamObject _teamObject { get; set; }
-
     /// <summary>
     /// èâä˙ê›íË
     /// </summary>
-    public override void Init()
+    public override void Init(Robot robot)
     {
-        base.Init();
-        
-        _robot = GetComponentInParent<Robot>();
-
-        _teamObject = transform.GetComponentInParent<TeamObject>();
+        base.Init(robot);
     }
 
     /// <summary>
@@ -30,8 +22,7 @@ public class GunBody : BodyBase
     /// </summary>
     public override void CreateSetup()
     {
-        GetComponentInChildren<SkinnedMeshRenderer>().material = BodyData.AllyMaterial;
-        audioSource = GetComponentInParent<AudioSource>();
+        UpdateMaterial(BodyData);
     }
 
     /// <summary>
@@ -83,7 +74,7 @@ public class GunBody : BodyBase
 
             GameObject bullet = Instantiate(_bulletPrefab, shotPoint.position, shotPoint.rotation);
 
-            bullet.GetComponent<Bullet>().Init(_teamObject.GetTeamType(), Damage, _robot);
+            bullet.GetComponent<Bullet>().Init(_robot);
         }
 
         audioSource?.PlayOneShot(clip);

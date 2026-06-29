@@ -7,17 +7,18 @@ public class KnightHead : HeadBase
     [SerializeField] private GameObject _escortTarget;
 
     // ’Êí‚ÌŒì‰q‹——£
-    [SerializeField] private float _escortDistance = 3.0f; 
+    [SerializeField] private float _escortDistance = 3.0f;
     
     // “G‘Î‚ÌŒì‰q‚©‚ç—£‚ê‚ç‚ê‚éÅ‘å‹——£
     [SerializeField] private float _maxProtectDistance = 10f;
 
-    public override void Init() 
+    public override void Init(Robot robot) 
     { 
-        base.Init(); 
+        base.Init(robot); 
     }
 
-    public override void CreateSetup() { 
+    public override void CreateSetup() 
+    { 
         UpdateMaterial(HeadData);
 
         // Œì‰q‘ÎÛ‚Ìİ’è
@@ -25,9 +26,44 @@ public class KnightHead : HeadBase
     }
 
     public override void ChaseTarget() 
-    { 
-        if (!_robot.MoveTarget.HasValue) return; 
-        MoveToTarget(_robot.MoveTarget.Value); 
+    {
+        if (_escortTarget == null)
+        {
+            _robot.Target = null;
+            FindEscortTarget();
+            return;
+        }
+
+        float distance = Vector3.Distance(transform.position, _escortTarget.transform.position);
+
+        // Å—DæFŒì‰q‘ÎÛ‚©‚ç—£‚ê‚·‚¬‚½‚ç–ß‚é
+        if (distance > _maxProtectDistance)
+        {
+            _robot.Target = null;
+            _robot.MoveStoppingDistance = _escortDistance;
+            _robot.MoveTarget = _escortTarget.transform.position;
+            return;
+        }
+
+        // “G‚ª‚¢‚é‚È‚ç’Ç‚¤
+        if (_robot.Target)
+        {
+            _robot.MoveStoppingDistance = _robot.Body.BodyData.StoppingDistance;
+            _robot.MoveTarget = _robot.Target.position;
+            return;
+        }
+
+        // “G‚ª‚¢‚È‚¯‚ê‚Î’ÊíŒì‰q
+        _robot.MoveStoppingDistance = _escortDistance;
+
+        if (distance > _escortDistance)
+        {
+            _robot.MoveTarget = _escortTarget.transform.position;
+        }
+        else
+        {
+            _robot.MoveTarget = null;
+        }
     }
 
     /// <summary> 
@@ -36,7 +72,7 @@ public class KnightHead : HeadBase
     /// “G‚Ì‚ÍŒì‰q‘ÎÛ‚ğ’T‚µˆê”Ô‹ß‚¢“G‚ğŒì‰q‘ÎÛ‚Æ‚·‚é 
     /// –¡•û‚Ì‚ÍƒvƒŒƒCƒ„[‚ğŒì‰q‘ÎÛ‚Æ‚·‚é 
     /// </summary> 
-    public override void TrackingTarget() 
+    public override void TrackingTarget()
     {
         // Œì‰q‘ÎÛ‚ª‚¢‚È‚¢‚Æ‚«
         if (_escortTarget == null) 
@@ -45,7 +81,7 @@ public class KnightHead : HeadBase
             return;
         } 
         
-        Robot escortRobot = _escortTarget.GetComponent<Robot>(); 
+        Robot escortRobot = _escortTarget.GetComponent<Robot>();
         
         // Œì‰q‘ÎÛ‚ªÅŒã‚ÉUŒ‚‚µ‚½“G‚ª‚¢‚½‚Æ‚«
         if (escortRobot?.LastAttacker != null)
@@ -56,6 +92,10 @@ public class KnightHead : HeadBase
         FollowEscort(); 
     } 
     
+    /// <summary>
+    /// Œì‰q‘ÎÛ‚ÉUŒ‚‚µ‚Ä‚«‚½‘Šè‚ğ’Ç”ö‚·‚é
+    /// </summary>
+    /// <param name="attacker"></param>
     private void ProtectEscort(Robot attacker) 
     { 
         if (attacker == null) 
@@ -71,10 +111,15 @@ public class KnightHead : HeadBase
             _robot.MoveTarget = null;
             FollowEscort();
             return;
-        } 
-        
-        _robot.MoveTarget = _robot.LastAttacker.transform.position; 
-        _robot.ChangeState(_robot.StateManager.WalkState); 
+        }
+
+        // í“¬
+        _robot.MoveStoppingDistance = _robot.Body.BodyData.StoppingDistance;
+
+        Debug.Log($"Head : {_robot.MoveStoppingDistance}");
+
+        _robot.MoveTarget = attacker.transform.position; 
+        //_robot.ChangeState(_robot.StateManager.WalkState);
     } 
     
     /// <summary> 
@@ -83,9 +128,15 @@ public class KnightHead : HeadBase
     private void FollowEscort() 
     { 
         if (_escortTarget == null) return; 
-        float distance = Vector3.Distance(transform.position, _escortTarget.transform.position); 
+        float distance = Vector3.Distance(transform.position, _escortTarget.transform.position);
+
+        // Œì‰q
+        _robot.MoveStoppingDistance = _escortDistance;
+
+        Debug.Log($"Head : {_robot.MoveStoppingDistance}");
+
         // ‰“‚¢‚È‚ç’Ç”ö
-        if(distance > _escortDistance) 
+        if (distance > _escortDistance) 
         { 
             _robot.MoveTarget = _escortTarget.transform.position; 
             _robot.ChangeState(_robot.StateManager.WalkState); 

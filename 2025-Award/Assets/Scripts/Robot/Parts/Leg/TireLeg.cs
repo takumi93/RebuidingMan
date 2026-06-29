@@ -3,18 +3,23 @@ using UnityEngine;
 public class TireLeg : LegBase
 {
     // キャタピラ時の角度
-    private const float _moveStartAngle = 30.0f;
+    private const float _moveStartAngle = 60.0f;
     private const float _rotateSpeed = 120f;
 
     public override void CreateSetup()
     {
-        transform.GetComponentInChildren<SkinnedMeshRenderer>().material = LegData.AllyMaterial;
+        UpdateMaterial(LegData);
     }
 
     public override void Move(Vector3 targetPos)
     {
+        _agent.stoppingDistance = _robot.MoveStoppingDistance;
+
         Vector3 targetDir = targetPos - transform.position;
         targetDir.y = 0f;
+
+        //Vector3 targetDir = _agent.desiredVelocity;
+        //targetDir.y = 0;
 
         if (targetDir.sqrMagnitude < 0.01f) return;
 
@@ -37,10 +42,16 @@ public class TireLeg : LegBase
         {
             _agent.isStopped = false;
             _agent.destination = targetPos;
+            Debug.DrawLine(transform.position,
+               _agent.steeringTarget,
+               Color.green);
         }
         else
         {
             _agent.isStopped = true;
         }
+
+        _agent.isStopped = false;
+        _agent.SetDestination(targetPos);
     }
 }

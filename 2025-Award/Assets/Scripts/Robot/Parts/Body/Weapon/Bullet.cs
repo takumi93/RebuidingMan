@@ -1,22 +1,28 @@
 using UnityEngine;
 
-public class Bullet : MonoBehaviour
+public class Bullet : WeaponBase
 {
-    public TeamType Team {  get; private set; }
-
-    public int Damage {  get; private set; }
-
-    public Robot Robot { get; private set; }
+    [SerializeField] private float _speed = 20f;
 
     /// <summary>
     /// èâä˙âª
     /// </summary>
-    /// <param name="team"></param>
-    /// <param name="damage"></param>
-    public void Init(TeamType team, int damage, Robot robot)
+    public override void Init(Robot owner)
     {
-        Team = team;
-        Damage = damage;
-        Robot = robot;
+        _owner = owner;
+        _body = owner.Body;
+        _teamObject = owner.GetComponent<TeamObject>();
+    }
+
+    private void FixedUpdate()
+    {
+        transform.Translate(Vector3.forward * _speed * Time.fixedDeltaTime);
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        OnHit(other);
+
+        Destroy(gameObject);
     }
 }

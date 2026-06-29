@@ -14,7 +14,6 @@ public class MissileMove : MonoBehaviour
     private void FixedUpdate()
     {
         transform.Translate(Vector3.forward * 0.2f);
-        
     }
 
     private void OnTriggerEnter(Collider other)

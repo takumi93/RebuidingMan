@@ -38,19 +38,19 @@ public class PauseUI : BaseUI
     {
         base.Show();
 
-        InputManager.Instance.EnableUIInput();
-
-        Time.timeScale = 0;
-
         _resumeButton.Select();
     }
 
-    public override void Hide()
+    public override void OnOpen()
+    {
+        InputManager.Instance.EnableUIInput();
+        Time.timeScale = 0;
+    }
+
+    public override void OnClose()
     {
         InputManager.Instance.EnablePlayerInput();
 
         Time.timeScale = 1;
-
-        base.Hide();
     }
 }

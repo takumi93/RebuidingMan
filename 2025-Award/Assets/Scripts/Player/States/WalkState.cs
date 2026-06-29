@@ -7,7 +7,7 @@ public class WalkState : PlayerState
 
     public override void Enter()
     {
-        _player.Animation.SetTrigger("Walk");
+        _player.Animation.SetBool("IsMoving", true);
     }
 
     public override void Update()

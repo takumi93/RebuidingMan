@@ -7,7 +7,7 @@ public class IdleState : PlayerState
 
     public override void Enter()
     {
-        _player.Animation.SetTrigger("Idle");
+        _player.Animation.SetBool("IsMoving", false);
     }
 
     public override void Update()

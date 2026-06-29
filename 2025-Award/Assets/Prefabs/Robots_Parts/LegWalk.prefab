@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 352531659866815411}
   - component: {fileID: 4992776137861138275}
   - component: {fileID: 6813049649514602072}
-  - component: {fileID: 3319935554156700917}
   m_Layer: 7
   m_Name: LegWalk
   m_TagString: Untagged
@@ -92,18 +91,6 @@ MonoBehaviour:
   - {fileID: 8324569328726539527}
   LegToBodyRig: {fileID: 1159666875183248523}
   _rotateSpeed: 5
---- !u!114 &3319935554156700917
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8398582155743438830}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fccf995cac308de45bbd0a50bff6fbde, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &6013115033122094072
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -3,21 +3,43 @@ using UnityEngine;
 
 public abstract class WeaponBase : MonoBehaviour
 {
+    protected Robot _owner;
     protected BodyBase _body;
     protected TeamObject _teamObject;
-    protected Robot _robot;
 
     // 武器に当たった判定を残すための変数
     private HashSet<GameObject> _hitTargets = new HashSet<GameObject>();
 
     /// <summary>
+    /// ダメージ量
+    /// </summary>
+    protected virtual int AttackDamage => _body.Damage;
+
+    /// <summary>
+    /// 武器の所有者（攻撃してきた敵の情報を渡すため）
+    /// </summary>
+    protected virtual GameObject Attacker => _owner.gameObject;
+
+    /// <summary>
     /// 初期化
+    /// 近接武器用
     /// </summary>
     public virtual void Init()
     {
-        _body = GetComponentInParent<BodyBase>();
-        _teamObject = GetComponentInParent<TeamObject>();
-        _robot = GetComponentInParent<Robot>();
+        _owner = GetComponentInParent<Robot>();
+        _body = _owner.Body;
+        _teamObject = _owner.GetComponent<TeamObject>();
+    }
+
+    /// <summary>
+    /// 初期化
+    /// 飛び道具用
+    /// </summary>
+    public virtual void Init(Robot owner)
+    {
+        _owner = owner;
+        _body = owner.Body;
+        _teamObject = owner.GetComponent<TeamObject>();
     }
 
     /// <summary>
@@ -45,7 +67,7 @@ public abstract class WeaponBase : MonoBehaviour
     public virtual void OnHit(Collider other)
     {
         // 自分は無視
-        if (other.transform.IsChildOf(_robot?.transform)) return;
+        if (other.transform.IsChildOf(_owner?.transform)) return;
 
         // 攻撃が当たったオブジェクトの陣営を取得
         TeamObject target = other.transform.GetComponentInParent<TeamObject>();
@@ -71,11 +93,11 @@ public abstract class WeaponBase : MonoBehaviour
     {
         if(other.GetComponentInParent<PlayerHP>() is PlayerHP playerHP)
         {
-            playerHP.Damage(_body.Damage, _robot.gameObject);
+            playerHP.Damage(AttackDamage, Attacker);
         }
-        if(other.GetComponentInParent<RobotHPManager>() is  RobotHPManager robotHP)
+        if(other.GetComponentInParent<RobotHPManager>() is RobotHPManager robotHP)
         {
-            robotHP.ApplyTotalDamage(_body.Damage, _robot.gameObject);
+            robotHP.ApplyTotalDamage(AttackDamage, Attacker);
         }
     }
 }

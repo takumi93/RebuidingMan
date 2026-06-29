@@ -18,6 +18,10 @@ public class RobotAssembler : MonoBehaviour
         headObj.GetComponent<HeadBase>().SetData((HeadData)head);
         bodyObj.GetComponent<BodyBase>().SetData((BodyData)body);
         legObj.GetComponent<LegBase>().SetData((LegData)leg);
+
+        headObj.GetComponent<HeadBase>().CreateSetup() ;
+        bodyObj.GetComponent <BodyBase>().CreateSetup();
+        legObj.GetComponent <LegBase>().CreateSetup();
     }
 
     /// <summary>

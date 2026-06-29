@@ -18,20 +18,15 @@ public abstract class HeadBase: PartBase
     [Header("胴に連動するRigを指定")]
     [SerializeField] public GameObject HeadToBodyRig = null;
 
-    // 敵の移動範囲
-    protected NavMeshAgent _area;
-    protected Robot _robot;
-
     public bool IsPatrolling;
 
-    /// <summary>
-    /// 初期化
-    /// </summary>
-    public virtual void Init()
-    {
-        _area = GetComponentInParent<NavMeshAgent>();
-        _robot = GetComponentInParent<Robot>();
-    }
+    ///// <summary>
+    ///// 初期化
+    ///// </summary>
+    //public virtual void Init()
+    //{
+        
+    //}
 
     /// <summary>
     /// Idle状態ですること
@@ -43,16 +38,6 @@ public abstract class HeadBase: PartBase
     /// 敵を見つけたとき移動先を敵にする
     /// </summary>
     public abstract void ChaseTarget();
-
-    /// <summary>
-    /// 移動先を指定
-    /// </summary>
-    /// <param name="targetPos"></param>
-    public void MoveToTarget(Vector3 targetPos)
-    {
-        _area.isStopped = false;
-        _area.destination = targetPos;
-    }
 
     public void SetData(HeadData data)
     {
@@ -66,11 +51,6 @@ public abstract class HeadBase: PartBase
     ///// <param name="rig"></param>
     ///// <param name="agent"></param>
     //public abstract void SetupRig(GameObject rig, NavMeshAgent agent);
-
-    /// <summary>
-    /// ロボットがプレイヤーによって作成されたときの初期設定
-    /// </summary>
-    public abstract void CreateSetup();
 
     /// <summary>
     /// 敵を索敵

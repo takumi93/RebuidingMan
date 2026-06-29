@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 3851598605558746369}
   - component: {fileID: 8696363719530295823}
   - component: {fileID: 8917717603722102790}
-  - component: {fileID: 2068790500445829804}
   - component: {fileID: 2749718797198758102}
   m_Layer: 7
   m_Name: HeadRook
@@ -73,18 +72,6 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 08a727265c975f34284e2aa667a33685, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &2068790500445829804
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8782737232203162402}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fccf995cac308de45bbd0a50bff6fbde, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!114 &2749718797198758102

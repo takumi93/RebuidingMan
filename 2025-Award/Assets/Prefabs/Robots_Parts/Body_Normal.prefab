@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 9187211474022961950}
   - component: {fileID: 4103294657433908270}
   - component: {fileID: 3137596052412889693}
-  - component: {fileID: -8491499747310997836}
   m_Layer: 9
   m_Name: Body_Normal
   m_TagString: Body
@@ -92,18 +91,6 @@ MonoBehaviour:
   - {fileID: 4733092891111587242}
   BodyToHeadRig: {fileID: 6553015823149877859}
   BodyToLegRig: {fileID: 527860180239298578}
---- !u!114 &-8491499747310997836
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2668936212951939357}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fccf995cac308de45bbd0a50bff6fbde, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &6674387687604962363
 PrefabInstance:
   m_ObjectHideFlags: 0

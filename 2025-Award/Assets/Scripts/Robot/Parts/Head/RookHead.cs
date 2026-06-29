@@ -8,13 +8,16 @@ public class RookHead : HeadBase
     [SerializeField] private float defendRadius = 15.0f; 
 
     // –h‰q”ÍˆÍ
-    public override void Init() {
-        base.Init(); 
+    public override void Init(Robot robot) 
+    {
+        base.Init(robot); 
         IsPatrolling = false;
     } 
     
-    public override void CreateSetup() { 
+    public override void CreateSetup() 
+    { 
         UpdateMaterial(HeadData);
+
         // –h‰q’n“_‚Ìİ’è
         var Fix = Instantiate(StageScene.Instance.GuardianPoint, StageScene.Instance.GuardianTransform.transform); 
         Fix.name = "GuardianPoint";

@@ -32,10 +32,12 @@ public abstract class BodyBase: PartBase
     /// <summary>
     /// 初期化
     /// </summary>
-    public virtual void Init()
+    public override void Init(Robot robot)
     {
+        base.Init(robot);
+
         Animation = GetComponentInChildren<RobotAnimation>();
-        audioSource = GetComponentInParent<AudioSource>();
+        audioSource = robot.GetComponent<AudioSource>();
 
         Animation.InitBody(this);
 
@@ -76,11 +78,6 @@ public abstract class BodyBase: PartBase
     {
 
     }
-
-    /// <summary>
-    /// 味方になった時のセットアップ
-    /// </summary>
-    public abstract void CreateSetup();
 
     /// <summary>
     /// データの登録

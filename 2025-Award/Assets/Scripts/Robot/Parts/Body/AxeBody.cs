@@ -5,9 +5,9 @@ public class AxeBody : BodyBase
     /// <summary>
     /// èâä˙ê›íË
     /// </summary>
-    public override void Init()
+    public override void Init(Robot robot)
     {
-        base.Init();
+        base.Init(robot);
 
         Weapon = GetComponentInChildren<Axe>();
         Weapon.Init();
@@ -18,8 +18,7 @@ public class AxeBody : BodyBase
     /// </summary>
     public override void CreateSetup()
     {
-        transform.GetChild(0).GetChild(2).GetComponent<SkinnedMeshRenderer>().material = BodyData.AllyMaterial;
-        audioSource = GetComponentInParent<AudioSource>();
+        UpdateMaterial(BodyData);
     }
 
     /// <summary>

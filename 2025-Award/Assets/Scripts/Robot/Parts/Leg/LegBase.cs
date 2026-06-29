@@ -13,16 +13,14 @@ public abstract class LegBase : PartBase
 
     public RobotAnimation Animation { get; protected set; }
 
-    public Rigidbody rb {  get; protected set; }
-
-    public virtual void Init()
+    public override void Init(Robot robot)
     {
+        base.Init(robot);
+
         Animation = GetComponentInChildren<RobotAnimation>();
         Animation.Init();
 
-        _agent = GetComponentInParent<NavMeshAgent>();
-
-        rb = GetComponent<Rigidbody>();
+        _agent = robot.GetComponent<NavMeshAgent>();
     }
 
     ///// <summary>
@@ -43,9 +41,4 @@ public abstract class LegBase : PartBase
     {
         _agent.isStopped = true;
     }
-
-    /// <summary>
-    /// ロボットがプレイヤーによって作成されたときの初期設定
-    /// </summary>
-    public abstract void CreateSetup();
 }

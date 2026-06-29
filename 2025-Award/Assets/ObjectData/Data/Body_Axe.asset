@@ -25,6 +25,7 @@ MonoBehaviour:
   _damageB: 80
   _coolTimeA: 3
   _coolTimeB: 8
-  _attackSoundA: {fileID: 0}
-  _attackSoundB: {fileID: 0}
+  _attackSoundA: {fileID: 8300000, guid: e7515b94d702f9d40a01f1baf4eb3a96, type: 3}
+  _attackSoundB: {fileID: 8300000, guid: e7515b94d702f9d40a01f1baf4eb3a96, type: 3}
   _attackRange: 4
+  _stoppingDistance: 3

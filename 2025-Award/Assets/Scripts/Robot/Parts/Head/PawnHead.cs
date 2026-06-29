@@ -5,9 +5,9 @@ public class PawnHead : HeadBase
     [SerializeField] private PatrolRoute _patrolRoute; 
     private int _currentPoint = 0; 
     
-    public override void Init() 
+    public override void Init(Robot robot) 
     { 
-        base.Init();
+        base.Init(robot);
         IsPatrolling = true;
         SetNextDestination();
     } 
@@ -21,8 +21,6 @@ public class PawnHead : HeadBase
 
         // „‰ñƒ‹[ƒg‚Ìİ’è
         _patrolRoute = StageScene.Instance.AllyRoute;
-        _currentPoint = 0; 
-        SetNextDestination(); 
     } 
     
     /// <summary> 
@@ -50,7 +48,7 @@ public class PawnHead : HeadBase
 
         float distance = Vector3.Distance(transform.position, _robot.MoveTarget.Value);
 
-        if(distance <= _area.stoppingDistance)
+        if(distance <= 2.0f)
         {
             SetNextDestination();
         }

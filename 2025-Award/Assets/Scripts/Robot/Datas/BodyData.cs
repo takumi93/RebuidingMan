@@ -52,6 +52,12 @@ public class BodyData : PartsData
 
     public int AttackRange => _attackRange;
 
+    [Tooltip("ˆÚ“®æ‚ÅŽ~‚Ü‚é‹——£")]
+    [SerializeField]
+    private float _stoppingDistance;
+
+    public float StoppingDistance => _stoppingDistance;
+
     public override PartsType GetPartsType() => PartsType.Body;
 }
 

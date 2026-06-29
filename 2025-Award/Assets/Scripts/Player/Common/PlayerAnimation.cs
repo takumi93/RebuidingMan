@@ -25,6 +25,17 @@ public class PlayerAnimation : MonoBehaviour
     }
 
     /// <summary>
+    /// アニメーションを再生する
+    /// 移動時連打すると攻撃アニメーションが再生されないためBoolで設定
+    /// </summary>
+    /// <param name="name">AnimationのParameter</param>
+    /// <param name="onMove">ParameterのOnOff</param>
+    public void SetBool(string name, bool onMove)
+    {
+        _animator.SetBool(name, onMove);
+    }
+
+    /// <summary>
     /// AnimationEventで使用する攻撃の開始イベント
     /// </summary>
     private void OnAttackStart()

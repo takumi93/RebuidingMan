@@ -7,8 +7,8 @@ public class RobotWalkState : RobotStateBase
 
     public override void Enter(Robot robot)
     {
-        robot.Body.Animation.SetTrigger("Walk");
-        robot.Leg.Animation.SetTrigger("Walk");
+        robot.Body.Animation.SetBool("IsMoving", true);
+        robot.Leg.Animation.SetBool("IsMoving", true);
     }
 
     public override void Tick(Robot robot)

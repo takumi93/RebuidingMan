@@ -38,6 +38,20 @@ public abstract class BaseUI : MonoBehaviour
     }
 
     /// <summary>
+    /// UI‚ªŠJ‚©‚ê‚½‚Æ‚«‚Ìˆ—
+    /// </summary>
+    public virtual void OnOpen()
+    {
+    }
+
+    /// <summary>
+    /// UI‚ª•Â‚¶‚ç‚ê‚½‚Ìˆ—
+    /// </summary>
+    public virtual void OnClose()
+    {
+    }
+
+    /// <summary>
     /// ‚±‚ÌUI‚ª‘I‘ğó‘Ô‚Ì‚Ìˆ—
     /// </summary>
     public virtual void OnFocus()

@@ -5,9 +5,9 @@ public class NormalBody : BodyBase
     /// <summary>
     /// èâä˙ê›íË
     /// </summary>
-    public override void Init()
+    public override void Init(Robot robot)
     {
-        base.Init();
+        base.Init(robot);
 
         Weapon = GetComponentInChildren<Normal>();
         Weapon.Init();
@@ -18,8 +18,7 @@ public class NormalBody : BodyBase
     /// </summary>
     public override void CreateSetup()
     {
-        GetComponentInChildren<SkinnedMeshRenderer>().material = BodyData.AllyMaterial;
-        audioSource = this.GetComponentInParent<AudioSource>();
+        UpdateMaterial(BodyData);
     }
     
     /// <summary>

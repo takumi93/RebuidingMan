@@ -8,13 +8,15 @@ public class WalkLeg : LegBase
 
     public override void CreateSetup()
     {
-        transform.GetComponentInChildren<SkinnedMeshRenderer>().material = LegData.AllyMaterial;
+        UpdateMaterial(LegData);
     }
 
     public override void Move(Vector3 targetPos)
     {
         _agent.isStopped = false;
         _agent.destination = targetPos;
+
+        _agent.stoppingDistance = _robot.MoveStoppingDistance;
 
         Vector3 dir = targetPos - transform.position;
         dir.y = 0f;

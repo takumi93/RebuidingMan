@@ -10,13 +10,13 @@ public class RobotIdleState : RobotStateBase
         // 移動先があるなしでアニメーションの変更
         if (robot.MoveTarget.HasValue)
         {
-            robot.Body.Animation.SetTrigger("Walk");
-            robot.Leg.Animation.SetTrigger("Walk");
+            robot.Body.Animation.SetBool("IsMoving", true);
+            robot.Leg.Animation.SetBool("IsMoving", true);
         }
         else
         {
-            robot.Body.Animation.SetTrigger("Idle");
-            robot.Leg.Animation.SetTrigger("Idle");
+            robot.Body.Animation.SetBool("IsMoving", false);
+            robot.Leg.Animation.SetBool("IsMoving", false);
         }
     }
 
@@ -25,13 +25,13 @@ public class RobotIdleState : RobotStateBase
         // 移動先があるなしでアニメーションの変更
         if (robot.MoveTarget.HasValue)
         {
-            robot.Body.Animation.SetTrigger("Walk");
-            robot.Leg.Animation.SetTrigger("Walk");
+            robot.Body.Animation.SetBool("IsMoving", true);
+            robot.Leg.Animation.SetBool("IsMoving", true);
         }
         else
         {
-            robot.Body.Animation.SetTrigger("Idle");
-            robot.Leg.Animation.SetTrigger("Idle");
+            robot.Body.Animation.SetBool("IsMoving", false);
+            robot.Leg.Animation.SetBool("IsMoving", false);
         }
 
         // 敵を見つけたときの処理

@@ -23,6 +23,9 @@ public class Robot : MonoBehaviour
     // ˆÚ“®æ
     public Vector3? MoveTarget { get; set; }
 
+    // w’è‚³‚ê‚½ˆÚ“®æ‚É~‚Ü‚é‹——£
+    public float MoveStoppingDistance { get; set; }
+
     // UŒ‚ƒ‚[ƒVƒ‡ƒ“‚É“ü‚é‹——£
     public float attackDistance { get; private set; }
 
@@ -45,9 +48,9 @@ public class Robot : MonoBehaviour
         Body.SetData((BodyData)partsDatabase.GetPartById(Body.Id));
         Leg.SetData((LegData)partsDatabase.GetPartById(Leg.Id));
 
-        Head.Init();
-        Body.Init();
-        Leg.Init();
+        Head.Init(this);
+        Body.Init(this);
+        Leg.Init(this);
 
         // “G‚©–¡•û‚©¯•Ê
         var team = GetComponent<TeamObject>();
@@ -59,7 +62,11 @@ public class Robot : MonoBehaviour
             Leg.CreateSetup();
         }
 
+        RobotManager.Instance.Register(this);
+
         attackDistance = Body.BodyData.AttackRange;
+
+        MoveStoppingDistance = Body.BodyData.StoppingDistance;
 
         StateManager = new RobotStateManager(this);
     }

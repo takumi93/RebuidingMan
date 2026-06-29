@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 5287406293640392624}
   - component: {fileID: 5386792119653735626}
   - component: {fileID: 5944524372750208480}
-  - component: {fileID: 8995488699567516424}
   m_Layer: 9
   m_Name: Body_Axe
   m_TagString: Body
@@ -92,18 +91,6 @@ MonoBehaviour:
   - {fileID: 6367848114004814097}
   BodyToHeadRig: {fileID: 3971737540484025105}
   BodyToLegRig: {fileID: 1523629233888871930}
---- !u!114 &8995488699567516424
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1066841041302124578}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fccf995cac308de45bbd0a50bff6fbde, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &5852326250841257282
 PrefabInstance:
   m_ObjectHideFlags: 0
