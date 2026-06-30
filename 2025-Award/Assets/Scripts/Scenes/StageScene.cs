@@ -24,7 +24,6 @@ public class StageScene : MonoBehaviour
     [Header("UI")]
     // プレイUIを指定
     [SerializeField] private PlayUI _playUI;
-    [SerializeField] private StageFadeUI _stageFadeUI;
     //　ポーズUIを指定
     [SerializeField] private PauseUI _pauseUI;
     // ゲームオーバーUIを指定
@@ -58,6 +57,8 @@ public class StageScene : MonoBehaviour
         // Intro状態
         gameState = SceneState.Intro;
 
+        Time.timeScale = 1;
+
         // フェードが終了した通知を受け取る
         _playUI.OnFadeInFinish.AddListener(PlayGame);
 
@@ -84,7 +85,7 @@ public class StageScene : MonoBehaviour
     public void PlayGame()
     {
         gameState = SceneState.Play;
-        Time.timeScale = 1;
+        
 
         InputManager.Instance.EnablePlayerInput();
 
@@ -116,7 +117,7 @@ public class StageScene : MonoBehaviour
     IEnumerator OnLoadScene(string sceneName)
     {
         // アニメーションが終了するまで1秒待機
-        yield return new WaitForSecondsRealtime(1);
+        yield return new WaitForSecondsRealtime(2);
         // シーンをロードする
         SceneManager.LoadScene(sceneName);
     }
@@ -126,6 +127,7 @@ public class StageScene : MonoBehaviour
     /// </summary>
     public void LoadTitleScene()
     {
+        _playUI.FadeOut();
         StartCoroutine(OnLoadScene("Title"));
     }
 
@@ -134,7 +136,8 @@ public class StageScene : MonoBehaviour
     /// </summary>
     public void NextStage()
     {
-        if(nowSceneName == "Stage1")
+        _playUI.FadeOut();
+        if (nowSceneName == "Stage1")
         {
             StartCoroutine(OnLoadScene("Stage2"));
         }else if (nowSceneName == "Stage2")
@@ -156,6 +159,7 @@ public class StageScene : MonoBehaviour
     /// </summary>
     public void Retry()
     {
+        _playUI.FadeOut();
         StartCoroutine(OnLoadScene(SceneManager.GetActiveScene().name));
     }
 

@@ -16,6 +16,8 @@ public class PlayerInventory: MonoBehaviour
     public void Init(Player player)
     {
         _player = player;
+
+        ClearParts();
     }
 
     /// <summary>

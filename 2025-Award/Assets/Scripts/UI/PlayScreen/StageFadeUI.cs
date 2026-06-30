@@ -10,6 +10,7 @@ public class StageFadeUI : UIAnimation
 
     public void FadeOut()
     {
+        _animator.updateMode = AnimatorUpdateMode.UnscaledTime;
         SetTrigger(FadeOutHash);
     }
 

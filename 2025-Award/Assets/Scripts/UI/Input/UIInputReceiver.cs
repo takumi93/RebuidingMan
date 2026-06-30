@@ -51,7 +51,6 @@ public class UIInputReceiver : MonoBehaviour
         if (!context.started) return;
 
         _inputinfo.Cancel = true;
-        Debug.Log("true");
 
         BaseUI current = UIManager.Instance.CurrentUI();
 

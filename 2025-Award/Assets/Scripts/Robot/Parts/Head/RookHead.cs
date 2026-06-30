@@ -14,14 +14,17 @@ public class RookHead : HeadBase
         IsPatrolling = false;
     } 
     
-    public override void CreateSetup() 
+    public override void CreateSetup()
     { 
         UpdateMaterial(HeadData);
 
         // ñhâqínì_ÇÃê›íË
-        var Fix = Instantiate(StageScene.Instance.GuardianPoint, StageScene.Instance.GuardianTransform.transform); 
+        var Fix = Instantiate(
+            StageScene.Instance.GuardianPoint,
+            transform.position,
+            Quaternion.identity,
+            StageScene.Instance.GuardianTransform.transform); 
         Fix.name = "GuardianPoint";
-        Fix.transform.position = StageScene.Instance.GuardianTransform.transform.position;
         FixedPosition = Fix.transform;
     }
     

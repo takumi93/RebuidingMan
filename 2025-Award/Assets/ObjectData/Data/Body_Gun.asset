@@ -22,7 +22,7 @@ MonoBehaviour:
   _allyMaterial: {fileID: 2100000, guid: ad95f229335e0a34db556e83898f1cd0, type: 2}
   _bodyType: 1
   _damageA: 20
-  _damageB: 50
+  _damageB: 30
   _coolTimeA: 2
   _coolTimeB: 5
   _attackSoundA: {fileID: 8300000, guid: 4d20846b36c0d9643a445852bd162de7, type: 3}

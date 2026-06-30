@@ -29,6 +29,9 @@ public class Robot : MonoBehaviour
     // UŒ‚ƒ‚[ƒVƒ‡ƒ“‚É“ü‚é‹——£
     public float attackDistance { get; private set; }
 
+    //// ¶¬‚³‚ê‚½ˆÊ’u
+    //public Vector3 SpawnPosition { get; private set; }
+
     // w‰c
     private TeamObject _teamObject;
 
@@ -51,16 +54,6 @@ public class Robot : MonoBehaviour
         Head.Init(this);
         Body.Init(this);
         Leg.Init(this);
-
-        // “G‚©–¡•û‚©¯•Ê
-        var team = GetComponent<TeamObject>();
-
-        if (team != null && team.GetTeamType() == TeamType.Player)
-        {
-            Head.CreateSetup();
-            Body.CreateSetup();
-            Leg.CreateSetup();
-        }
 
         RobotManager.Instance.Register(this);
 

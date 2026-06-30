@@ -29,6 +29,7 @@ public class NormalBody : BodyBase
         OnAttackStart();
 
         Animation.SetTrigger("AttackA");
+        audioSource.PlayOneShot(BodyData.AttackSoundA);
 
         Damage = BodyData.DamageA;
         currentCoolTime = BodyData.CoolTimeA;
@@ -42,6 +43,7 @@ public class NormalBody : BodyBase
         OnAttackStart();
 
         Animation.SetTrigger("AttackB");
+        audioSource.PlayOneShot(BodyData.AttackSoundB);
 
         Damage = BodyData.DamageB;
         currentCoolTime = BodyData.CoolTimeB;

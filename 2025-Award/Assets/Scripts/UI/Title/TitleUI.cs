@@ -17,11 +17,17 @@ public class TitleUI : BaseUI
     [SerializeField]
     private Button exitButton = null;
 
+    // ステージセレクト画面
+    [SerializeField] private BaseUI _stageSelectUI = null;
+    // オプション画面
+    [SerializeField] private BaseUI _optionUI = null;
+
+
     protected override void Awake()
     {
         // UnityEvent を追加
-        stageSelectButton.onClick.AddListener(() => { onStageSelectButtonClick.Invoke(); });
-        optionButton.onClick.AddListener(() => { onOptionButtonClick.Invoke(); });
+        stageSelectButton.onClick.AddListener(() => { UIManager.Instance.Push(_stageSelectUI); });
+        optionButton.onClick.AddListener(() => { UIManager.Instance.Push(_optionUI); });
         exitButton.onClick.AddListener(() => { onExitButtonClick.Invoke(); });
     }
 
@@ -31,5 +37,10 @@ public class TitleUI : BaseUI
         base.Show();
         
         stageSelectButton.Select();
+    }
+
+    public override void OnOpen()
+    {
+        InputManager.Instance.EnableUIInput();
     }
 }

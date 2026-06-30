@@ -6,34 +6,34 @@ public class TitleScene : MonoBehaviour
 {
     //スクリプトの指定
     // タイトルUIを指定
-    [SerializeField] private TitleUI titleUI = null;
+    [SerializeField] private TitleUI _titleUI = null;
     // ステージセレクトUIを指定
-    [SerializeField] private StageSelectUI stageSelectUI = null;
+    [SerializeField] private StageSelectUI _stageSelectUI = null;
 
-    // アニメーター
-    private Animator animator;
+    [SerializeField] private StageFadeUI _stageFadeUI = null;
 
-    // パラメーターID
-    static readonly int OutroId = Animator.StringToHash("Outro");
+    private void Awake()
+    {
+        Application.targetFrameRate = 60;
+        QualitySettings.vSyncCount = 1;
+    }
 
     private void Start()
     {
-        // 参照
-        animator = GetComponent<Animator>();
         // UnityEvent
         //playIntroUI.onPlayGame.AddListener(PlayGame);
         // タイトル画面でのボタン処理
-        //titleUI.onStageSelectButtonClick.AddListener(OpenStageSelect);
-        //titleUI.onOptionButtonClick.AddListener(Option);
-        titleUI.onExitButtonClick.AddListener(ExitGame);
+        _titleUI.onExitButtonClick.AddListener(ExitGame);
 
         // ステージ選択画面でのボタン処理
-        stageSelectUI.FirstStageRequested.AddListener(() => LoadNextScene("Stage1"));
-        stageSelectUI.SecondStageRequested.AddListener(() => LoadNextScene("Stage2"));
-        stageSelectUI.ThirdStageRequested.AddListener(() => LoadNextScene("Stage3"));
-        stageSelectUI.ForceStageRequested.AddListener(() => LoadNextScene("Stage4"));
+        _stageSelectUI.FirstStageRequested.AddListener(() => LoadNextScene("Stage1"));
+        _stageSelectUI.SecondStageRequested.AddListener(() => LoadNextScene("Stage2"));
+        _stageSelectUI.ThirdStageRequested.AddListener(() => LoadNextScene("Stage3"));
+        _stageSelectUI.ForceStageRequested.AddListener(() => LoadNextScene("Stage4"));
 
         Time.timeScale = 1;
+
+        UIManager.Instance.Push(_titleUI);
     }
 
     private void Update()
@@ -50,45 +50,43 @@ public class TitleScene : MonoBehaviour
         }
     }
 
-    // ================================================================================
-    // 関数名:     LoadNextScene
-    // 処理内容:   OnLoadNextSceneを呼び出す
-    // Scene:      シーン名
-    // ================================================================================
+    /// <summary>
+    /// OnLoadNextSceneで指定したシーンを呼び出す
+    /// </summary>
+    /// <param name="Scene">移動先のシーン名</param>
     public void LoadNextScene(string Scene)
     {
+        _stageFadeUI.FadeOut();
         StartCoroutine(OnLoadNextScene(Scene));
     }
 
-    // ================================================================================
-    // 関数名:     OnLoadNextScene
-    // 処理内容:   指定するシーンに遷移する
-    // Scene:       シーン名
-    // ================================================================================
+    /// <summary>
+    /// 指定したシーンに遷移する
+    /// </summary>
+    /// <param name="sceneName">移動先のシーン名</param>
+    /// <returns></returns>
     IEnumerator OnLoadNextScene(string sceneName)
     {
         //seAudio.PlayOneShot(changeSceneAudio);
         //animator.SetTrigger(outroId);
 
-        yield return new WaitForSeconds(1);
+        yield return new WaitForSeconds(2);
         //bgmAudio.Stop();
         SceneManager.LoadScene(sceneName);
     }
 
-    // ================================================================================
-    // 関数名:     ExitGame
-    // 処理内容:   OnExitGameを呼び出す
-    // ================================================================================
-    //ゲームの終了
+    /// <summary>
+    /// ゲームを終了する
+    /// </summary>
     public void ExitGame()
     {
         StartCoroutine(OnExitGame());
     }
 
-    // ================================================================================
-    // 関数名:     OnExitGame
-    // 処理内容:   ゲームを終了する
-    // ================================================================================
+    /// <summary>
+    /// ゲームを終了する
+    /// </summary>
+    /// <returns></returns>
     IEnumerator OnExitGame()
     {
         //seAudio.PlayOneShot(changeSceneAudio);

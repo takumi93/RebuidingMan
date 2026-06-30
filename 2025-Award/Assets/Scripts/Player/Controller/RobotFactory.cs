@@ -35,6 +35,7 @@ public class RobotFactory : MonoBehaviour
 
         robot.name = "Robot";
 
+        Robot robotComponent = robot.GetComponent<Robot>();
 
         robotAssembler.SetParts(head, body, leg, robot.transform);
 

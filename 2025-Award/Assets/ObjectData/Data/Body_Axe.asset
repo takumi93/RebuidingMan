@@ -28,4 +28,4 @@ MonoBehaviour:
   _attackSoundA: {fileID: 8300000, guid: e7515b94d702f9d40a01f1baf4eb3a96, type: 3}
   _attackSoundB: {fileID: 8300000, guid: e7515b94d702f9d40a01f1baf4eb3a96, type: 3}
   _attackRange: 4
-  _stoppingDistance: 3
+  _stoppingDistance: 2

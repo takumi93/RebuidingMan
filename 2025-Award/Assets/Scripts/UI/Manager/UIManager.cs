@@ -74,7 +74,7 @@ public class UIManager : MonoBehaviour
     }
 
     /// <summary>
-    /// 
+    /// UI‚ðŠJ‚¢‚Ä‚¢‚é‚©‚ÌŠm”F
     /// </summary>
     /// <returns></returns>
     public bool HasOpenUI()

@@ -41,4 +41,17 @@ public class GameClearUI : BaseUI
 
         base.Hide();
     }
+
+    public override void OnOpen()
+    {
+        InputManager.Instance.EnableUIInput();
+        Time.timeScale = 0;
+    }
+
+    public override void OnClose()
+    {
+        InputManager.Instance.EnablePlayerInput();
+
+        Time.timeScale = 1;
+    }
 }

@@ -20,9 +20,6 @@ public class KnightHead : HeadBase
     public override void CreateSetup() 
     { 
         UpdateMaterial(HeadData);
-
-        // åÏâqëŒè€ÇÃê›íË
-        FindEscortTarget();
     }
 
     public override void ChaseTarget() 
@@ -30,7 +27,7 @@ public class KnightHead : HeadBase
         if (_escortTarget == null)
         {
             _robot.Target = null;
-            FindEscortTarget();
+            FindEscortTarget(_robot);
             return;
         }
 
@@ -77,7 +74,7 @@ public class KnightHead : HeadBase
         // åÏâqëŒè€Ç™Ç¢Ç»Ç¢Ç∆Ç´
         if (_escortTarget == null) 
         { 
-            FindEscortTarget();
+            FindEscortTarget(_robot);
             return;
         } 
         
@@ -116,8 +113,6 @@ public class KnightHead : HeadBase
         // êÌì¨éû
         _robot.MoveStoppingDistance = _robot.Body.BodyData.StoppingDistance;
 
-        Debug.Log($"Head : {_robot.MoveStoppingDistance}");
-
         _robot.MoveTarget = attacker.transform.position; 
         //_robot.ChangeState(_robot.StateManager.WalkState);
     } 
@@ -133,28 +128,27 @@ public class KnightHead : HeadBase
         // åÏâqéû
         _robot.MoveStoppingDistance = _escortDistance;
 
-        Debug.Log($"Head : {_robot.MoveStoppingDistance}");
-
         // âìÇ¢Ç»ÇÁí«îˆ
         if (distance > _escortDistance) 
         { 
             _robot.MoveTarget = _escortTarget.transform.position; 
-            _robot.ChangeState(_robot.StateManager.WalkState); 
+            //_robot.ChangeState(_robot.StateManager.WalkState); 
         } 
         else 
         { 
             _robot.MoveTarget = null;
-            _robot.ChangeState(_robot.StateManager.IdleState);
-        } 
-    } 
+            //_robot.ChangeState(_robot.StateManager.IdleState);
+        }
+    }
     
     /// <summary>
     /// åÏâqëŒè€ÇíTÇ∑ 
-    /// </summary> 
-    private void FindEscortTarget()
+    /// </summary>
+    /// <param name="robot"></param>
+    private void FindEscortTarget(Robot robot)
     { 
         // êwâcÇ™ÉvÉåÉCÉÑÅ[êwâcÇÃéû
-        if(_robot.TeamType == TeamType.Player) 
+        if(robot.TeamType == TeamType.Player) 
         { 
             GameObject player = GameObject.FindGameObjectWithTag("Player"); 
             if (player != null) 
@@ -164,7 +158,7 @@ public class KnightHead : HeadBase
         } 
         else 
         { 
-            Robot ally = RobotManager.Instance.GetNearestAlly(_robot);
+            Robot ally = RobotManager.Instance.GetNearestAlly(robot);
             if (ally != null) 
             { 
                 _escortTarget = ally.gameObject;

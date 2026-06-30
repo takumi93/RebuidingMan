@@ -57,9 +57,11 @@ public class InputManager : MonoBehaviour
     /// </summary>
     public void EnablePlayerInput()
     {
-        _uiMap.Disable();
+        //_uiMap.Disable();
 
-        _playerMap.Enable();
+        //_playerMap.Enable();
+
+        _playerInputSystem.SwitchCurrentActionMap("Player");
 
         IsPlayerInput = true;
 
@@ -74,12 +76,18 @@ public class InputManager : MonoBehaviour
     /// </summary>
     public void EnableUIInput()
     {
-        _playerMap.Disable();
+        //_playerMap.Disable();
 
-        _uiMap.Enable();
+        //_uiMap.Enable();
+
+        _playerInputSystem.SwitchCurrentActionMap("UI");
+
+        Debug.Log($"PlayerMap:{_playerMap.enabled}");
+        Debug.Log($"UIMap:{_uiMap.enabled}");
+        Debug.Log($"Current:{_playerInputSystem.currentActionMap?.name}");
 
         IsPlayerInput = false;
 
-        _cameraController.DisableCameraInput();
+        _cameraController?.DisableCameraInput();
     }
 }
